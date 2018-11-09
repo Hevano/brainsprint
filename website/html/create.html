@@ -3,9 +3,31 @@
     <head>
         <title>Notes Html Doc</title>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" href="../css/brainStyle.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <style type="text/css">
+
           input[type="text"] {
             width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+          }
+
+          input[type=text]:focus {
+              /*Highlight the seleceted field with our highlight color*/
+          }
+          input[name=new] {
+            width: 100%;
+            box-sizing: border-box;
+          }
+
+          input[type=button] {
+            margin: 1em;
+          }
+
+          input.button_final {
+
           }
 
           #div_content {
@@ -15,19 +37,53 @@
 
           #div_form {
             background-color: #d3d3d3;
+            padding: 2em;
+          }
+
+          #title {
+            margin: 0px auto;
+            width: 20%;
+            padding: 1em;
+          }
+
+          fieldset.topic {
+            background-color: #efefef;
+            border: 0px transparent;
           }
         </style>
     </head>
     <body>
-      <!-- Nicole's stuff here -->
+      <div id="div_head">
+
+        <div id="div_logo_bar">
+
+          <div id="div_logo">
+            <img src="../images/brain.png" alt="brain_logo" id="brain_logo">
+            <h1 id="brain_name">BrainSprint</h1>
+            <img src="../images/profile_icon.png" alt="profile_icon" id="profile_icon">
+          </div>
+
+          <div class="div_profile">
+
+          </div>
+
+        </div>
+
+        <div id="div_nav_bar">
+          <a id="nav_dashboard" class="nav_options" href="dashboard.html">Dashboard</a>
+          <a id="nav_logout" class="nav_options">Log Out</a>
+          <a id="nav_help" class="nav_options">Help </a>
+        </div>
+      </div>
+
       <div id='div_content'>
         <h1 id='title'>Create A Room</h1>
         <div id='div_form'>
           <form>
             <input type="text" name="name" placeholder="Room Name" required="required">
-            <fieldset>
-              <legend>Topic 1</legend>
+            <fieldset class="topic">
               <input type="text" name="topic1" placeholder="Topic Title" required="required" class="topic_name">
+              <label>Topic Duration:</label>
               <select size="1" name="time" id="time">
                 <option value="30" selected="selected">30 seconds</option>
                 <option value="60">1 minute</option>
@@ -39,12 +95,8 @@
             </fieldset>
             <br>
             <input type="button" name="new" value="Add more topics">
-            <br>
-
-            <fieldset>
-              <input type="button" id="reset" name="reset" value="Reset"/>
-              <input type="button" id="create" name="create" value="Create"/>
-            </fieldset>
+            <input type="button" id="reset" name="reset" value="Reset" class="button_final"/>
+            <input type="button" id="create" name="create" value="Create" class="button_final"/>
             
           </form>
         </div>
