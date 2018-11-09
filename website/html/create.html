@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Notes Html Doc</title>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+          input[type="text"] {
+            width: 100%;
+          }
+
+          #div_content {
+            width: 80%;
+            margin: 0px auto;
+          }
+
+          #div_form {
+            background-color: #d3d3d3;
+          }
+        </style>
+    </head>
+    <body>
+      <!-- Nicole's stuff here -->
+      <div id='div_content'>
+        <h1 id='title'>Create A Room</h1>
+        <div id='div_form'>
+          <form>
+            <input type="text" name="name" placeholder="Room Name" required="required">
+            <fieldset>
+              <legend>Topic 1</legend>
+              <input type="text" name="topic1" placeholder="Topic Title" required="required" class="topic_name">
+              <select size="1" name="time" id="time">
+                <option value="30" selected="selected">30 seconds</option>
+                <option value="60">1 minute</option>
+                <option value="120">2 minutes</option>
+                <option value="180">3 minutes</option>
+                <option value="240">4 minutes</option>
+                <option value="320">5 minutes</option>
+              </select>
+            </fieldset>
+            <br>
+            <input type="button" name="new" value="Add more topics">
+            <br>
+
+            <fieldset>
+              <input type="button" id="reset" name="reset" value="Reset"/>
+              <input type="button" id="create" name="create" value="Create"/>
+            </fieldset>
+            
+          </form>
+        </div>
+      </div>
+    </body>
+</html>
