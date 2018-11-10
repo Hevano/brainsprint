@@ -1,46 +1,39 @@
-body{
+body {
   font-family: 'Raleway', sans-serif;
-
 }
 
 /* LOGO BAR*/
-
-#div_head{
+#div_head {
   width: 100%;
   heigth: 10em;
-  /* background-color: rgb(168, 1, 133); */
 }
 
-#div_logo_bar{
-    width: 100%;
-    height: 3.8em;
-    /* background-color: rgb(133, 187, 161); */
+#div_logo_bar {
+  width: 100%;
+  height: 3.8em;
 }
 
 #brain_logo {
   width: 4em;
-  margin:.2em;
+  margin: .2em;
   height: auto;
   float: left;
 }
 
-#brain_name{
+#brain_name {
   font-size: 1.5em;
   float: left;
-  /* margin-top: .2em; */
   padding: 0;
-  /* background-color: rgb(84, 184, 161) */
 }
 
-#profile_icon{
+#profile_icon {
   width: 2em;
   margin: .5em;
   margin-top: 1em;
-  float:right;
+  float: right;
 }
 
 /* NAV BAR */
-
 #div_nav_bar {
   width: 100%;
   height: 2.5em;
@@ -48,30 +41,168 @@ body{
   background-color: rgb(134, 190, 131);
 }
 
-.nav_options{
+.nav_options {
   font-size: 1em;
   margin: .7em;
 }
 
-#nav_dashboard{
-  float:left;
-  /* background-color: rgb(193, 57, 54); */
+#nav_dashboard {
+  float: left;
   text-decoration: none;
   color: black;
 }
 
-#nav_dashboard:hover{
+#nav_dashboard:hover {
   text-decoration: underline;
   cursor: pointer;
-
 }
 
-#nav_help{
+#nav_help {
   float: right;
-  /* background-color: rgb(165, 171, 221); */
 }
 
-#nav_logout{
+#nav_logout {
   float: right;
-  /* background-color: rgb(215, 77, 9); */
+}
+
+/* PAGE NAME */
+#div_pagename {
+  text-align: center;
+}
+
+/* BODY */
+#div_body {
+  width: 95%;
+  height: 35em;
+  margin: 0 auto;
+  /* background-color: rgb(119, 196, 228); */
+  border: 1px solid rgb(134, 190, 131);
+}
+
+#body_your_room {
+  background-color: rgb(134, 190, 131);
+}
+
+#body_analytics {
+  background-color: rgb(226, 226, 226);
+  border-left: 1px solid rgb(134, 190, 131);
+  border-right: 1px solid rgb(134, 190, 131);
+}
+
+#body_joined_room {
+  background-color: rgb(226, 226, 226);
+}
+
+/* OPTIONS BAR */
+#body_options_bar {
+  display: table;
+  width: 100%;
+  height: 4em;
+  background-color: rgb(9, 228, 179);
+}
+
+#body_options_nav {
+  display: table-row;
+}
+
+.body_options {
+  display: table-cell;
+  width: 33.33%;
+  margin: 0;
+  padding-top: 1.5em;
+  text-align: center;
+}
+
+.body_options:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ROOMS */
+#created_room_732814 {
+  width: 95%;
+  height: 6em;
+  margin-left: 2.5%;
+  margin-top: 1em;
+  border: 1px solid rgb(134, 190, 131);
+  /* background-color: rgb(114, 113, 219); */
+}
+
+.room_details {
+  width: 57%;
+  padding: .5em;
+  padding-left: .5em;
+  margin-left: .5em;
+  float: left;
+  /* background-color: rgb(238, 45, 188); */
+}
+
+.room_name {
+  font-size: 2em;
+  margin: 0;
+  /* background-color: rgb(20, 241, 168); */
+}
+
+.topic {
+  font-size: 1em;
+  margin: 0;
+  margin-left: 1em;
+  margin-top: .2em;
+  /* background-color: rgb(221, 231, 27); */
+}
+
+.room_number {
+  font-size: 1em;
+  margin: 0;
+  margin-left: 1em;
+  margin-top: .2em;
+  /* background-color: rgb(143, 136, 168); */
+}
+
+.action_options {
+  width: 35%;
+  height: 5em;
+  float: right;
+  margin-top: .5em;
+  margin-right: .5em;
+  /* background-color: rgb(62, 177, 61); */
+}
+
+.button_start {
+  width: 8em;
+  height: 3em;
+  float: right;
+  background-color:  rgb(134, 190, 131);
+  border: none;
+  color: white;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 1em;
+  margin-right: 1em;
+  float: right;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 2px 2px rgb(136, 136, 136);
+}
+
+.icon_button {
+  width: 1.5em;
+  height: auto;
+  margin-top: .2em;
+  border-left: 1px solid rgb(166, 224, 139);
+  float: right;
+  cursor: pointer;
+}
+
+/* Bottom Bar */
+
+.bottom_bar{
+    width: 100%;
+    height: 1em;
+    float: left;
+    margin-top: 4em;
+    background-color:  rgb(134, 190, 131);
 }
