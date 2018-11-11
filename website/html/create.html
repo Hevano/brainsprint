@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Notes Html Doc</title>
+        <title>Create - Brainsprint</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="../css/brainStyle.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <style type="text/css">
 
           input[type="text"] {
-            width: 100%;
+            width: calc(100% - 48px);
             padding: 12px 20px;
             margin: 8px 0;
             box-sizing: border-box;
           }
 
           input[type=text]:focus {
-              /*Highlight the seleceted field with our highlight color*/
+              
           }
           input[name=new] {
-            width: 100%;
+            width: calc(100% - 100px);
             box-sizing: border-box;
+            margin-left: auto; 
+            margin-right: auto;
+
           }
 
           input[type=button] {
+            background-color: rgb(134, 190, 131);
             margin: 1em;
+            color: white;
+            padding: 16px 32px;
+            cursor: pointer;
+            border: none;
           }
 
           input.button_final {
@@ -42,14 +50,46 @@
 
           #title {
             margin: 0px auto;
-            width: 20%;
+            width: 30%;
             padding: 1em;
+            text-align: center;
           }
 
-          fieldset.topic {
+          fieldset {
             background-color: #efefef;
             border: 0px transparent;
           }
+
+          *.tooltip {
+            width: 24px;
+            height: 24px;
+            background: blue;
+            color: white;
+            border-radius: 12px;
+            display: inline-block;
+            text-align: center;
+            font-size: 16pt;
+          }
+
+          abbr {
+            text-decoration-line: none;
+          }
+
+          *.trash_button {
+            float: right;
+          }
+
+          #trash_tool {
+            float: right;
+            margin-top: 1em;
+            margin-right: 0.9em;
+            margin-left: 0px;
+          }
+
+          *.time_select {
+            margin-top: 2em;
+          }
+
         </style>
     </head>
     <body>
@@ -80,23 +120,30 @@
         <h1 id='title'>Create A Room</h1>
         <div id='div_form'>
           <form>
-            <input type="text" name="name" placeholder="Room Name" required="required">
+            <fieldset class="title_form">
+              <input type="text" name="name" placeholder="Room Name" required="required"> <span class="tooltip"><abbr title="The name of the room that you will create">?</abbr></span>
+            </fieldset>
+            
+            <br>
+            
             <fieldset class="topic">
-              <input type="text" name="topic1" placeholder="Topic Title" required="required" class="topic_name">
-              <label>Topic Duration:</label>
-              <select size="1" name="time" id="time">
+              <input type="text" name="topic1" placeholder="Topic Title" required="required" class="topic_name"> <span class="tooltip"><abbr title="A topic that you will be brainstorming on">?</abbr></span>
+              <br>
+              <label class="time_select">Topic Duration:</label>
+              <select size="1" name="time" id="time" class="time_select">
                 <option value="30" selected="selected">30 seconds</option>
                 <option value="60">1 minute</option>
                 <option value="120">2 minutes</option>
                 <option value="180">3 minutes</option>
                 <option value="240">4 minutes</option>
                 <option value="320">5 minutes</option>
-              </select>
+              </select> <span class="tooltip" id="trash_tool"><abbr title="The amount of time that brain sprinters can reply to a topic">?</abbr></span>
+              <input type="button" id="delete1" name="delete1" value="Trash" class="trash_button"/> <span class="tooltip"><abbr title="This button deletes this topic">?</abbr></span>
             </fieldset>
             <br>
-            <input type="button" name="new" value="Add more topics">
-            <input type="button" id="reset" name="reset" value="Reset" class="button_final"/>
-            <input type="button" id="create" name="create" value="Create" class="button_final"/>
+            <input type="button" name="new" value="Add more topics"> <span class="tooltip"><abbr title="The amount of time that brain sprinters can reply to a topic">?</abbr></span>
+            <input type="button" id="reset" name="reset" value="Reset" class="button_final"/> <span class="tooltip"><abbr title="This button clears all of the information you have added in the area above">?</abbr></span>
+            <input type="button" id="create" name="create" value="Create" class="button_final"/> <span class="tooltip"><abbr title="This button saves the information you have put in and creates your room">?</abbr></span>
             
           </form>
         </div>
