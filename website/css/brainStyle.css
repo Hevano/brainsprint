@@ -44,26 +44,21 @@ body {
 .nav_options {
   font-size: 1em;
   margin: .7em;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
 }
 
 #nav_dashboard {
   float: left;
-  text-decoration: none;
-  color: black;
 }
 
-#nav_dashboard:hover {
+#nav_help, #nav_logout {
+  float: right;
+}
+.nav_options:hover{
   text-decoration: underline;
-  cursor: pointer;
 }
 
-#nav_help {
-  float: right;
-}
-
-#nav_logout {
-  float: right;
-}
 
 /* PAGE NAME */
 #div_pagename {
@@ -111,6 +106,7 @@ body {
   margin: 0;
   padding-top: 1.5em;
   text-align: center;
+
 }
 
 .body_options:hover {
