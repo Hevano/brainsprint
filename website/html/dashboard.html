@@ -23,7 +23,7 @@
       <nav id="div_nav_bar">
         <a id="nav_dashboard" class="nav_options" href="dashboard.html">Dashboard</a>
         <a id="nav_logout" class="nav_options" href="homepage.html">Log Out</a>
-        <a id="nav_help" class="nav_options"  href="help.html">Help </a>
+        <a id="nav_help" class="nav_options" href="help.html">Help </a>
       </nav>
     </div>
 
@@ -31,33 +31,65 @@
       <h1 id="pagename">BrainLaps</h1>
     </div>
 
-    <div id="div_body">
+
+
+    <div class="div_body_base">
+
       <div id="body_options_bar">
         <ul id="body_options_nav">
-            <li id="body_your_room" class="body_options">Your Room</li>
-            <li id="body_analytics" class="body_options">Analytics</li>
-            <li id="body_joined_room" class="body_options">Joined Room</li>
+          <li id="body_your_room" class="body_options" onclick="yourRoom_up()">Your Room</li>
+          <li id="body_analytics" class="body_options" onclick="analytics_up()">Analytics</li>
+          <li id="body_joined_room" class="body_options" onclick="joinedRoom_up()">Joined Room</li>
         </ul>
       </div>
 
-      <div id="created_room_732814" class="room_created">
+      <div id="div_body_yourRoom" class="div_body">
 
-        <div id="room_details_732814" class="room_details">
-          <h3 id="room_name_732814" class="room_name">Team Veggie</h3>
-          <p id="topic_732814" class="topic">Topic: Bananas in Pajamas </p>
-          <p id="room_number_732814" class="room_number">Room Number: 732814</p>
+
+        <div id="created_room_732814" class="room_created">
+
+          <div id="room_details_732814" class="room_details">
+            <h3 id="room_name_732814" class="room_name">Team Veggie</h3>
+            <p id="topic_732814" class="topic">Topic: Bananas in Pajamas </p>
+            <p id="room_number_732814" class="room_number">Room Number: 732814</p>
+          </div>
+
+
+          <div id="action_options_732814" class="action_options">
+            <img src="../images/options_icon.png" alt="options_icon_" id="options_icon_732814" class="icon_button">
+            <button type="button" name="Start" id="button_start_732814" class="button_start">Start</button>
+
+          </div>
+
         </div>
 
-
-        <div id="action_options_732814" class="action_options">
-          <img src="../images/options_icon.png" alt="options_icon_" id="options_icon_732814" class="icon_button">
-          <button type="button" name="Start" id="button_start_732814" class="button_start">Start</button>
-
-        </div>
+        <a href="create.html"><img src="../images/add.png" alt="add_button" id="add_button"></a>
 
       </div>
 
-      <a href="create.html"><img src="../images/add.png" alt="add_button" id="add_button"></a>
+      <div id="div_body_analytics" class="div_body">
+        <div id="created_room_732814" class="room_analytics">
+
+          <div id="room_details_732815" class="room_details">
+            <h3 id="room_name_732815" class="room_name">Team Veggie</h3>
+            <p id="topic_732815" class="topic">Topic: Bananas in Pajamas </p>
+            <p id="room_number_732815" class="room_number">Room Number: 732814</p>
+          </div>
+
+
+          <div id="action_options_732815" class="action_options">
+            <img src="../images/options_icon.png" alt="options_icon_" id="options_icon_732814" class="icon_button">
+            <button type="button" name="Start" id="button_start_732815" class="button_analytics">See Analytics</button>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div id="div_body_joinedRoom" class="div_body">
+
+      </div>
+
 
     </div>
 
@@ -66,9 +98,41 @@
 
       </div>
     </div>
+
   </div>
 
+  <script type="text/javascript">
+    function yourRoom_up() {
+      document.getElementById("div_body_yourRoom").style.zIndex = "1";
+      document.getElementById("div_body_analytics").style.zIndex = "-1";
+      document.getElementById("div_body_joinedRoom").style.zIndex = "-1";
+      document.getElementById("body_analytics").style.backgroundColor =
 
+      document.getElementById("body_your_room").style.backgroundColor = "rgb(134, 190, 131)";
+      document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("body_joined_room").style.backgroundColor ="rgb(226, 226, 226)";
+    }
+
+    function analytics_up() {
+      document.getElementById("div_body_yourRoom").style.zIndex = "-1";
+      document.getElementById("div_body_analytics").style.zIndex = "1";
+      document.getElementById("div_body_joinedRoom").style.zIndex = "-1";
+
+      document.getElementById("body_your_room").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("body_analytics").style.backgroundColor = "rgb(134, 190, 131)";
+      document.getElementById("body_joined_room").style.backgroundColor = "rgb(226, 226, 226)";
+    }
+
+    function joinedRoom_up() {
+      document.getElementById("div_body_yourRoom").style.zIndex = "-1";
+      document.getElementById("div_body_analytics").style.zIndex = "-1";
+      document.getElementById("div_body_joinedRoom").style.zIndex = "1";
+
+      document.getElementById("body_your_room").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("body_joined_room").style.backgroundColor = "rgb(134, 190, 131)";
+    }
+  </script>
 
 </body>
 
