@@ -34,7 +34,7 @@
 
     #div_submit_display {
       background-color: green;
-      width: 80%;
+      width: 90%;
       margin: 30px auto;
       overflow: hidden;
     }
@@ -55,8 +55,6 @@
 
     #div_submit_display p {
       background-color: white;
-      float: left;
-      width: 40%;
       margin:  1em;
       padding: 1em;
     }
@@ -68,12 +66,17 @@
       padding: 1em;
     }
 
-    #div_input input[type="text"] {
+    #div_input textarea {
       padding-left: 1em;
-      padding: right;
       width: 80%;
-      height: 30%;
-      box-sizing: border-box;
+      height: 8em;
+      resize: none;
+    }
+
+    #div_input input {
+      float: right;
+      width: 15%;
+      height: 8em;
     }
 
   </style>
@@ -119,7 +122,7 @@
 
     <div id="div_input">
       <form>
-        <input type="text" name="words" placeholder="TYPE HERE">
+        <textarea id="submit_text">Text Goes here</textarea>
         <input type="button" name="submit" value="ENTER">
       </form>
     </div>
