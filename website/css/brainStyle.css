@@ -12,7 +12,7 @@ Lowlight: background-color: rgb(230, 230, 230);
 /* LOGO BAR*/
 #div_head {
   width: 100%;
-  heigth: 10em;
+  height: 10em;
 }
 
 #div_logo_bar {
@@ -62,10 +62,10 @@ Lowlight: background-color: rgb(230, 230, 230);
 #nav_help, #nav_logout {
   float: right;
 }
-.nav_options:hover{
+
+.nav_options:hover {
   text-decoration: underline;
 }
-
 
 /* PAGE NAME */
 #div_pagename {
@@ -73,13 +73,39 @@ Lowlight: background-color: rgb(230, 230, 230);
 }
 
 /* BODY */
-#div_body {
-  width: 95%;
-  height: 35em;
+
+.div_body_base{
+  width: auto;
+  height: 37em;
   margin: 0 auto;
-  /* background-color: rgb(119, 196, 228); */
+  /* background-color: rgb(194, 233, 148); */
+}
+.div_body {
+  position: absolute;
+  width: 94%;
+  height: 35em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid rgb(134, 190, 131);
 }
+
+#div_body_yourRoom{
+  z-index: 1;
+  background-color: rgb(255, 255, 255);
+}
+
+#div_body_analytics{
+  z-index: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+#div_body_joinedRoom{
+  z-index: -1;
+  background-color: rgb(255, 255, 255);
+}
+
 
 #body_your_room {
   background-color: rgb(134, 190, 131);
@@ -98,9 +124,11 @@ Lowlight: background-color: rgb(230, 230, 230);
 /* OPTIONS BAR */
 #body_options_bar {
   display: table;
-  width: 100%;
+  width: 95%;
   height: 4em;
-  background-color: rgb(9, 228, 179);
+  margin: 0 auto;
+  border: 1px solid rgb(134, 190, 131);
+  border-bottom: none;
 }
 
 #body_options_nav {
@@ -109,11 +137,11 @@ Lowlight: background-color: rgb(230, 230, 230);
 
 .body_options {
   display: table-cell;
-  width: 33.33%;
+  /* width: 33.33%; */
+  width: auto;
   margin: 0;
   padding-top: 1.5em;
   text-align: center;
-
 }
 
 .body_options:hover {
@@ -122,7 +150,7 @@ Lowlight: background-color: rgb(230, 230, 230);
 }
 
 /* ROOMS */
-#created_room_732814 {
+.room_created {
   width: 95%;
   height: 6em;
   margin-left: 2.5%;
@@ -130,6 +158,17 @@ Lowlight: background-color: rgb(230, 230, 230);
   border: 1px solid rgb(134, 190, 131);
   /* background-color: rgb(114, 113, 219); */
 }
+
+.room_analytics {
+  width: 95%;
+  height: 6em;
+  margin-left: 2.5%;
+  margin-top: 1em;
+  border: 1px solid rgb(134, 190, 131)
+  /* background-color: rgb(114, 113, 219); */
+}
+
+
 
 .room_details {
   width: 57%;
@@ -175,7 +214,7 @@ Lowlight: background-color: rgb(230, 230, 230);
   width: 8em;
   height: 3em;
   float: right;
-  background-color:  rgb(134, 190, 131);
+  background-color: rgb(134, 190, 131);
   border: none;
   color: white;
   padding: 1em;
@@ -200,21 +239,40 @@ Lowlight: background-color: rgb(230, 230, 230);
   cursor: pointer;
 }
 
-#add_button{
+#add_button {
   width: 3em;
   height: auto;
   float: right;
-  margin-top: 20em;
+  margin-top: 24em;
   margin-right: 1em;
   cursor: pointer;
 }
 
-/* Bottom Bar */
+.button_analytics{
+  width: 10em;
+  height: 3em;
+  float: right;
+  background-color: rgb(190, 125, 133);
+  border: none;
+  color: white;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 1em;
+  margin-right: 1em;
+  float: right;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 2px 2px rgb(136, 136, 136);
+}
 
-.bottom_bar{
-    width: 100%;
-    height: 1em;
-    float: left;
-    margin-top: 4em;
-    background-color:  rgb(134, 190, 131);
+/* Bottom Bar */
+.bottom_bar {
+  width: 100%;
+  height: 1em;
+  float: left;
+  margin-top: 3em;
+  background-color: rgb(134, 190, 131);
 }
