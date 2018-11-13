@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Page Title</title>
+    <title>Homepage - BrainSprint</title>
     <link rel="stylesheet" href="../css/brainStyle.css">
     <style>
         body {
@@ -32,20 +32,19 @@
         }
 
         #button_gettingStarted {
-            display: inline-block;
-            width: 20%;
-            height: 90%;
+            width: auto;
+            height: auto;
+            font-size: 14pt;
+            margin-top: -0.1em;
             float: right;
-            font-family: 'Raleway', sans-serif;
-            font-size: 20pt;
-            background-color: rgb(134, 190, 131)
         }
 
         #div_brainsprintLogo {
-            width: 38%;
-            height: 70%;
+            width: 27em;
+            height: 20em;
             margin-top: 2%;
-            margin-left: 32%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #div_brainsprintLogo img {
@@ -68,19 +67,24 @@
         }
 
         #div_roomButtons {
-            margin-left: 12%;
+            width: 31.89em;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .button_room {
-            display: inline-block;
-            width: 24%;
-            height: 60%;
-            margin-left: 13%;
-            margin-top: 1%;
-            font-family: 'Raleway', sans-serif;
+        #button_enter {
+            width: auto;
+            height: auto;
             font-size: 20pt;
-            background-color: rgb(134, 190, 131)
-
+            float: none;
+        }
+        
+        #button_create {
+            width: auto;
+            height: auto;
+            font-size: 20pt;
+            float: none;
         }
 
 
@@ -92,21 +96,20 @@
 <body>
     <div id="div_pagewrap">
         <div id="div_head">
-            <button id="button_gettingStarted">Getting Started</button>
+            <button id="button_gettingStarted" class="button_start">Getting Started</button>
         </div>
         <div id="div_body">
             <div id="div_brainsprintLogo">
                 <img src="../images/brain.png" alt="The brainsprint logo"/>
             </div>
-            <!--Put this as an image later. -->
             <div id="div_brainsprintText">
                 <h1>BrainSprint</h1>
             </div>
         </div>
         <div id="div_footer">
             <div id="div_roomButtons">
-                <button class="button_room">Enter a Room</button>
-                <button class="button_room">Create a Room</button>
+                <button id="button_enter" class="button_start">Enter a Room</button>
+                <button id="button_create" class="button_start">Create a Room</button>
             </div>
         </div>
     </div>

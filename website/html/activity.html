@@ -36,7 +36,10 @@
       background-color: rgb(134, 190, 131);;
       width: 90%;
       margin: 30px auto;
-      overflow: hidden;
+      overflow-y: auto;
+      height: 400px;
+      display: grid;
+      grid-template-columns: auto auto auto;
     }
 
     #div_submit_display p {
@@ -108,8 +111,8 @@
 
     <div id="div_input">
       <form>
-        <textarea id="submit_text">Text Goes here</textarea>
-        <input type="button" name="submit" value="ENTER">
+        <textarea id="submit_text">Text goes here</textarea>
+        <input type="button" name="submit" value="ENTER" id="enter_button">
       </form>
     </div>
 
@@ -120,6 +123,27 @@
     </div>
   </div>
 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+          $("#enter_button").click(function(event){
+            if(!$("#submit_text").val() == "" || !("#submit_text").val() == "Text goes here") {
+              var newItem = $("<p>" + $("#submit_text").val() + "</p>")
+              $("#div_submit_display").prepend(newItem).focus();
+              $("#submit_text").val("Text goes here");
+            }
+            else {
+              console.log("nope");
+            }
+          });
+
+          $("#submit_text").click(function(event){
+            $("#submit_text").val("");
+          });
+
+        });
+    </script>
 
 
 </body>
