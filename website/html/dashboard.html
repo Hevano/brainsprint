@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>BrainSprint</title>
   <link rel="stylesheet" href="../css/brainStyle.css">
+  <link rel="icon" href="../images/brain.png">
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 
@@ -14,7 +15,7 @@
       <div id="div_logo_bar">
 
         <div id="div_logo">
-          <img src="../images/brain.png" alt="brain_logo" id="brain_logo">
+          <a href="dashboard.html"><img src="../images/brain.png" alt="brain_logo" id="brain_logo"></a>
           <h1 id="brain_name">BrainSprint</h1>
           <img src="../images/profile_icon.png" alt="profile_icon" id="profile_icon">
         </div>
@@ -87,6 +88,7 @@
       </div>
 
       <div id="div_body_joinedRoom" class="div_body">
+        <a onclick=""><img src="../images/add.png" alt="add_button" id="join_button"></a>
 
       </div>
 
@@ -100,7 +102,7 @@
     </div>
 
   </div>
-
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script type="text/javascript">
     function yourRoom_up() {
       document.getElementById("div_body_yourRoom").style.zIndex = "1";
@@ -111,6 +113,8 @@
       document.getElementById("body_your_room").style.backgroundColor = "rgb(134, 190, 131)";
       document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
       document.getElementById("body_joined_room").style.backgroundColor ="rgb(226, 226, 226)";
+
+
     }
 
     function analytics_up() {
@@ -121,6 +125,8 @@
       document.getElementById("body_your_room").style.backgroundColor = "rgb(226, 226, 226)";
       document.getElementById("body_analytics").style.backgroundColor = "rgb(134, 190, 131)";
       document.getElementById("body_joined_room").style.backgroundColor = "rgb(226, 226, 226)";
+
+
     }
 
     function joinedRoom_up() {
@@ -130,8 +136,13 @@
 
       document.getElementById("body_your_room").style.backgroundColor = "rgb(226, 226, 226)";
       document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
-      document.getElementById("body_joined_room").style.backgroundColor = "rgb(134, 190, 131)";
+      document.getElementById("body_joined_room").style.backgroundColor = "rgb(206, 160, 104)";
     }
+
+
+    // $("#join_button").click(function{
+    //
+    // })
   </script>
 
 </body>
