@@ -70,6 +70,34 @@ Lowlight: background-color: rgb(230, 230, 230);
 /* PAGE NAME */
 #div_pagename {
   text-align: center;
+  margin-top: -3em;
+}
+
+/* OPTIONS BAR */
+#body_options_bar {
+  display: table;
+  width: 95%;
+  height: 4em;
+  margin: 0 auto;
+  border: 1px solid rgb(134, 190, 131);
+  border-bottom: none;
+}
+
+#body_options_nav {
+  display: table-row;
+}
+
+.body_options {
+  display: table-cell;
+  width: auto;
+  margin: 0;
+  padding-top: 1.5em;
+  text-align: center;
+}
+
+.body_options:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* BODY */
@@ -78,17 +106,20 @@ Lowlight: background-color: rgb(230, 230, 230);
   width: auto;
   height: 37em;
   margin: 0 auto;
+  width: auto;
   /* background-color: rgb(194, 233, 148); */
 }
 .div_body {
   position: absolute;
-  width: 94%;
+  width: 93%;
   height: 35em;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid rgb(134, 190, 131);
+  /* border: 1px solid rgb(190, 125, 133); */
+
 }
 
 #div_body_yourRoom{
@@ -121,34 +152,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   background-color: rgb(226, 226, 226);
 }
 
-/* OPTIONS BAR */
-#body_options_bar {
-  display: table;
-  width: 95%;
-  height: 4em;
-  margin: 0 auto;
-  border: 1px solid rgb(134, 190, 131);
-  border-bottom: none;
-}
-
-#body_options_nav {
-  display: table-row;
-}
-
-.body_options {
-  display: table-cell;
-  /* width: 33.33%; */
-  width: auto;
-  margin: 0;
-  padding-top: 1.5em;
-  text-align: center;
-}
-
-.body_options:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
 /* ROOMS */
 .room_created {
   width: 95%;
@@ -156,7 +159,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   margin-left: 2.5%;
   margin-top: 1em;
   border: 1px solid rgb(134, 190, 131);
-  /* background-color: rgb(114, 113, 219); */
 }
 
 .room_analytics {
@@ -165,7 +167,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   margin-left: 2.5%;
   margin-top: 1em;
   border: 1px solid rgb(134, 190, 131)
-  /* background-color: rgb(114, 113, 219); */
 }
 
 
@@ -176,13 +177,11 @@ Lowlight: background-color: rgb(230, 230, 230);
   padding-left: .5em;
   margin-left: .5em;
   float: left;
-  /* background-color: rgb(238, 45, 188); */
 }
 
 .room_name {
   font-size: 2em;
   margin: 0;
-  /* background-color: rgb(20, 241, 168); */
 }
 
 .topic {
@@ -190,7 +189,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   margin: 0;
   margin-left: 1em;
   margin-top: .2em;
-  /* background-color: rgb(221, 231, 27); */
 }
 
 .room_number {
@@ -198,7 +196,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   margin: 0;
   margin-left: 1em;
   margin-top: .2em;
-  /* background-color: rgb(143, 136, 168); */
 }
 
 .action_options {
@@ -207,7 +204,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   float: right;
   margin-top: .5em;
   margin-right: .5em;
-  /* background-color: rgb(62, 177, 61); */
 }
 
 .button_start {
@@ -244,6 +240,15 @@ Lowlight: background-color: rgb(230, 230, 230);
   height: auto;
   float: right;
   margin-top: 24em;
+  margin-right: 1em;
+  cursor: pointer;
+}
+
+#join_button {
+  width: 3em;
+  height: auto;
+  float: right;
+  margin-top: 31.1em;
   margin-right: 1em;
   cursor: pointer;
 }
