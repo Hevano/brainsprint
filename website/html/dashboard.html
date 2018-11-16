@@ -27,7 +27,7 @@
         <a id="nav_help" class="nav_options" href="help.html">Help </a>
       </nav>
     </div>
-
+    
     <div id="div_pagename">
       <h1 id="pagename">BrainLaps</h1>
     </div>
@@ -46,26 +46,19 @@
 
       <div id="div_body_yourRoom" class="div_body">
 
-
         <div id="created_room_732814" class="room_created">
-
           <div id="room_details_732814" class="room_details">
             <h3 id="room_name_732814" class="room_name">Team Veggie</h3>
             <p id="topic_732814" class="topic">Topic: Bananas in Pajamas </p>
             <p id="room_number_732814" class="room_number">Room Number: 732814</p>
           </div>
 
-
           <div id="action_options_732814" class="action_options">
             <img src="../images/options_icon.png" alt="options_icon_" id="options_icon_732814" class="icon_button">
             <button type="button" name="Start" id="button_start_732814" class="button_start">Start</button>
-
           </div>
-
         </div>
-
         <a href="create.html"><img src="../images/add.png" alt="add_button" id="add_button"></a>
-
       </div>
 
       <div id="div_body_analytics" class="div_body">
@@ -81,15 +74,23 @@
           <div id="action_options_732815" class="action_options">
             <img src="../images/options_icon.png" alt="options_icon_" id="options_icon_732814" class="icon_button">
             <button type="button" name="Start" id="button_start_732815" class="button_analytics">See Analytics</button>
-
           </div>
-
         </div>
       </div>
 
       <div id="div_body_joinedRoom" class="div_body">
-        <a onclick=""><img src="../images/add.png" alt="add_button" id="join_button"></a>
+        <a onclick="join_room_pop()"><img src="../images/add.png" alt="add_button" id="join_button"></a>
 
+        <!-- Join Room Popup -->
+        <div class="join_room_popup">
+          <div class="join_room_popup_content">
+            <span class="close" onclick="close_pop()">&times;</span>
+            <form class="form_join_room" action="index.html" method="post">
+              <input type="number" name="join_number" placeholder="Enter Room Number">
+              <input type="submit" name="submit" value="submit">
+            </form>
+          </div>
+        </div>
       </div>
 
 
@@ -110,9 +111,9 @@
       document.getElementById("div_body_joinedRoom").style.zIndex = "-1";
       document.getElementById("body_analytics").style.backgroundColor =
 
-      document.getElementById("body_your_room").style.backgroundColor = "rgb(134, 190, 131)";
+        document.getElementById("body_your_room").style.backgroundColor = "rgb(134, 190, 131)";
       document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
-      document.getElementById("body_joined_room").style.backgroundColor ="rgb(226, 226, 226)";
+      document.getElementById("body_joined_room").style.backgroundColor = "rgb(226, 226, 226)";
 
 
     }
@@ -136,13 +137,22 @@
 
       document.getElementById("body_your_room").style.backgroundColor = "rgb(226, 226, 226)";
       document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
-      document.getElementById("body_joined_room").style.backgroundColor = "rgb(206, 160, 104)";
+      document.getElementById("body_joined_room").style.backgroundColor = "rgb(134, 190, 131)";
     }
 
+    var join_room = $(".join_room_popup");
+    var span = document.getElementsByClassName("close")[0];
 
-    // $("#join_button").click(function{
-    //
-    // })
+    function close_pop() {
+      join_room.css("display", "none");
+      console.log("close function");
+    }
+
+    function join_room_pop() {
+      join_room.css("display", "block");
+      console.log("join room function");
+    }
+
   </script>
 
 </body>
