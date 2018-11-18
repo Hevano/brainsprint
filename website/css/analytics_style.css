@@ -1,0 +1,43 @@
+#div_search_input {
+  width: 60%;
+  background-color: rgb(134, 190, 131);
+  margin: 0px auto;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+#search_text {
+  width: 93%;
+  height: auto;
+}
+
+#search_button {
+  width: 32px;
+  height: 32px;
+  background-color: rgb(134, 190, 131);
+  border-radius: 50%;
+  margin-left: 0.3em;
+}
+
+#div_body {
+  width: 90%;
+  height: 25em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.div_analytics_box {
+  width: 30%;
+  height: auto;
+  background-color:  rgb(134, 190, 131);
+  margin-left: 1.8em;
+  float: left;
+}
+
+.div_analytics_content {
+  width: 90%;
+  height: 90%;
+  margin: 1.5em auto;
+  padding: 0.3em;
+  background-color: white;
+}

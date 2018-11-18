@@ -1,0 +1,82 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+#div_pagewrap {
+    width: 100%;
+    height: 45em;
+}
+
+#div_head {
+    width: 100%;
+    height: 9%;
+    border-bottom: 1pt solid black;
+}
+
+#div_body {
+    width: 100%;
+    height: 67%;
+    border-bottom: 1pt solid black;
+}
+
+#div_footer{
+    width: 100%;
+    height: 24%;
+}
+
+#button_gettingStarted {
+    width: auto;
+    height: auto;
+    font-size: 14pt;
+    margin-top: -0.1em;
+    float: right;
+}
+
+#div_brainsprintLogo {
+    width: 27em;
+    height: 20em;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#div_brainsprintLogo img {
+    width: 100%;
+    height: 100%;
+}
+
+#div_brainsprintText {
+    width: 50%;
+    height: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#div_brainsprintText h1 {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+#div_roomButtons {
+    width: 31.89em;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#button_enter {
+    width: auto;
+    height: auto;
+    font-size: 20pt;
+    float: none;
+}
+
+#button_create {
+    width: auto;
+    height: auto;
+    font-size: 20pt;
+    float: none;
+}

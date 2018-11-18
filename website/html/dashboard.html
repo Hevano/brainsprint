@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>BrainSprint</title>
-  <link rel="stylesheet" href="../css/brainStyle.css">
+  <link rel="stylesheet" href="../css/brain_style.css">
+  <link rel="stylesheet" href="../css/dashboard_style.css">
   <link rel="icon" href="../images/brain.png">
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
@@ -27,7 +28,7 @@
         <a id="nav_help" class="nav_options" href="help.html">Help </a>
       </nav>
     </div>
-    
+
     <div id="div_pagename">
       <h1 id="pagename">BrainLaps</h1>
     </div>
@@ -35,7 +36,7 @@
 
 
     <div class="div_body_base">
-
+      <!-- Navigation Bar -->
       <div id="body_options_bar">
         <ul id="body_options_nav">
           <li id="body_your_room" class="body_options" onclick="yourRoom_up()">Your Room</li>
@@ -44,33 +45,39 @@
         </ul>
       </div>
 
+      <!-- Dashboard Body -->
       <div id="div_body_yourRoom" class="div_body">
 
+        <!-- Create Room Page -->
         <div id="created_room_732814" class="room_created">
+          <!-- Created Room Details -->
           <div id="room_details_732814" class="room_details">
             <h3 id="room_name_732814" class="room_name">Team Veggie</h3>
             <p id="topic_732814" class="topic">Topic: Bananas in Pajamas </p>
             <p id="room_number_732814" class="room_number">Room Number: 732814</p>
           </div>
-
+          <!-- Start Button -->
           <div id="action_options_732814" class="action_options">
             <img src="../images/options_icon.png" alt="options_icon_" id="options_icon_732814" class="icon_button">
-            <button type="button" name="Start" id="button_start_732814" class="button_start">Start</button>
+            <button type="button" name="Start" id="button_start_732814" id="button_start" class="button_style" onclick="location.href='activity.html'">Start</button>
           </div>
         </div>
+        <!-- Create Room Button -->
         <a href="create.html"><img src="../images/add.png" alt="add_button" id="add_button"></a>
       </div>
 
+      <!-- Analytics Page -->
       <div id="div_body_analytics" class="div_body">
         <div id="created_room_732814" class="room_analytics">
 
+          <!-- Room Details -->
           <div id="room_details_732815" class="room_details">
             <h3 id="room_name_732815" class="room_name">Team Veggie</h3>
             <p id="topic_732815" class="topic">Topic: Bananas in Pajamas </p>
             <p id="room_number_732815" class="room_number">Room Number: 732814</p>
           </div>
 
-
+          <!-- Analytics Button -->
           <div id="action_options_732815" class="action_options">
             <img src="../images/options_icon.png" alt="options_icon_" id="options_icon_732814" class="icon_button">
             <button type="button" name="Start" id="button_start_732815" class="button_analytics">See Analytics</button>
@@ -78,16 +85,20 @@
         </div>
       </div>
 
+      <!-- Joined Rooms Page-->
       <div id="div_body_joinedRoom" class="div_body">
+        <!-- Join Room Button -->
         <a onclick="join_room_pop()"><img src="../images/add.png" alt="add_button" id="join_button"></a>
 
         <!-- Join Room Popup -->
         <div class="join_room_popup">
+          <!-- Join Room Popup Content -->
           <div class="join_room_popup_content">
             <span class="close" onclick="close_pop()">&times;</span>
             <form class="form_join_room" action="index.html" method="post">
-              <input type="number" name="join_number" placeholder="Enter Room Number">
-              <input type="submit" name="submit" value="submit">
+              <!-- <legend>Enter Room Number</legend> -->
+              <input id="input_number" type="number" name="join_number" placeholder="Enter Room Number">
+              <input id="input_button" type="submit" name="Enter" value="submit">
             </form>
           </div>
         </div>
@@ -105,54 +116,55 @@
   </div>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script type="text/javascript">
+    // Create Room Page Display
     function yourRoom_up() {
-      document.getElementById("div_body_yourRoom").style.zIndex = "1";
-      document.getElementById("div_body_analytics").style.zIndex = "-1";
-      document.getElementById("div_body_joinedRoom").style.zIndex = "-1";
-      document.getElementById("body_analytics").style.backgroundColor =
+      document.getElementById("div_body_yourRoom").style.display = "block";
+      document.getElementById("div_body_analytics").style.display = "none";
+      document.getElementById("div_body_joinedRoom").style.display = "none";
+      // document.getElementById("body_analytics").style.backgroundColor =
 
-        document.getElementById("body_your_room").style.backgroundColor = "rgb(134, 190, 131)";
+      document.getElementById("body_your_room").style.backgroundColor = "rgb(134, 190, 131)";
       document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
       document.getElementById("body_joined_room").style.backgroundColor = "rgb(226, 226, 226)";
-
-
     }
 
+    // Analytics Room Page Display
     function analytics_up() {
-      document.getElementById("div_body_yourRoom").style.zIndex = "-1";
-      document.getElementById("div_body_analytics").style.zIndex = "1";
-      document.getElementById("div_body_joinedRoom").style.zIndex = "-1";
+      document.getElementById("div_body_yourRoom").style.display = "none";
+      document.getElementById("div_body_analytics").style.display = "block";
+      document.getElementById("div_body_joinedRoom").style.display = "none";
 
       document.getElementById("body_your_room").style.backgroundColor = "rgb(226, 226, 226)";
       document.getElementById("body_analytics").style.backgroundColor = "rgb(134, 190, 131)";
       document.getElementById("body_joined_room").style.backgroundColor = "rgb(226, 226, 226)";
-
-
     }
 
+    // Join Room Page Display
     function joinedRoom_up() {
-      document.getElementById("div_body_yourRoom").style.zIndex = "-1";
-      document.getElementById("div_body_analytics").style.zIndex = "-1";
-      document.getElementById("div_body_joinedRoom").style.zIndex = "1";
+      document.getElementById("div_body_yourRoom").style.display = "none";
+      document.getElementById("div_body_analytics").style.display = "none";
+      document.getElementById("div_body_joinedRoom").style.display = "block";
 
       document.getElementById("body_your_room").style.backgroundColor = "rgb(226, 226, 226)";
       document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
       document.getElementById("body_joined_room").style.backgroundColor = "rgb(134, 190, 131)";
     }
 
+    // Join Room Pop Up Functions
     var join_room = $(".join_room_popup");
     var span = document.getElementsByClassName("close")[0];
 
+    // Closes Join Room Popup
     function close_pop() {
       join_room.css("display", "none");
       console.log("close function");
     }
 
+    // Brings up Join Room Popup
     function join_room_pop() {
       join_room.css("display", "block");
       console.log("join room function");
     }
-
   </script>
 
 </body>
