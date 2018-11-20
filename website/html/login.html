@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Login - BrainSprint</title>
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />    
+  <link rel="stylesheet" href="../css/brain_style.css">
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
   <script src="../js/setup-firebase.js"></script>
+  <style>
+    form {
+      border: solid 10pt rgb(134, 190, 131);
 
+    }
+    
+    .firebaseui-title {
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .firebaseui-card-content {
+      font-family: 'Raleway', sans-serif;
+    }
+  
+    .firebaseui-id-submit {
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .firebaseui-tos {
+      font-family: 'Raleway', sans-serif;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -14,8 +38,6 @@
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
   </script>
   
-  <!-- The surrounding HTML is left untouched by FirebaseUI.
-  Your app may use that space for branding, controls and other customizations.-->
   <h1>BrainSprint</h1>
   <div id="firebaseui-auth-container"></div>
   <div id="loader">Loading...</div>
