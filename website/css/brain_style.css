@@ -1,0 +1,98 @@
+body {
+  font-family: 'Raleway', sans-serif;
+}
+/*
+Evano's Color Choices
+Base: background-color: rgb(121, 187, 118);
+Alternate Base: background-color: rgb(206, 160, 104);
+Highlight: background-color: rgb(170, 127, 168);
+Lowlight: background-color: rgb(230, 230, 230);
+*/
+
+/* LOGO BAR*/
+#div_head {
+  width: 100%;
+  height: 10em;
+}
+
+#div_logo_bar {
+  width: 100%;
+  height: 3.8em;
+}
+
+#brain_logo {
+  width: 4em;
+  margin: .2em;
+  height: auto;
+  float: left;
+}
+
+#brain_name {
+  font-size: 1.5em;
+  float: left;
+  padding: 0;
+}
+
+#profile_icon {
+  width: 2em;
+  margin: .5em;
+  margin-top: 1em;
+  float: right;
+}
+
+/* NAV BAR */
+#div_nav_bar {
+  width: 100%;
+  height: 2.5em;
+  padding: "0";
+  background-color: rgb(134, 190, 131);
+}
+
+.nav_options {
+  font-size: 1em;
+  margin: .7em;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+#nav_dashboard {
+  float: left;
+}
+
+#nav_help, #nav_logout {
+  float: right;
+}
+
+.nav_options:hover {
+  text-decoration: underline;
+}
+
+/* Button Style */
+.button_style {
+  width: 8em;
+  height: 3em;
+  float: right;
+  background-color: rgb(134, 190, 131);
+  border: none;
+  color: white;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 1em;
+  margin-right: 1em;
+  float: right;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 2px 2px rgb(136, 136, 136);
+}
+
+/* Bottom Bar */
+.bottom_bar {
+  width: 100%;
+  height: 1em;
+  float: left;
+  margin-top: 3em;
+  background-color: rgb(134, 190, 131);
+}

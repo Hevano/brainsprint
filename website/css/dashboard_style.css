@@ -1,124 +1,7 @@
-body {
-  font-family: 'Raleway', sans-serif;
-}
-/*
-Evano's Color Choices
-Base: background-color: rgb(121, 187, 118);
-Alternate Base: background-color: rgb(206, 160, 104);
-Highlight: background-color: rgb(170, 127, 168);
-Lowlight: background-color: rgb(230, 230, 230);
-*/
-
-/* LOGO BAR*/
-#div_head {
-  width: 100%;
-  height: 10em;
-}
-
-#div_logo_bar {
-  width: 100%;
-  height: 3.8em;
-}
-
-#brain_logo {
-  width: 4em;
-  margin: .2em;
-  height: auto;
-  float: left;
-}
-
-#brain_name {
-  font-size: 1.5em;
-  float: left;
-  padding: 0;
-}
-
-#profile_icon {
-  width: 2em;
-  margin: .5em;
-  margin-top: 1em;
-  float: right;
-}
-
-/* NAV BAR */
-#div_nav_bar {
-  width: 100%;
-  height: 2.5em;
-  padding: "0";
-  background-color: rgb(134, 190, 131);
-}
-
-.nav_options {
-  font-size: 1em;
-  margin: .7em;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-}
-
-#nav_dashboard {
-  float: left;
-}
-
-#nav_help, #nav_logout {
-  float: right;
-}
-
-.nav_options:hover {
-  text-decoration: underline;
-}
-
 /* PAGE NAME */
 #div_pagename {
   text-align: center;
-}
-
-/* BODY */
-
-.div_body_base{
-  width: auto;
-  height: 37em;
-  margin: 0 auto;
-  /* background-color: rgb(194, 233, 148); */
-}
-.div_body {
-  position: absolute;
-  width: 94%;
-  height: 35em;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid rgb(134, 190, 131);
-}
-
-#div_body_yourRoom{
-  z-index: 1;
-  background-color: rgb(255, 255, 255);
-}
-
-#div_body_analytics{
-  z-index: 0;
-  background-color: rgb(255, 255, 255);
-}
-
-#div_body_joinedRoom{
-  z-index: -1;
-  background-color: rgb(255, 255, 255);
-}
-
-
-#body_your_room {
-  background-color: rgb(134, 190, 131);
-}
-
-#body_analytics {
-  background-color: rgb(226, 226, 226);
-  border-left: 1px solid rgb(134, 190, 131);
-  border-right: 1px solid rgb(134, 190, 131);
-}
-
-#body_joined_room {
-  background-color: rgb(226, 226, 226);
+  margin-top: -3em;
 }
 
 /* OPTIONS BAR */
@@ -137,7 +20,6 @@ Lowlight: background-color: rgb(230, 230, 230);
 
 .body_options {
   display: table-cell;
-  /* width: 33.33%; */
   width: auto;
   margin: 0;
   padding-top: 1.5em;
@@ -149,6 +31,53 @@ Lowlight: background-color: rgb(230, 230, 230);
   cursor: pointer;
 }
 
+/* BODY */
+
+.div_body_base{
+  width: auto;
+  height: 37em;
+  margin: 0 auto;
+  width: auto;
+  /* background-color: rgb(194, 233, 148); */
+}
+.div_body {
+  width: 95%;
+  height: 35em;
+  margin: 0 auto;
+  border: 1px solid rgb(134, 190, 131);
+  /* border: 1px solid rgb(190, 125, 133); */
+
+}
+
+#div_body_yourRoom{
+  background-color: rgb(255, 255, 255);
+}
+
+#div_body_analytics{
+  display: none;
+ background-color: rgb(255, 255, 255);
+}
+
+#div_body_joinedRoom{
+  display: none;
+  background-color: rgb(255, 255, 255);
+}
+
+
+#body_your_room {
+  background-color: rgb(134, 190, 131);
+}
+
+#body_analytics {
+  background-color: rgb(226, 226, 226);
+  border-left: 1px solid rgb(134, 190, 131);
+  border-right: 1px solid rgb(134, 190, 131);
+}
+
+#body_joined_room {
+  background-color: rgb(226, 226, 226);
+}
+
 /* ROOMS */
 .room_created {
   width: 95%;
@@ -156,7 +85,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   margin-left: 2.5%;
   margin-top: 1em;
   border: 1px solid rgb(134, 190, 131);
-  /* background-color: rgb(114, 113, 219); */
 }
 
 .room_analytics {
@@ -165,7 +93,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   margin-left: 2.5%;
   margin-top: 1em;
   border: 1px solid rgb(134, 190, 131)
-  /* background-color: rgb(114, 113, 219); */
 }
 
 
@@ -176,13 +103,11 @@ Lowlight: background-color: rgb(230, 230, 230);
   padding-left: .5em;
   margin-left: .5em;
   float: left;
-  /* background-color: rgb(238, 45, 188); */
 }
 
 .room_name {
   font-size: 2em;
   margin: 0;
-  /* background-color: rgb(20, 241, 168); */
 }
 
 .topic {
@@ -190,7 +115,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   margin: 0;
   margin-left: 1em;
   margin-top: .2em;
-  /* background-color: rgb(221, 231, 27); */
 }
 
 .room_number {
@@ -198,7 +122,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   margin: 0;
   margin-left: 1em;
   margin-top: .2em;
-  /* background-color: rgb(143, 136, 168); */
 }
 
 .action_options {
@@ -207,7 +130,6 @@ Lowlight: background-color: rgb(230, 230, 230);
   float: right;
   margin-top: .5em;
   margin-right: .5em;
-  /* background-color: rgb(62, 177, 61); */
 }
 
 .button_start {
@@ -248,6 +170,15 @@ Lowlight: background-color: rgb(230, 230, 230);
   cursor: pointer;
 }
 
+#join_button {
+  width: 3em;
+  height: auto;
+  float: right;
+  margin-top: 31.1em;
+  margin-right: 1em;
+  cursor: pointer;
+}
+
 .button_analytics{
   width: 10em;
   height: 3em;
@@ -268,11 +199,58 @@ Lowlight: background-color: rgb(230, 230, 230);
   box-shadow: 2px 2px rgb(136, 136, 136);
 }
 
-/* Bottom Bar */
-.bottom_bar {
+/* Join Room Popup */
+
+.join_room_popup{
+  display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   padding-top: 100px; /* Location of the box */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opa*/
+}
+
+.join_room_popup_content {
+    background-color: #fefefe;
+    margin: auto;
+    margin-top: 17em;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 10em;
+    height: 10em;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#input_number{
+  margin:0;
+  margin-top: 1em;
   width: 100%;
-  height: 1em;
-  float: left;
-  margin-top: 3em;
+}
+
+#input_button{
   background-color: rgb(134, 190, 131);
+  border: none;
+  color: white;
+  padding: .5em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 2em;
+  margin-left: 3em;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 2px 2px rgb(136, 136, 136);
 }
