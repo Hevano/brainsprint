@@ -43,10 +43,7 @@
       </div>
 
       <div id="div_submit_display">
-        <p class="submission">1This is a chunk of text that the user has submitted. They will have typed this in the box below and hit the enter key (or pressed the enter button)</p>
-        <p class="submission">2This is also a chunk of text that the user has submitted</p>
-        <p class="submission">3This is a chunk of text that the user has submitted. They will have typed this in the box below and hit the enter key (or pressed the enter button)</p>
-        <p class="submission">4This is also a chunk of text that the user has submitted</p>
+        <!--Submission paragraph elements will appear here-->
       </div>
 
     </div>
@@ -69,7 +66,9 @@
     <script>
 
         $(document).ready(function() {
-          var roomCode; //What room are we in?
+          var userName = window.localStorage.getItem("name");
+          console.log(userName);
+          var roomCode = window.localStorage.getItem("roomCode"); //What room are we in?
           var responseNum = 0;
           $("#enter_button").click(function(event){
             var submission = $("#submit_text").val()
@@ -79,13 +78,15 @@
               $("#submit_text").val("Text goes here");
               //Send 
               var postData = {
-                name: "Placeholder name",
+                name: userName,
                 prompt: "Placeholder prompt",
                 text: submission,
                 votes: 0,
 
               };
-              database.ref().child('roomList/' + 'roomCode' + '/replies/' + responseNum).set(postData);
+
+              var replyCode = userName + responseNum;
+              database.ref().child('roomList/' + 'roomCode' + '/replies/' + replyCode).set(postData);
               console.log(postData);
               responseNum++;
               console.log(responseNum);

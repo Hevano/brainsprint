@@ -34,11 +34,11 @@
         <!-- Join Room Popup Content -->
         <div class="join_room_popup_content">
           <span class="close" onclick="close_pop()">&times;</span>
-          <form class="form_join_room" action="index.html" method="post">
+          <form class="form_join_room">
             <!-- <legend>Enter Room Number</legend> -->
             <input id="input_name" type="text" name="name" placeholder="Enter Your Name"/>
             <input id="input_number" type="number" name="join_number" placeholder="Enter Room Number"/>
-            <input id="input_button" type="submit" name="Enter" value="submit"/>
+            <button id="join_button" onclick="send_activity();return false">Submit</button>
           </form>
         </div>
       </div>
@@ -60,6 +60,15 @@
           join_room.css("display", "block");
           console.log("join room function");
         }
+
+        // Send the user to a room with their room code and name
+        myStorage = window.localStorage;
+
+        function send_activity() {
+            myStorage.setItem("name",$("#input_name").val());
+            myStorage.setItem("roomCode",$("#input_number").val());
+            window.location.href = "activity.html";
+        };
     
     </script>
 
