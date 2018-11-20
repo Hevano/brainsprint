@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="../css/create_style.css">
         <link rel="icon" href="../images/brain.png">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+        <script type="text/javascript" src="../js/setup-firebase.js"></script>  
+        <script src="../js/jquery-3.3.1.js"></script>
     </head>
     <body>
       <div class="pagewrap">
@@ -40,7 +43,7 @@
           <div id='div_form'>
             <form class="create_form">
               <fieldset class="title_form">
-                <input type="text" name="name" placeholder="Room Name" required="required"> <span class="tooltip"><abbr title="The name of the room that you will create">?</abbr></span>
+                <input type="text" id="room_name" name="name" placeholder="Room Name" required="required"> <span class="tooltip"><abbr title="The name of the room that you will create">?</abbr></span>
               </fieldset>
 
               <br>
@@ -62,7 +65,7 @@
               <br>
               <input type="button" name="new" value="Add more topics" class="create_input"> <span class="tooltip"><abbr title="The amount of time that brain sprinters can reply to a topic">?</abbr></span>
               <input type="button" id="reset" name="reset" value="Reset" class="button_final"/> <span class="tooltip"><abbr title="This button clears all of the information you have added in the area above">?</abbr></span>
-              <input type="button" id="create" name="create" value="Create" class="button_final"/> <span class="tooltip"><abbr title="This button saves the information you have put in and creates your room">?</abbr></span>
+              <input type="button" onclick="createActivity()" id="create" name="create" value="Create" class="button_final"/> <span class="tooltip"><abbr title="This button saves the information you have put in and creates your room">?</abbr></span>
 
             </form>
           </div>
@@ -73,27 +76,34 @@
           </div>
         </div>
       </div>
-      <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-      <script type="text/javascript" src="scripts/firebase-setup.js"></script>
 
       <script type="text/javascript">
-          function createActivity(title, newpPrompts, username) {
+          /*<![CDATA[*/
+          function createActivity() {
+            var roomName = document.getElementById("room_name");
+            var prompts;
+            $(".topic").each(function() {
+              prompts += {
+                "topic": $(this).find(".topic_name").value,
+                "time" : $(this).find(".time_select").value
+            };
+            });
             // A post entry.
             var postData = {
-              author: username,
-              title: title,
-              prompts: newpPrompts
+              "title": roomName.value,
+              "prompts": prompts
             };
 
-            // Get a key for a new Post.
-            var newRoomCode = firebase.database().ref().child('roomList').push().key;
+            database.ref().child('roomList').push().set(postData);
+            console.log("updated database!");
 
             // Write the new post's data simultaneously in the posts list and the user's post list.
-            var updates = {};
+            /**var updates = {};
             updates['/roomList/' + newPostKey] = postData;
 
-            return firebase.database().ref().update(updates);
+            return firebase.database().ref().update(updates); **/
           }
+        /*]]>*/
       </script>
     </body>
 </html>
