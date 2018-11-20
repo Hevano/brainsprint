@@ -147,5 +147,27 @@
           </div>
         </div>
       </div>
+      <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+      <script type="text/javascript" src="scripts/firebase-setup.js"></script>
+
+      <script type="text/javascript">
+          function createActivity(title, newpPrompts, username) {
+            // A post entry.
+            var postData = {
+              author: username,
+              title: title,
+              prompts: newpPrompts
+            };
+
+            // Get a key for a new Post.
+            var newRoomCode = firebase.database().ref().child('roomList').push().key;
+
+            // Write the new post's data simultaneously in the posts list and the user's post list.
+            var updates = {};
+            updates['/roomList/' + newPostKey] = postData;
+
+            return firebase.database().ref().update(updates);
+          }
+      </script>
     </body>
 </html>
