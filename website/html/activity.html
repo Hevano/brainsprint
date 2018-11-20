@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="../css/activity_style.css">
   <link rel="icon" href="../images/brain.png">
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+  <script type="text/javascript" src="../js/setup-firebase.js"></script>  
+  <script src="../js/jquery-3.3.1.js"></script>
 </head>
 
 <body>
@@ -66,11 +69,26 @@
     <script>
 
         $(document).ready(function() {
+          var roomCode; //What room are we in?
+          var responseNum = 0;
           $("#enter_button").click(function(event){
-            if(!$("#submit_text").val() == "" || !("#submit_text").val() == "Text goes here") {
+            var submission = $("#submit_text").val()
+            if(!submission == "" || !("#submit_text").val() == "Text goes here") {
               var newItem = $("<p>" + $("#submit_text").val() + "</p>")
               $("#div_submit_display").prepend(newItem).focus();
               $("#submit_text").val("Text goes here");
+              //Send 
+              var postData = {
+                name: "Placeholder name",
+                prompt: "Placeholder prompt",
+                text: submission,
+                votes: 0,
+
+              };
+              database.ref().child('roomList/' + 'roomCode' + '/replies/' + responseNum).set(postData);
+              console.log(postData);
+              responseNum++;
+              console.log(responseNum);
             }
             else {
               console.log("nope");
