@@ -39,9 +39,9 @@
       <!-- Navigation Bar -->
       <div id="body_options_bar">
         <ul id="body_options_nav">
-          <li id="body_your_room" class="body_options" onclick="yourRoom_up()">Your Room</li>
-          <li id="body_analytics" class="body_options" onclick="analytics_up()">Analytics</li>
-          <li id="body_joined_room" class="body_options" onclick="joinedRoom_up()">Joined Room</li>
+          <li id="option_your_room" class="body_options" onclick="yourRoom_up()">Your Room</li>
+          <li id="option_analytics" class="body_options" onclick="analytics_up()">Analytics</li>
+          <li id="option_joined_room" class="body_options" onclick="joinedRoom_up()">Joined Room</li>
         </ul>
       </div>
 
@@ -57,8 +57,8 @@
             <p id="room_number_732814" class="room_number">Room Number: 732814</p>
           </div>
           <!-- Start Button -->
-          <div id="action_options_732814" class="action_options">
-            <img src="../images/options_icon.png" alt="options_icon_" id="options_icon_732814" class="icon_button">
+          <div id="created_options_732814" class="action_options">
+            <img src="../images/options_icon.png" alt="options_icon" id="options_icon_732814" class="icon_button">
             <button type="button" name="Start" id="button_start_732814" id="button_start" class="button_style" onclick="location.href='activity.html'">Start</button>
           </div>
         </div>
@@ -68,19 +68,20 @@
 
       <!-- Analytics Page -->
       <div id="div_body_analytics" class="div_body">
-        <div id="created_room_732814" class="room_analytics">
+
+        <div id="analytics_room_732814" class="room_analytics">
 
           <!-- Room Details -->
-          <div id="room_details_732815" class="room_details">
+          <div id="room_details_732814" class="room_details">
             <h3 id="room_name_732815" class="room_name">Team Veggie</h3>
             <p id="topic_732815" class="topic">Topic: Bananas in Pajamas </p>
             <p id="room_number_732815" class="room_number">Room Number: 732814</p>
           </div>
 
           <!-- Analytics Button -->
-          <div id="action_options_732815" class="action_options">
-            <img src="../images/options_icon.png" alt="options_icon_" id="options_icon_732814" class="icon_button">
-            <button type="button" name="Start" id="button_start_732815" class="button_analytics">See Analytics</button>
+          <div id="analytics_options_732814" class="action_options">
+            <img src="../images/options_icon.png" alt="options_icon" id="options_icon_732814" class="icon_button">
+            <button type="button" name="Start" id="button_start_732815" class="button_analytics"  onclick="location.href='analytics.html'">See Analytics</button>
           </div>
         </div>
       </div>
@@ -95,7 +96,7 @@
           <!-- Join Room Popup Content -->
           <div class="join_room_popup_content">
             <span class="close" onclick="close_pop()">&times;</span>
-            <form class="form_join_room" action="index.html" method="post">
+            <form class="form_join_room" action="dashboard.html" method="post">
               <!-- <legend>Enter Room Number</legend> -->
               <input id="input_number" type="number" name="join_number" placeholder="Enter Room Number">
               <input id="input_button" type="submit" name="Enter" value="submit">
@@ -121,11 +122,10 @@
       document.getElementById("div_body_yourRoom").style.display = "block";
       document.getElementById("div_body_analytics").style.display = "none";
       document.getElementById("div_body_joinedRoom").style.display = "none";
-      // document.getElementById("body_analytics").style.backgroundColor =
 
-      document.getElementById("body_your_room").style.backgroundColor = "rgb(134, 190, 131)";
-      document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
-      document.getElementById("body_joined_room").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("option_your_room").style.backgroundColor = "rgb(134, 190, 131)";
+      document.getElementById("option_analytics").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("option_joined_room").style.backgroundColor = "rgb(226, 226, 226)";
     }
 
     // Analytics Room Page Display
@@ -134,9 +134,9 @@
       document.getElementById("div_body_analytics").style.display = "block";
       document.getElementById("div_body_joinedRoom").style.display = "none";
 
-      document.getElementById("body_your_room").style.backgroundColor = "rgb(226, 226, 226)";
-      document.getElementById("body_analytics").style.backgroundColor = "rgb(134, 190, 131)";
-      document.getElementById("body_joined_room").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("option_your_room").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("option_analytics").style.backgroundColor = "rgb(134, 190, 131)";
+      document.getElementById("option_joined_room").style.backgroundColor = "rgb(226, 226, 226)";
     }
 
     // Join Room Page Display
@@ -145,9 +145,9 @@
       document.getElementById("div_body_analytics").style.display = "none";
       document.getElementById("div_body_joinedRoom").style.display = "block";
 
-      document.getElementById("body_your_room").style.backgroundColor = "rgb(226, 226, 226)";
-      document.getElementById("body_analytics").style.backgroundColor = "rgb(226, 226, 226)";
-      document.getElementById("body_joined_room").style.backgroundColor = "rgb(134, 190, 131)";
+      document.getElementById("option_your_room").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("option_analytics").style.backgroundColor = "rgb(226, 226, 226)";
+      document.getElementById("option_joined_room").style.backgroundColor = "rgb(134, 190, 131)";
     }
 
     // Join Room Pop Up Functions

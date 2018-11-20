@@ -48,6 +48,13 @@ Lowlight: background-color: rgb(230, 230, 230);
   background-color: rgb(134, 190, 131);
 }
 
+/* PAGE NAME */
+#div_pagename {
+  text-align: center;
+  margin-top: -3em;
+}
+
+
 .nav_options {
   font-size: 1em;
   margin: .7em;
