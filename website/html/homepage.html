@@ -6,6 +6,7 @@
     <link rel="icon" href="../images/brain.png">
     <link rel="stylesheet" href="../css/brain_style.css">
     <link rel="stylesheet" href="../css/homepage_style.css">
+    <script src="../js/jquery-3.3.1.js"></script>
 </head>
 <body>
     <div id="div_pagewrap">
@@ -22,11 +23,54 @@
         </div>
         <div id="div_footer">
             <div id="div_roomButtons">
-                <button id="button_enter" class="button_style">Enter a Room</button>
-                <button id="button_create" class="button_style">Create a Room</button>
+                <button id="button_enter" onclick="join_room_pop()" class="button_style">Enter a Room</button>
+                <a href="./login.html"><button id="button_create" class="button_style">Create a Room</button></a>
             </div>
         </div>
     </div>
+
+    <!-- Join Room Popup -->
+    <div class="join_room_popup">
+        <!-- Join Room Popup Content -->
+        <div class="join_room_popup_content">
+          <span class="close" onclick="close_pop()">&times;</span>
+          <form class="form_join_room">
+            <!-- <legend>Enter Room Number</legend> -->
+            <input id="input_name" type="text" name="name" placeholder="Enter Your Name"/>
+            <input id="input_number" type="number" name="join_number" placeholder="Enter Room Number"/>
+            <button id="join_button" onclick="send_activity();return false">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+        // Join Room Pop Up Functions
+        var join_room = $(".join_room_popup");
+        var span = document.getElementsByClassName("close")[0];
+    
+        // Closes Join Room Popup
+        function close_pop() {
+          join_room.css("display", "none");
+          console.log("close function");
+        }
+    
+        // Brings up Join Room Popup
+        function join_room_pop() {
+          join_room.css("display", "block");
+          console.log("join room function");
+        }
+
+        // Send the user to a room with their room code and name
+        myStorage = window.localStorage;
+
+        function send_activity() {
+            myStorage.setItem("name",$("#input_name").val());
+            myStorage.setItem("roomCode",$("#input_number").val());
+            window.location.href = "activity.html";
+        };
+    
+    </script>
 
 </body>
 </html>
