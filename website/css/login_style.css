@@ -1,14 +1,64 @@
-.firebaseui-card-header {
-  padding: 24px 24px 0 24px
+.pagewrap{
+  width: 100%;
+  height: 52em;
+  /* background-color: rgb(157, 130, 159); */
+  min-width: 990px;
+}
+/* div_left_wrap */
+.div_left_wrap {
+  float: left;
+  width: 60%;
+  height: 50em;;
+  /* background-color: rgb(150, 165, 214); */
+  border: 1em solid rgb(134, 190, 131);
 }
 
-.firebaseui-subtitle, .firebaseui-title {
-  color: rgba(0, 0, 0, .87);
-  direction: ltr;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 24px;
-  margin: 0;
-  padding: 0;
-  text-align: left
+/* left wrapper container */
+#div_left_containers {
+  /* background-color: rgb(198, 136, 52); */
+  display: block;
+  width: 90%;
+  height: 50em;
+  margin: 0 auto;
+}
+
+/* img logo */
+#logo {
+  width: 100%;
+  height: auto;
+  margin-top: 5em;
+  float: left;
+}
+
+/* 1h brainsprint */
+#brainsprint {
+  width: 100%;
+  font-size: 5em;
+  float: left;
+  text-align: center;
+  margin-top: 0;
+  /* background-color: rgb(237, 159, 217); */
+  /* clear: right; */
+}
+
+/* ----------------------------------------------------------------------- */
+
+.div_right_warp{
+ float: left;
+ width: 35%;
+ height: 50em;
+ background-color:rgb(134, 190, 131);
+ border: 1em solid rgb(134, 190, 131);
+border-left: none;
+}
+
+#firebaseui-auth-container{
+  margin-top: 10em;
+}
+
+#login_note{
+  width: 90%;
+  padding: 1em;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
 }

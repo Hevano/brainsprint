@@ -45,7 +45,7 @@
 }
 
 .mdl-button.mdl-button--colored {
-  color: #3f51b5
+  color: rgb(134, 190, 131);
 }
 
 .mdl-button.mdl-button--colored:focus:not(:active) {
@@ -72,20 +72,20 @@ input.mdl-button[type=submit] {
 }
 
 .mdl-button--raised.mdl-button--colored {
-  background: #3f51b5;
+  background: rgb(134, 190, 131);
   color: #fff
 }
 
 .mdl-button--raised.mdl-button--colored:hover {
-  background-color: #3f51b5
+  background-color: rgb(134, 190, 131)
 }
 
 .mdl-button--raised.mdl-button--colored:active {
-  background-color: #3f51b5
+  background-color: rgb(134, 190, 131)
 }
 
 .mdl-button--raised.mdl-button--colored:focus:not(:active) {
-  background-color: #3f51b5
+  background-color: rgb(134, 190, 131)
 }
 
 .mdl-button--raised.mdl-button--colored .mdl-ripple {
@@ -213,7 +213,7 @@ input.mdl-button[type=submit] {
 }
 
 .mdl-button--primary.mdl-button--primary {
-  color: #3f51b5
+  color: rgb(134, 190, 131)
 }
 
 .mdl-button--primary.mdl-button--primary .mdl-ripple {
@@ -222,7 +222,7 @@ input.mdl-button[type=submit] {
 
 .mdl-button--primary.mdl-button--primary.mdl-button--fab, .mdl-button--primary.mdl-button--primary.mdl-button--raised {
   color: #fff;
-  background-color: #3f51b5
+  background-color: rgb(134, 190, 131)
 }
 
 .mdl-button--accent.mdl-button--accent {
@@ -423,7 +423,7 @@ input.mdl-button[type=submit] {
 }
 
 .mdl-progress>.progressbar {
-  background-color: #3f51b5;
+  background-color: rgb(134, 190, 131);
   z-index: 1;
   left: 0
 }
@@ -450,7 +450,7 @@ input.mdl-button[type=submit] {
 }
 
 .mdl-progress.mdl-progress--indeterminate>.bar1, .mdl-progress.mdl-progress__indeterminate>.bar1 {
-  background-color: #3f51b5;
+  background-color: rgb(134, 190, 131);
   animation-name: indeterminate1;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -459,7 +459,7 @@ input.mdl-button[type=submit] {
 
 .mdl-progress.mdl-progress--indeterminate>.bar3, .mdl-progress.mdl-progress__indeterminate>.bar3 {
   background-image: none;
-  background-color: #3f51b5;
+  background-color: rgb(134, 190, 131);
   animation-name: indeterminate2;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -566,7 +566,7 @@ input.mdl-button[type=submit] {
 }
 
 .mdl-spinner--single-color .mdl-spinner__layer-1 {
-  border-color: #3f51b5
+  border-color: rgb(134, 190, 131)
 }
 
 .mdl-spinner.is-active .mdl-spinner__layer-1 {
@@ -578,7 +578,7 @@ input.mdl-button[type=submit] {
 }
 
 .mdl-spinner--single-color .mdl-spinner__layer-2 {
-  border-color: #3f51b5
+  border-color: rgb(134, 190, 131)
 }
 
 .mdl-spinner.is-active .mdl-spinner__layer-2 {
@@ -590,7 +590,7 @@ input.mdl-button[type=submit] {
 }
 
 .mdl-spinner--single-color .mdl-spinner__layer-3 {
-  border-color: #3f51b5
+  border-color: rgb(134, 190, 131)
 }
 
 .mdl-spinner.is-active .mdl-spinner__layer-3 {
@@ -602,7 +602,7 @@ input.mdl-button[type=submit] {
 }
 
 .mdl-spinner--single-color .mdl-spinner__layer-4 {
-  border-color: #3f51b5
+  border-color: rgb(134, 190, 131)
 }
 
 .mdl-spinner.is-active .mdl-spinner__layer-4 {
@@ -1213,7 +1213,7 @@ input.firebaseui-input, input.firebaseui-input-invalid {
 }
 
 .firebaseui-textfield.mdl-textfield .firebaseui-label::after {
-  background-color: #3f51b5
+  background-color: rgb(134, 190, 131)
 }
 
 .firebaseui-textfield-invalid.mdl-textfield .firebaseui-input {

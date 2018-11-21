@@ -1,36 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Login - BrainSprint</title>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+  <!-- <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" /> -->
   <link rel="stylesheet" href="../css/brain_style.css">
+  <link rel="stylesheet" href="../css/login_style.css">
+  <link rel="stylesheet" href="../css/firebase_login_style.css">
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
   <script src="../js/setup-firebase.js"></script>
-  <style>
-    form {
-      border: solid 10pt rgb(134, 190, 131);
 
-    }
-
-    .firebaseui-title {
-      font-family: 'Raleway', sans-serif;
-    }
-
-    .firebaseui-card-content {
-      font-family: 'Raleway', sans-serif;
-    }
-
-    .firebaseui-id-submit {
-      font-family: 'Raleway', sans-serif;
-    }
-
-    .firebaseui-tos {
-      font-family: 'Raleway', sans-serif;
-    }
-
-  </style>
 </head>
+
 <body>
 
   <script>
@@ -38,41 +20,56 @@
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
   </script>
 
-  <h1>BrainSprint</h1>
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
+  <div class="pagewrap">
+    <div class="div_left_wrap">
+      <div id="div_left_containers">
+        <img id="logo" src="../images/brain.png" alt="icon">
+        <h1 id="brainsprint">BrainSprint</h1>
+      </div>
+
+    </div>
+
+    <div class="div_right_warp">
+      <div id="firebaseui-auth-container"></div>
+      <h3 id="login_note">Enter you email in the sign in box. If you do not have an account, it will create one for you</h3>
+      <div id="loader">Loading...</div>
+    </div>
+  </div>
+
+
 
   <script>
-  var uiConfig = {
-    callbacks: {
-      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        // User successfully signed in.
-        // Return type determines whether we continue the redirect automatically
-        // or whether we leave that to developer to handle.
-        return true;
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          return true;
+        },
+        uiShown: function() {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
       },
-      uiShown: function() {
-        // The widget is rendered.
-        // Hide the loader.
-        document.getElementById('loader').style.display = 'none';
-      }
-    },
-    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    signInFlow: 'popup',
-    signInSuccessUrl: 'dashboard.html',
-    signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    ],
-    // Terms of service url.
-    tosUrl: 'dashboard.html',
-    // Privacy policy url.
-    privacyPolicyUrl: 'dashboard.html'
-  };
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      signInSuccessUrl: 'dashboard.html',
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      ],
+      // Terms of service url.
+      tosUrl: 'dashboard.html',
+      // Privacy policy url.
+      privacyPolicyUrl: 'dashboard.html'
+    };
 
-  // The start method will wait until the DOM is loaded.
-  ui.start('#firebaseui-auth-container', uiConfig);
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
   </script>
 
 </body>
+
 </html>
