@@ -125,10 +125,9 @@
 }
 
 /* START BUTTON TEMPLATE */
-.button_start {
+.button_create_room_start {
   width: 8em;
   height: 3em;
-  float: right;
   background-color: rgb(134, 190, 131);
   border: none;
   color: white;
@@ -137,9 +136,9 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  float: right;
   margin-top: 1em;
   margin-right: 1em;
-  float: right;
   cursor: pointer;
   border-radius: 12px;
   box-shadow: 2px 2px rgb(136, 136, 136);

@@ -1,8 +1,9 @@
 #div_time {
-  float: left;
+  /* float: left; */
   clear: none;
   position: absolute;
-  top: 6em;
+  top: 9em;
+  left: 2.5em;
 }
 
 #div_time h2 span {
@@ -56,4 +57,10 @@
   float: right;
   width: 15%;
   height: 8em;
+}
+
+#enter_button{
+  background-color: rgb(255, 189, 136);
+  margin:0;
+
 }
