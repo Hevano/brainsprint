@@ -6,6 +6,8 @@
     <link rel="icon" href="../images/brain.png">
     <link rel="stylesheet" href="../css/brain_style.css">
     <link rel="stylesheet" href="../css/homepage_style.css">
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script type="text/javascript" src="../js/setup-firebase.js"></script> 
     <script src="../js/jquery-3.3.1.js"></script>
 </head>
 <body>
@@ -46,6 +48,7 @@
     
     <script>
         // Join Room Pop Up Functions
+        console.log(database.ref('roomList').once());
         var join_room = $(".join_room_popup");
         var span = document.getElementsByClassName("close")[0];
     
@@ -65,10 +68,16 @@
         myStorage = window.localStorage;
 
         function send_activity() {
+            console.log(database.ref('/roomList').once("roomCode"));
+            /*
             myStorage.setItem("name",$("#input_name").val());
             myStorage.setItem("roomCode",$("#input_number").val());
-            window.location.href = "activity.html";
+            window.location.href = "activity.html"; */
         };
+
+        function check_creds() {
+
+        }
     
     </script>
 
