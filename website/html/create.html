@@ -8,7 +8,7 @@
         <link rel="icon" href="../images/brain.png">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-        <script type="text/javascript" src="../js/setup-firebase.js"></script>  
+        <script type="text/javascript" src="../js/setup-firebase.js"></script>
         <script src="../js/jquery-3.3.1.js"></script>
     </head>
     <body>
@@ -43,13 +43,22 @@
           <div id='div_form'>
             <form class="create_form" id="create_room_form">
               <fieldset class="title_form">
-                <input type="text" id="room_name" name="name" placeholder="Room Name" required="required"> <span class="tooltip"><abbr title="The name of the room that you will create">?</abbr></span>
+                <input type="text" id="room_name" name="name" placeholder="Room Name" required="required">
+                <!-- <span class="tooltip"><abbr title="The name of the room that you will create">?</abbr></span> -->
+                <div class="tooltip">?
+                  <span class="tooltiptext">The name of the room that you will create</span>
+                </div>
               </fieldset>
 
               <br>
 
               <fieldset class="topic">
-                <input type="text" name="topic1" placeholder="Topic Title" required="required" class="topic_name"> <span class="tooltip"><abbr title="A topic that you will be brainstorming on">?</abbr></span>
+                <input type="text" name="topic1" placeholder="Topic Title" required="required" class="topic_name">
+                <!-- <span class="tooltip"><abbr title="A topic that you will be brainstorming on">?</abbr></span> -->
+                <div class="tooltip">?
+                  <span class="tooltiptext">A topic that you will be brainstorming on</span>
+                </div>
+
                 <br>
                 <label class="time_select">Topic Duration:</label>
                 <select size="1" name="time" id="time" class="time_select">
@@ -59,13 +68,37 @@
                   <option value="180">3 minutes</option>
                   <option value="240">4 minutes</option>
                   <option value="320">5 minutes</option>
-                </select> <span class="tooltip" id="trash_tool"><abbr title="The amount of time that brain sprinters can reply to a topic">?</abbr></span>
-                <input type="button" id="delete1" name="delete1" value="Trash" class="trash_button"/> <span class="tooltip"><abbr title="This button deletes this topic">?</abbr></span>
+                </select>
+                <!-- <span class="tooltip"><abbr title="The amount of time that brain sprinters can reply to a topic">?</abbr></span> -->
+                <div class="tooltip">?
+                  <span class="tooltiptext">The amount of time that brain sprinters can reply to a topic</span>
+                </div>
+
+                <!-- <span class="tooltip" id="trash_tool"><abbr title="This button deletes this topic">?</abbr></span> -->
+                <div class="tooltip" id="trash_tool">?
+                  <span class="tooltiptext">This button deletes this topic</span>
+                </div>
+                <input type="button" id="delete1" name="delete1" value="Trash" class="trash_button"/>
+
               </fieldset>
               <br>
-              <input type="button" name="new" value="Add more topics" class="create_input"> <span class="tooltip"><abbr title="The amount of time that brain sprinters can reply to a topic">?</abbr></span>
-              <input type="button" onclick="resetFields()" id="reset" name="reset" value="Reset" class="button_final"/> <span class="tooltip"><abbr title="This button clears all of the information you have added in the area above">?</abbr></span>
-              <input type="button" onclick="createActivity()" id="create" name="create" value="Create" class="button_final"/> <span class="tooltip"><abbr title="This button saves the information you have put in and creates your room">?</abbr></span>
+              <input type="button" name="new" value="Add more topics" class="create_input">
+              <!-- <span class="tooltip"><abbr title="The amount of time that brain sprinters can reply to a topic">?</abbr></span> -->
+              <div class="tooltip">?
+                <span class="tooltiptext">The amount of time that brain sprinters can reply to a topic</span>
+              </div>
+
+              <input type="button" onclick="resetFields()" id="reset" name="reset" value="Reset" class="button_final"/>
+              <!-- <span class="tooltip"><abbr title="This button clears all of the information you have added in the area above">?</abbr></span> -->
+              <div class="tooltip">?
+                <span class="tooltiptext">This button clears all of the information you have added in the area above</span>
+              </div>
+
+              <input type="button" onclick="createActivity()" id="create" name="create" value="Create" class="button_final"/>
+              <!-- <span class="tooltip"><abbr title="This button saves the information you have put in and creates your room">?</abbr></span> -->
+              <div class="tooltip">?
+                <span class="tooltiptext">This button saves the information you have put in and creates your room</span>
+              </div>
 
             </form>
           </div>

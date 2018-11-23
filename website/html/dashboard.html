@@ -53,14 +53,13 @@
         <div id="created_room_732814" class="room_created">
           <!-- Created Room Details -->
           <div id="room_details_732814" class="room_details">
+            <h3 class="room_name"> <span id="room_name_732814"></span> </h3>
+            <p class="room_topic">Topic: <span id="room_topic_732814"></span> </p>
+            <p class="room_number">Room Number: <span id="room_number_732814"></span> </p>
+
             <!-- <h3 id="room_name_732814" class="room_name">Team Veggie</h3>
-            <p id="topic_732814" class="topic">Topic: Bananas in Pajamas </p>
+            <p id="room_topic_732814" class="room_topic">Topic: Bananas in Pajamas </p>
             <p id="room_number_732814" class="room_number">Room Number: 732814</p> -->
-
-            <h3 id="room_name_732814" class="room_name"></h3>
-            <p id="topic_732814" class="topic">Topic: </p>
-            <p id="room_number_732814" class="room_number">Room Number: </p>
-
           </div>
           <!-- Start Button -->
           <div id="created_options_732814" class="action_options">
@@ -79,15 +78,15 @@
 
           <!-- Room Details -->
           <div id="room_details_732814" class="room_details">
-            <h3 id="room_name_732815" class="room_name">Team Veggie</h3>
-            <p id="topic_732815" class="topic">Topic: Bananas in Pajamas </p>
-            <p id="room_number_732815" class="room_number">Room Number: 732814</p>
+            <h3 class="room_name"><span id="room_name_732815">Analytics Room Name</span></h3>
+            <p class="room_topic">Topic: <span id="room_topic_732815">Analytics Topic</span> </p>
+            <p class="room_number">Room Number: <span id="room_number_732815">Analytics Room Number</span> </p>
           </div>
 
           <!-- Analytics Button -->
           <div id="analytics_options_732814" class="action_options">
             <img src="../images/options_icon.png" alt="options_icon" id="options_icon_732814" class="icon_button">
-            <button type="button" name="Start" id="button_start_732815" class="button_analytics" onclick="location.href='analytics.html'">See Analytics</button>
+            <button type="button" name="Start" id="button_start_732815" class="button_analytics" onclick="location.href='analytics.html'">Analytics</button>
           </div>
         </div>
       </div>
@@ -95,17 +94,18 @@
       <!-- Joined Rooms Page-->
       <div id="div_body_joinedRoom" class="div_body">
         <!-- Join Room Button -->
-        <a onclick="join_room_pop()"><img src="../images/add.png" alt="add_button" id="join_button"></a>
+        <a onclick="func_join_room_pop()"><img src="../images/add.png" alt="add_button" id="join_button"></a>
 
         <!-- Join Room Popup -->
         <div class="join_room_popup">
           <!-- Join Room Popup Content -->
           <div class="join_room_popup_content">
-            <span class="close" onclick="close_pop()">&times;</span>
+            <span class="close" onclick="func_close_pop()">&times;</span>
             <form class="form_join_room" action="dashboard.html" method="post">
               <!-- <legend>Enter Room Number</legend> -->
-              <input id="input_text" type="text" name="join_number" placeholder="Enter Room Number">
-              <input id="input_button" type="submit" name="Enter" value="submit">
+              <input id="input_text" name="room_number" type="text" placeholder="Enter Room Number">
+              <input id="input_button" type="button" name="Enter" value="submit" onclick="func_join_room()">
+
             </form>
           </div>
         </div>
@@ -116,7 +116,6 @@
 
     <div class="bottom">
       <div class="bottom_bar">
-
       </div>
     </div>
 
@@ -163,50 +162,99 @@
     var span = document.getElementsByClassName("close")[0];
 
     // Closes Join Room Popup
-    function close_pop() {
+    function func_close_pop() {
       join_room.css("display", "none");
       console.log("close function");
     }
 
     // Brings up Join Room Popup
-    function join_room_pop() {
+    function func_join_room_pop() {
       join_room.css("display", "block");
-      console.log(fm);
+      // console.log(fm);
       console.log("join room function");
     }
 
 
+    function func_create_room () {
+      var config = {
+        apiKey: "AIzaSyAZwdjR0wpNxj0yG0YLN1ueuMa6L-NLd2A",
+        authDomain: "brainsprint-92cf3.firebaseapp.com",
+        databaseURL: "https://brainsprint-92cf3.firebaseio.com",
+        projectId: "brainsprint-92cf3",
+        storageBucket: "brainsprint-92cf3.appspot.com",
+        messagingSenderId: "117462095616"
+      };
+
+      firebase.initializeApp(config);
+
+      var db = firebase.database();
+
+      var room_name = document.getElementById('room_name_732814');
+      var room_topic = document.getElementById('room_topic_732814');
+      var room_owner = document.getElementById('room_number_732814');
+
+      var db_room_name = db.ref().child("roomList").child("roomCode").child("roomName");
+      var db_room_topic = db.ref().child("roomList").child("roomCode").child("topic");
+      var db_room_owner = db.ref().child("roomList").child("roomCode").child("owner");
+
+      db_room_name.on('value', snap => room_name.innerText = snap.val());
+      db_room_topic.on('value', snap => room_topic.innerText = snap.val());
+      db_room_owner.on('value', snap => room_owner.innerText = snap.val());
+    }
+
+
 // Populates the Crete Page ----------------------------------------------------------------------
-var config = {
-  apiKey: "AIzaSyAZwdjR0wpNxj0yG0YLN1ueuMa6L-NLd2A",
-  authDomain: "brainsprint-92cf3.firebaseapp.com",
-  databaseURL: "https://brainsprint-92cf3.firebaseio.com",
-  projectId: "brainsprint-92cf3",
-  storageBucket: "brainsprint-92cf3.appspot.com",
-  messagingSenderId: "117462095616"
-};
 
-firebase.initializeApp(config);
-
-var db = firebase.database();
-
-var room_name = document.getElementById('room_name_732814')
-var topic = document.getElementById('topic_732814')
-var owner = document.getElementById('room_number_732814')
-
-
-var db_room_name = db.ref().child("roomList").child("roomCode").child("roomName");
-var db_topic = db.ref().child("roomList").child("roomCode").child("topic");
-var db_owner = db.ref().child("roomList").child("roomCode").child("owner");
-
-
-db_room_name.on('value', snap => room_name.innerText = snap.val());
-db_topic.on('value', snap => topic.innerText = snap.val());
-db_owner.on('value', snap => owner.innerText = snap.val());
-
+// var config = {
+//   apiKey: "AIzaSyAZwdjR0wpNxj0yG0YLN1ueuMa6L-NLd2A",
+//   authDomain: "brainsprint-92cf3.firebaseapp.com",
+//   databaseURL: "https://brainsprint-92cf3.firebaseio.com",
+//   projectId: "brainsprint-92cf3",
+//   storageBucket: "brainsprint-92cf3.appspot.com",
+//   messagingSenderId: "117462095616"
+// };
+//
+// firebase.initializeApp(config);
+//
+// var db = firebase.database();
+//
+// var room_name = document.getElementById('room_name_732814');
+// var room_topic = document.getElementById('room_topic_732814');
+// var room_owner = document.getElementById('room_number_732814');
+//
+// var db_room_name = db.ref().child("roomList").child("roomCode").child("roomName");
+// var db_room_topic = db.ref().child("roomList").child("roomCode").child("topic");
+// var db_room_owner = db.ref().child("roomList").child("roomCode").child("owner");
+//
+//
+// db_room_name.on('value', snap => room_name.innerText = snap.val());
+// db_room_topic.on('value', snap => room_topic.innerText = snap.val());
+// db_room_owner.on('value', snap => room_owner.innerText = snap.val());
+//
 
 //-------------------------------------------------------------------------------------------------
 
+function func_join_room(){
+  // var room_number = db.ref().child("userList").child("userId").child("name"); //function to pull from database;
+  var room_number = document.getElementById('input_text').value;
+  console.log(room_number);
+  var div_room_joined = $("<div>").attr("id", "room_joined_" + room_number).addClass("room_joined").css("background-color", "rgb(143, 209, 201)");
+
+  var div_detail = $("<div>").attr("id", "room_details_" + room_number).addClass("room_details").css("background-color", "rgb(209, 143, 176)");
+  var h3_name = $("<h3>").html("Room Name").attr("id", "room_name_" + room_number).addClass("room_name");
+  var p_topic = $("<p>").html("Topic: ").attr("id", "room_topic_" + room_number).addClass("room_topic");
+  var p_number = $("<p>").html("Room Number: " + room_number).attr("id", "room_number_" + room_number).addClass("room_number");
+
+  var div_options =  $("<div>").attr("id", "room_options_" + room_number).addClass("action_options").css("background-color", "rgb(192, 215, 165)");;
+  var img_options = $("<img>").attr("src", "../images/options_icon.png").attr("id", "options_icon_" + room_number).addClass("icon_button");
+  var button_options = $("<button>").html("start").attr("id", "button_start_" + room_number).addClass("button_create_room_start"); //change class name to something else
+
+  var append_options = $(div_options).append(img_options, button_options);
+  var append_details= $(div_detail).append(h3_name, p_topic, p_number);
+  $(div_room_joined).append(append_details, append_options);
+  $("#div_body_joinedRoom").append(div_room_joined)
+
+}
 
   </script>
 

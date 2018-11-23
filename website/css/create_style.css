@@ -8,12 +8,12 @@
 *.create_form input[type=text]:focus {
   /*Highlight text input when user clicks it*/
 }
+
 *.create_form input[name=new] {
   width: calc(100% - 100px);
   box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 *.create_form input[type=button] {
@@ -43,7 +43,7 @@
 *.tooltip {
   width: 30px;
   height: 30px;
-  background: blue;
+  background: rgb(236, 179, 104);
   color: white;
   border-radius: 15px;
   display: inline-block;
@@ -69,4 +69,34 @@
 
 *.time_select {
   margin-top: 2em;
+}
+
+/* tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 10em;
+  font-size: .5em;
+  background-color: rgb(135, 135, 135);
+  color: #fff;
+  /* text-align: justify; */
+  /* border-radius: 6px; */
+  padding: 5px 0;
+  padding-left: 1em;
+  top: -.5em;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+
+
+  -webkit-clip-path: polygon(6% 0, 100% 0%, 100% 100%, 6% 100%, 6% 60%, 0 50%, 6% 40%);
+  clip-path: polygon(6% 0, 100% 0%, 100% 100%, 6% 100%, 6% 60%, 0 50%, 6% 40%);
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

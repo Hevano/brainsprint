@@ -28,7 +28,7 @@
 /* BODY WRAPPER */
 .div_body_base {
   width: auto;
-  height: 37em;
+  height: 40em;
   margin: 0 auto;
   width: auto;
 }
@@ -44,7 +44,8 @@
 
 /* YOUR ROOM */
 #div_body_yourRoom {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
+
 }
 
 /* ANALYTICS */
@@ -77,7 +78,7 @@
 }
 
 /* ROOMS */
-.room_created, .room_analytics, .room_joineds {
+.room_created, .room_analytics, .room_joined {
   width: 95%;
   height: 6em;
   margin-left: 2.5%;
@@ -101,7 +102,7 @@
   margin: 0;
 }
 
-.topic {
+.room_topic {
   font-size: 1em;
   margin: 0;
   margin-left: 1em;
@@ -176,7 +177,7 @@
 
 /* BUTTON SEE ANALYTICS */
 .button_analytics {
-  width: 10em;
+  width: 8em;
   height: 3em;
   float: right;
   background-color: rgb(190, 125, 133);
@@ -263,3 +264,8 @@
   border-radius: 12px;
   box-shadow: 2px 2px rgb(136, 136, 136);
 }
+
+/* --------------------------------------------- */
+
+.room_joined .room_options{
+float: left;}
