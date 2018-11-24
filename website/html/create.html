@@ -130,16 +130,17 @@
             var cloneC = clone.children;
             cloneC[0].value = "";
             cloneC[3].value = 30;
+            $(cloneC[6]).css("visibility", "visible");
+            $(cloneC[7]).css("visibility", "visible");
             document.getElementById("create_prompt_button").before(clone);
 
           }
           
-          
+          /**Deletes the topic which this button was clicked from. **/
           function deletePrompt(event) {
             var trigger = event.target;
             console.log(trigger.parentNode);
             trigger.parentNode.remove();
-           // });
           }
 
           /**Processes the information in the form and saves it in database.**/
