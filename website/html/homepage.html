@@ -39,7 +39,7 @@
           <form class="form_join_room">
             <!-- <legend>Enter Room Number</legend> -->
             <input id="input_name" type="text" name="name" placeholder="Enter Your Name"/>
-            <input id="input_number" type="number" name="join_number" placeholder="Enter Room Number"/>
+            <input id="input_number" type="text" name="join_number" placeholder="Enter Room Number"/>
             <button id="join_button" onclick="send_activity();return false">Submit</button>
           </form>
         </div>
@@ -48,7 +48,6 @@
     
     <script>
         // Join Room Pop Up Functions
-        console.log(database.ref('roomList').once());
         var join_room = $(".join_room_popup");
         var span = document.getElementsByClassName("close")[0];
     
@@ -68,11 +67,25 @@
         myStorage = window.localStorage;
 
         function send_activity() {
-            console.log(database.ref('/roomList').once("roomCode"));
+            var test = null;
+            var room = database.ref().child("roomList").child($("#input_number").val());
+            console.log(room);
+            room.on('value', snap => test = snap.val());
+
+            
+
+           
+            
+            if(test != null ) {
+              myStorage.setItem("name",$("#input_name").val());
+              myStorage.setItem("roomCode",$("#input_number").val());
+              window.location.href = "activity.html";
+              console.log("doot")
+            } else {
+                console.log("Room does not exist")
+            }
             /*
-            myStorage.setItem("name",$("#input_name").val());
-            myStorage.setItem("roomCode",$("#input_number").val());
-            window.location.href = "activity.html"; */
+             */
         };
 
         function check_creds() {
