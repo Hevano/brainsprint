@@ -124,6 +124,10 @@
   <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 
   <script type="text/javascript">
+    $(document).ready(function(){ 
+      console.log("Page loaded with user: " + sessionStorage.getItem("uid"));
+      console.log("Name: " + sessionStorage.getItem("name"));
+    })
     // Create Room Page Display
     function yourRoom_up() {
       document.getElementById("div_body_yourRoom").style.display = "block";

@@ -112,10 +112,12 @@
 
       <script>
           /*<![CDATA[*/
-          // var trashButtons = document.getElementsByClassName('topic');
-          // trashButtons.onclick = function() {
 
-          // };
+          /**Prints the current user's id and name to console.**/
+          $(document).ready(function(){ 
+            console.log("Page loaded with user: " + sessionStorage.getItem("uid"));
+            console.log("Name: " + sessionStorage.getItem("name"));
+          })
 
           /**Resets the form.**/
           function resetFields() {
@@ -169,16 +171,24 @@
             });
             **/
             // A post entry.
+            var uid = sessionStorage.getItem("uid");
             var postData = {
               title: roomName.value,
-              prompts: prompts
+              prompts: prompts,
+              owner: uid
             };
 
-            database.ref().child('roomList').push().set(postData);
+            var dbUpdate = database.ref().child('roomList').push(postData);
+            var roomKey = dbUpdate.key;
+            console.log("Room key: " + roomKey);
             
+            // var ownerData = {
+            //   title: roomName.value
+            // }
+            database.ref().child('userList').child(uid).child('rooms').update(roomKey);
             console.log("updated database!");
             console.log(prompts);
-      
+            
             // Write the new post's data simultaneously in the posts list and the user's post list.
             /**var updates = {};
             updates['/roomList/' + newPostKey] = postData;
