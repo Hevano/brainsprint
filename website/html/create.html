@@ -52,7 +52,7 @@
 
               <br>
 
-              <fieldset class="topic">
+              <fieldset class="topic" id="topic_fieldset">
                 <input type="text" name="topic1" placeholder="Topic Title" required="required" class="topic_name">
                 <!-- <span class="tooltip"><abbr title="A topic that you will be brainstorming on">?</abbr></span> -->
                 <div class="tooltip">?
@@ -60,9 +60,9 @@
                 </div>
 
                 <br>
-                <label class="time_select">Topic Duration:</label>
+                <label id="time_select_label">Topic Duration:</label>
                 <select size="1" name="time" id="time" class="time_select">
-                  <option value="30"selected="selected">30 seconds</option>
+                  <option value="30" selected="selected">30 seconds</option>
                   <option value="60">1 minute</option>
                   <option value="120">2 minutes</option>
                   <option value="180">3 minutes</option>
@@ -78,17 +78,17 @@
                 <div class="tooltip" id="trash_tool">?
                   <span class="tooltiptext">This button deletes this topic</span>
                 </div>
-                <input type="button" id="delete1" name="delete1" value="Trash" class="trash_button"/>
+                <input type="button" id="delete1" onclick="deletePrompt(event)" name="delete1" value="Trash" class="trash_button"/>
 
               </fieldset>
               <br>
-              <input type="button" name="new" value="Add more topics" class="create_input">
+              <input type="button" id="create_prompt_button" onclick="createPrompt()" name="new" value="Add more topics" class="create_input">
               <!-- <span class="tooltip"><abbr title="The amount of time that brain sprinters can reply to a topic">?</abbr></span> -->
               <div class="tooltip">?
                 <span class="tooltiptext">The amount of time that brain sprinters can reply to a topic</span>
               </div>
 
-              <input type="button" onclick="resetFields()" id="reset" name="reset" value="Reset" class="button_final"/>
+              <input type="button" onclick="resetFields()" id="reset_button" name="reset_button" value="Reset" class="button_final"/>
               <!-- <span class="tooltip"><abbr title="This button clears all of the information you have added in the area above">?</abbr></span> -->
               <div class="tooltip">?
                 <span class="tooltiptext">This button clears all of the information you have added in the area above</span>
@@ -110,30 +110,85 @@
         </div>
       </div>
 
-      <script type="text/javascript">
+      <script>
           /*<![CDATA[*/
+
+          /**Prints the current user's id and name to console.**/
+          $(document).ready(function(){ 
+            console.log("Page loaded with user: " + sessionStorage.getItem("uid"));
+            console.log("Name: " + sessionStorage.getItem("name"));
+          })
+
+          /**Resets the form.**/
           function resetFields() {
-            $("#create_room_form")[0].reset();
+            var form = document.getElementById("create_room_form").reset();
+          }
+          
+          /**Adds a new input area for adding a new prompt.**/
+          function createPrompt() {
+            var newTopic = document.getElementById("topic_fieldset");
+            var clone = newTopic.cloneNode(true);
+            $(clone).css("margin-bottom", "2em");
+            var cloneC = clone.children;
+            cloneC[0].value = "";
+            cloneC[3].value = 30;
+            $(cloneC[6]).css("visibility", "visible");
+            $(cloneC[7]).css("visibility", "visible");
+            document.getElementById("create_prompt_button").before(clone);
+
+          }
+          
+          /**Deletes the topic which this button was clicked from. **/
+          function deletePrompt(event) {
+            var trigger = event.target;
+            console.log(trigger.parentNode);
+            trigger.parentNode.remove();
           }
 
+          /**Processes the information in the form and saves it in database.**/
           function createActivity() {
             var roomName = document.getElementById("room_name");
-            var prompts;
+            var topicNames = document.getElementsByClassName("topic_name");
+            var topicTimes = document.getElementsByClassName("time_select");
+            var prompts = {};
+            for (let i = 0; i < topicNames.length; i++) {
+              prompts[topicNames[i].value] = {
+                topicTimes: topicTimes[i].value
+              };
+            }
+              
+            console.log(topicNames);
+            console.log(topicTimes);
+            console.log(prompts);
+            console.log(JSON.stringify(prompts));
+            /**
+            var prompts = [];
             $(".topic").each(function() {
               prompts += {
-                "topic": $(this).find(".topic_name").value,
-                "time" : $(this).find(".time_select").value
+                topic: $(this).find(".topic_name").val(),
+                time : $(this).find(".time_select").val()
             };
             });
+            **/
             // A post entry.
+            var uid = sessionStorage.getItem("uid");
             var postData = {
-              "title": roomName.value,
-              "prompts": prompts
+              title: roomName.value,
+              prompts: prompts,
+              owner: uid
             };
 
-            database.ref().child('roomList').push().set(postData);
+            var dbUpdate = database.ref().child('roomList').push(postData);
+            var roomKey = dbUpdate.key;
+            console.log("Room key: " + roomKey);
+            
+            // var ownerData = {
+            //   title: roomName.value
+            // }
+            database.ref().child('userList').child(uid).child('rooms').update(roomKey);
             console.log("updated database!");
-
+            console.log(prompts);
+            
             // Write the new post's data simultaneously in the posts list and the user's post list.
             /**var updates = {};
             updates['/roomList/' + newPostKey] = postData;

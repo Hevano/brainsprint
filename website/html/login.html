@@ -40,6 +40,15 @@
 
 
   <script>
+    firebase.auth().onAuthStateChanged(function(user) {
+      database.ref("userList/"+user.uid).update({
+        "name": user.displayName,
+        "email": user.email
+      });
+      sessionStorage.setItem("uid", user.uid);
+      sessionStorage.setItem("name", user.displayName);
+    })
+
     var uiConfig = {
       callbacks: {
         signInSuccessWithAuthResult: function(authResult, redirectUrl) {
