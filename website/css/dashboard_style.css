@@ -147,22 +147,12 @@
 }
 
 /* CREATE ROOM IMAGE BUTTON */
-#add_button {
+#add_button, #join_button {
+  position: absolute;
   width: 3em;
   height: auto;
-  float: right;
-  margin-top: 24em;
-  margin-right: 1em;
-  cursor: pointer;
-}
-
-/* JOINGN ROOM IMAGE BUTTON */
-#join_button {
-  width: 3em;
-  height: auto;
-  float: right;
-  margin-top: 31.1em;
-  margin-right: 1em;
+  top: 48em;
+  right: 3em;
   cursor: pointer;
 }
 
