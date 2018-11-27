@@ -67,29 +67,29 @@
         myStorage = window.localStorage;
 
         function send_activity() {
-            var test = null;
-            var room = database.ref().child("roomList").child($("#input_number").val());
-            console.log(room);
-            room.on('value', snap => test = snap.val());
+            const room = database.ref().child("roomList/" + $("#input_number").val() + "/people")
 
-            
-
-           
-            
-            if(test != null ) {
-              myStorage.setItem("name",$("#input_name").val());
-              myStorage.setItem("roomCode",$("#input_number").val());
-              window.location.href = "activity.html";
-              console.log("doot")
-            } else {
-                console.log("Room does not exist")
-            }
-            /*
-             */
+            //checks if room exists
+            room.once('value', snapshot => {
+                if (snapshot.exists()){
+                    name_validate(room);
+                    }
+                });
         };
 
-        function check_creds() {
-
+        //checks if the username is unique, if it is, connect them to that activity
+        function name_validate(roomParam) {
+            roomParam.child($("#input_name").val()).once('value', snapshot => {
+                if (!snapshot.exists()){
+                    console.log("User name is unique!");
+                    console.log("Going!");
+                    let name = $("#input_name").val();
+                    roomParam.child(name).set(true); //adds username to the database, within the room they are joining
+                    myStorage.setItem("name", name);
+                    myStorage.setItem("roomCode", $("#input_number").val());
+                    window.location.href = "activity.html";
+                    }
+                });
         }
     
     </script>

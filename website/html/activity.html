@@ -39,7 +39,7 @@
     <div id="div_content">
       <div id="div_time">
         <img src="../images/timer.png">
-        <h2 id="timer">32<span>seconds</span></h2>
+        <h2 id="timer"></h2>
       </div>
 
       <div id="div_submit_display">
@@ -69,6 +69,15 @@
           var userName = window.localStorage.getItem("name");
           console.log(userName);
           var roomCode = window.localStorage.getItem("roomCode"); //What room are we in?
+
+          var room = database.ref("roomList/" + roomCode);
+
+          room.child("roomName").once('value', snapshot => {
+                  $("title").html(snapshot.val() + " - BrainSprint Activity"); //potential security flaw here, if the user creates a room name that contains shady code it will be inserted into the title
+                });
+
+          const duration = next_prompt(room); // adds the fist prompt and initializes it's duration        
+
           var responseNum = 0;
           $("#enter_button").click(function(event){
             var submission = $("#submit_text").val()
@@ -79,7 +88,7 @@
               //Send
               var postData = {
                 name: userName,
-                prompt: "Placeholder prompt",
+                prompt: "Placeholder prompt number",
                 text: submission,
                 votes: 0,
 
@@ -101,6 +110,16 @@
           });
 
         });
+
+        function next_prompt (roomParam) {
+          roomParam.child("prompts/0/text").once('value', snapshot => {
+                  $("#pagename").html(snapshot.val()); //potential security flaw here as well
+                });
+          roomParam.child("prompts/0/duration").once('value', snapshot => {
+                  $("#timer").html(snapshot.val() + "<span>seconds</span>");
+                });
+
+        }
     </script>
 
 
