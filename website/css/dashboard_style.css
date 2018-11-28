@@ -103,7 +103,6 @@
 .room_topic, .room_number {
   font-size: 1em;
   margin: 0;
-  margin-left: 1em;
   margin-top: .2em;
 }
 
@@ -196,10 +195,11 @@
 .join_room_popup_content {
   background-color: #fefefe;
   margin: auto;
-  margin-top: 17em;
+  margin-top: 0em;
   padding: 20px;
+  padding-top: 5px;
   border: 1px solid #888;
-  width: 10em;
+  width: 18em;
   height: 10em;
 }
 
@@ -210,30 +210,42 @@
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  padding: 0;
 }
 
+.form_join_room{
+  float: left;
+  /* margin-top: em; */
+}
 /* ROOM NUMBER TEXT BOX IN POP UP */
-#input_number {
+#input_text {
   margin: 0;
-  margin-top: 1em;
-  width: 100%;
+  width: 15em;
+  height: 2em;
+  float:left;
 }
 
 /* JOIN THE ROOM BUTTON IN POP UP */
 #input_button {
   background-color: rgb(134, 190, 131);
+  float: right;
   border: none;
   color: white;
   padding: .5em;
+  margin-left: 1em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-top: 2em;
-  margin-left: 3em;
   cursor: pointer;
   border-radius: 12px;
   box-shadow: 2px 2px rgb(136, 136, 136);
+}
+
+#pop_message{
+  color: red;
+  float: left;
+  margin-top: .5em;
 }
 
 /* --------------------------------------------- */
