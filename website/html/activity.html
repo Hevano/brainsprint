@@ -11,6 +11,24 @@
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
   <script type="text/javascript" src="../js/setup-firebase.js"></script>
   <script src="../js/jquery-3.3.1.js"></script>
+  <style type="text/css">
+    @keyframes rotateAnim {
+       from {
+         transform: rotate(0deg);
+       }
+       to {
+         transform: rotate(360deg);
+       }
+     }
+
+     #div_time img {
+       animation-name: rotateAnim;
+       animation-duration: 2s;
+       animation-timing-function: linear;
+       animation-iteration-count: infinite;
+       animation-fill-mode: forwards;
+     }
+  </style>
 </head>
 
 <body>
@@ -65,6 +83,9 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>
 
+      var duration;
+
+
         $(document).ready(function() {
           var userName = window.localStorage.getItem("name");
           console.log(userName);
@@ -76,7 +97,7 @@
                   $("title").html(snapshot.val() + " - BrainSprint Activity"); //potential security flaw here, if the user creates a room name that contains shady code it will be inserted into the title
                 });
 
-          const duration = next_prompt(room); // adds the fist prompt and initializes it's duration        
+          populate_prompts(room); 
 
           var responseNum = 0;
           $("#enter_button").click(function(event){
@@ -111,14 +132,34 @@
 
         });
 
-        function next_prompt (roomParam) {
-          roomParam.child("prompts/0/text").once('value', snapshot => {
-                  $("#pagename").html(snapshot.val()); //potential security flaw here as well
-                });
-          roomParam.child("prompts/0/duration").once('value', snapshot => {
-                  $("#timer").html(snapshot.val() + "<span>seconds</span>");
-                });
+        //Returns an object that contains all prompts, with text and duration
+        function populate_prompts (roomParam) {
+          roomParam.child("prompts").once('value', snapshot => {
+              var promptsList = snapshot.val();
+              console.log(promptsList);
+              console.log(snapshot);
+              console.log(snapshot.val());
+              var duration = 0;
+              var index = 0;
+              
+              $("#pagename").html(promptsList[index]["text"]);
+              var time = setInterval(function() {
+                console.log("timer!");
+                console.log(index, "index");
+                console.log(duration, "duration");
+                if(duration <= 0 && index < promptsList.length) {
+                  $("#pagename").html(promptsList[index]["text"]);
+                  duration = promptsList[index]["duration"];
+                  index++;
+                } else if (index == promptsList.length){
+                  alert("time's up!")
+                } else {
+                  $("#timer").html(duration);
+                  duration--;
+                }
+              }, 1000);
 
+            });
         }
     </script>
 
