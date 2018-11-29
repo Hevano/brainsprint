@@ -67,7 +67,7 @@
         myStorage = window.localStorage;
 
         function send_activity() {
-            const room = database.ref().child("roomList/" + $("#input_number").val() + "/people")
+            const room = database.ref().child("roomList/" + $("#input_number").val());
 
             //checks if room exists
             room.once('value', snapshot => {
@@ -79,7 +79,7 @@
 
         //checks if the username is unique, if it is, connect them to that activity
         function name_validate(roomParam) {
-            roomParam.child($("#input_name").val()).once('value', snapshot => {
+            roomParam.child("people/" + $("#input_name").val()).once('value', snapshot => {
                 if (!snapshot.exists()){
                     console.log("User name is unique!");
                     console.log("Going!");
@@ -88,6 +88,8 @@
                     myStorage.setItem("name", name);
                     myStorage.setItem("roomCode", $("#input_number").val());
                     window.location.href = "activity.html";
+                    } else {
+                        console.log("problem!");
                     }
                 });
         }
