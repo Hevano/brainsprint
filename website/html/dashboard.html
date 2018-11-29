@@ -178,33 +178,54 @@
     //----------------------------------------------------------------------------------------------------------------------------------------
     // loads the rooms and the data
     $(document).ready(function() {
-      // Grab room code in account
-      // var room_number = db.ref().child(user).child(roomKey);
-      // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      var rooms_saved = db.ref("userList/" + user + "/rooms");
+      rooms_saved.once("value")
+        .then(function(s) {
+          var room_array = s.val();
+          var room_length = Object.keys(room_array).length;
 
-      var room_number = "roomCode";
-      // var room_number = 7;
+          for (i = 0; i < room_length; i++) {
+            var room_number = Object.keys(room_array)[i];
+            console.log("In Room #" + room_number);
 
-      $("#div_body_yourRoom").append(create_room(room_number));
-      func_populate(room_number);
+            $("#div_body_yourRoom").append(create_room(room_number));
+            func_populate(room_number);
+          }
+        });
 
     });
 
     // Populates the created room with the datbase data
     function func_populate(room_number) {
-      var str_num = room_number + ""
-      console.log(str_num);
-      var room = db.ref().child("roomList").child(str_num);
+      console.log("Room Number (func_populate): " + room_number);
+
+      var room = db.ref().child("roomList").child(room_number);
 
       var room_name = document.getElementById('room_name_' + room_number);
       var room_topic = document.getElementById('room_topic_' + room_number);
       var room_num = document.getElementById('room_number_' + room_number);
 
       var db_room_name = room.child("roomName");
-      var db_room_topic = room.child("topic");
+      var db_room_topic = room.child("prompts");
+
+      db_room_topic.once("value")
+        .then(function(s) {
+          var num = s.val();
+          console.log("Topic thing: " + Object.keys(num).length);
+
+
+          for (i = 0; i <  Object.keys(num).length; i++) {
+            var topic = db_room_topic.child(i + "/text");
+            topic.once("value")
+              .then(function(s) {
+                var topics = s.val() + '\xa0';
+                console.log("Topic thing: " + topics);
+                db_room_topic.on('value', snap => room_topic.innerText += topics);
+              });
+          }
+        });
 
       db_room_name.on('value', snap => room_name.innerText = snap.val());
-      db_room_topic.on('value', snap => room_topic.innerText = snap.val());
       room.on('value', snap => room_num.innerText = room_number);
     }
 
@@ -223,16 +244,21 @@
       const room = db.ref().child("roomList/" + room_number);
 
       event.preventDefault();
-
       //checks if room exists
-      room.once('value', snapshot => {
-        if (snapshot.exists()) {
-          func_join_room();
-        } else {
-          $("#pop_message").html("Code #" + room_number + " does not exist");
-        }
-      });
-    };
+
+      if (room_number.length == 0 ){
+        $("#pop_message").html("Please Enter a Room Number");
+      }
+      else{
+        room.once('value', snapshot => {
+          if (snapshot.exists()) {
+            func_join_room();
+          } else {
+            $("#pop_message").html("Code #" + room_number + " does not exist");
+          }
+        });
+      }
+    }
 
 
     // Function that createds the div elements------------------------------------------------------------------
@@ -244,7 +270,7 @@
       var h3_name = $("<h3>").html("Room Name").attr("id", "room_name_" + room_number).addClass("room_name");
 
       var p_topic = $("<p>").html("Topic: ").addClass("room_topic");
-      var span_topic = $("<span>").html("Topic").attr("id", "room_topic_" + room_number).addClass("room_topic");
+      var span_topic = $("<span>").attr("id", "room_topic_" + room_number).addClass("room_topic");
 
       var p_number = $("<p>").html("Room Number: ").addClass("room_number");
       var span_number = $("<span>").html(room_number).attr("id", "room_number_" + room_number).addClass("room_number");
@@ -262,9 +288,8 @@
       return $(div_room_joined).append(append_details, append_options);
     }
 
-    //
-    //
-    // Get the value of the owner%%%%%%%%%%%%%%%
+
+    // Get the value of the owner
     function set_storage(e) {
       var myStorage = window.localStorage;
 
@@ -281,8 +306,11 @@
 
       myStorage.setItem("roomCode", code_value);
       console.log("Code: " + code_value);
-
     }
+
+    // Adds the Joined room to the database
+
+
   </script>
 
 </body>
