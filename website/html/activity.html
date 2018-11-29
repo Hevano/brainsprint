@@ -73,6 +73,22 @@
       </form>
     </div>
 
+    <!-- Join Room Popup -->
+    <div class="wait_popup">
+      <!-- Join Room Popup Content -->
+      <div class="wait_popup_content">
+        <form class="form_wait" action="dashboard.html" method="post">
+          <!-- <legend>Enter Room Number</legend> 
+          <p id="pop_name">Enter Room Code: </p>
+          <input id="input_text" name="room_number" type="text" placeholder="Enter Here">
+          <input id="input_button" type="button" name="Enter" value="submit" onclick="room_validate()">
+          <p id="pop_message">&nbsp;</p> -->
+          <p>Please wait for the activity to start!</p>
+
+        </form>
+      </div>
+    </div>
+
     <div class="bottom">
       <div class="bottom_bar">
 
@@ -85,6 +101,18 @@
 
       var duration;
 
+      // Closes Join Room Popup
+      function func_close_wait_pop() {
+        $("div.join_room_popup").css("display", "none");
+      }
+
+      // Brings up Join Room Popup
+      function func_wait_pop() {
+        $("div.wait_popup").css("display", "block");
+      }
+
+
+
 
         $(document).ready(function() {
           var userName = window.localStorage.getItem("name");
@@ -96,8 +124,20 @@
           room.child("roomName").once('value', snapshot => {
                   $("title").html(snapshot.val() + " - BrainSprint Activity"); //potential security flaw here, if the user creates a room name that contains shady code it will be inserted into the title
                 });
+          populate_prompts(room);
 
-          populate_prompts(room); 
+          /** Don't touch rn pls
+          func_wait_pop();
+          room.child("start").on('value', snapshot => {
+            console.log("Change is registered");
+            if(snapshot.val()) {
+              console.log("change is acted on");
+              func_close_wait_pop();
+              
+            }
+          }); */
+          
+           
 
           var responseNum = 0;
           $("#enter_button").click(function(event){
@@ -109,18 +149,24 @@
               //Send
               var postData = {
                 name: userName,
-                prompt: $("#pagename").html(),
-                text: submission,
-                votes: 0,
+                prompt: prompts,
 
               };
 
-              
-              database.ref().child('roomList/' + roomCode + '/replies/' + userName + '/' + responseNum).set(postData);
-              console.log(postData);
-              responseNum++;
-              console.log(responseNum);
-            }
+              var prompts = {};
+              var replies = {};
+              replies[responseNum] = {
+                text: submission,
+                votes: 0
+              };
+
+              prompts[$('#pagename').html()] = replies;
+
+              database.ref().child('roomList/' + roomCode + '/replies/' + userName + '/').update(postData);
+                console.log(postData);
+                responseNum++;
+                console.log(responseNum);
+              }
             else {
               console.log("nope");
             }
