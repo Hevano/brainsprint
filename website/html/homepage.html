@@ -84,7 +84,7 @@
                     console.log("User name is unique!");
                     console.log("Going!");
                     let name = $("#input_name").val();
-                    roomParam.child(name).set(true); //adds username to the database, within the room they are joining
+                    roomParam.child("people/" + name).set(true); //adds username to the database, within the room they are joining
                     myStorage.setItem("name", name);
                     myStorage.setItem("roomCode", $("#input_number").val());
                     window.location.href = "activity.html";

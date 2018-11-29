@@ -109,14 +109,14 @@
               //Send
               var postData = {
                 name: userName,
-                prompt: "Placeholder prompt number",
+                prompt: $("#pagename").html(),
                 text: submission,
                 votes: 0,
 
               };
 
-              var replyCode = userName + responseNum;
-              database.ref().child('roomList/' + 'roomCode' + '/replies/' + replyCode).set(postData);
+              
+              database.ref().child('roomList/' + roomCode + '/replies/' + userName + '/' + responseNum).set(postData);
               console.log(postData);
               responseNum++;
               console.log(responseNum);
@@ -136,23 +136,25 @@
         function populate_prompts (roomParam) {
           roomParam.child("prompts").once('value', snapshot => {
               var promptsList = snapshot.val();
-              console.log(promptsList);
-              console.log(snapshot);
-              console.log(snapshot.val());
-              var duration = 0;
               var index = 0;
-              
+              var duration = promptsList[index]["duration"];
+
+              $("#timer").html(duration);
               $("#pagename").html(promptsList[index]["text"]);
               var time = setInterval(function() {
-                console.log("timer!");
-                console.log(index, "index");
-                console.log(duration, "duration");
                 if(duration <= 0 && index < promptsList.length) {
-                  $("#pagename").html(promptsList[index]["text"]);
-                  duration = promptsList[index]["duration"];
                   index++;
-                } else if (index == promptsList.length){
-                  alert("time's up!")
+                  if (index == promptsList.length){
+                    console.log("It's over");
+                    //alert("time's up!")
+                  } else {
+                    $("#pagename").html(promptsList[index]["text"]);
+                    duration = promptsList[index]["duration"];
+                    $("#timer").html(duration);
+                  }
+                } else if (index == promptsList.length) {
+                  console.log("It's over");
+                    //alert("time's up!")
                 } else {
                   $("#timer").html(duration);
                   duration--;
