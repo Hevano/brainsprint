@@ -384,8 +384,30 @@
     function func_delete_pop(room_number) {
       console.log(room_number);
       var del = "#del_pop_" + room_number;
+<<<<<<< Updated upstream
       $(del).toggle();
     }
+=======
+
+      $(del).click(function(){
+        $(this).toggleClass("del_pop_visible");
+    });
+    }
+    //   $(this).toggle(
+    //   function() {
+    //     $(del).css({
+    //       "display": "inline"
+    //     });
+    //   },
+    //   function() {
+    //     $(del).css({
+    //       "display": "none"
+    //     });
+    //
+    //   });
+    // }
+
+>>>>>>> Stashed changes
 
     function func_delete(room_number) {
       console.log(room_number);

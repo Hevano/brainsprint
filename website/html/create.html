@@ -176,7 +176,7 @@
               start: false
             };
 
-            /**Pushes information onto database and grabs the push key.**/
+            /**Updates room to roomList and also populates the room under userID.**/
             var roomCode;
             var numUpdate;
             database.ref().child('numRooms').once('value', snapshot => {
@@ -195,8 +195,6 @@
               
              
               var dbUpdate = database.ref().child('roomList').update(roomInfo);
-//              var roomKey = dbUpdate.key;
-//              console.log("Room key: " + roomKey);
   
               var updates = {};
               updates['/userList/' + uid + '/rooms/' + roomCode] = postData;

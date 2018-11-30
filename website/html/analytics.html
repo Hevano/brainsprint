@@ -86,7 +86,7 @@
 <script>
   $(document).ready(function() {
     var uid = sessionStorage.getItem('uid')
-    database.ref().child('userList').child(uid).child('rooms').once('value', snapshot => { 
+    database.ref().child('/userList/' + uid +'/rooms/').once('value', snapshot => { 
       var ownersRooms = snapshot.val();
       console.log(ownersRooms)
     });
