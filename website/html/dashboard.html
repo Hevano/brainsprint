@@ -153,10 +153,10 @@
 
     firebase.initializeApp(config);
     var db = firebase.database();
+    var list_of_rooms = [];
+    var list_of_joined = [];
 
     //----------------------------------------------------------------------------------------------------------------------------------------
-    var list_of_rooms = [];
-
     // loads the rooms and the data
     $(document).ready(function() {
       var rooms_saved = db.ref("userList/" + user + "/rooms");
@@ -169,8 +169,29 @@
           list_of_rooms[i] = room_number;
           func_has_started(rooms_saved, room_number);
         };
-
       });
+
+      //add the joined room script
+
+      var rooms_joined = db.ref("userList/" + user + "/joined");
+      if (rooms_joined != null) {
+        rooms_joined.once("value").then(function(s) {
+          var joined_array = s.val();
+          var joined_length = Object.keys(joined_array).length;
+
+          for (i = 0; i < joined_length; i++) {
+            var joined_number = Object.keys(joined_array)[i];
+            list_of_joined[i] = joined_number;
+            func_has_started_joined(rooms_joined, joined_number);
+          };
+        });
+      } else {
+        alert("nothing in joined");
+      }
+
+
+
+
     });
 
     // Checks if the room status and calls the function to create and populate the rooms---------------------------------------------------------
@@ -178,13 +199,28 @@
       var has_started = rooms_saved.child(room_number).child("start");
       has_started.once("value").then(function(r) {
         var started = r.val();
-        // console.log("In Room #" + room_number + "\n" + "Status: " + started);
 
         if (started) {
           $("#div_body_analytics").append(create_room(room_number, started));
           func_populate(room_number);
         } else {
           $("#div_body_yourRoom").append(create_room(room_number, started));
+          func_populate(room_number);
+        }
+      });
+
+    }
+
+    // Checks if the room status and calls the function to create and populate the rooms---------------------------------------------------------
+    function func_has_started_joined(rooms_saved, room_number) {
+      var has_started = rooms_saved.child(room_number).child("start");
+      has_started.once("value").then(function(r) {
+        var started = r.val();
+
+        if (started) {
+          //delete from joined room
+        } else {
+          $("#div_body_joinedRoom").append(create_room(room_number, started));
           func_populate(room_number);
         }
       });
@@ -205,13 +241,10 @@
           if (snapshot.exists()) {
             room.child("start").once("value").then(function(s) {
               var started = s.val();
-
-              //for each loop for list_of_rooms look throught if the room number entered is one of the users rooms
               var users_room = func_is_users_room(room_number);
-              if (users_room){
+              if (users_room) {
                 $("#pop_message").html("Code #" + room_number + " is your room");
-              }
-              else {
+              } else {
                 if (started) {
                   $("#pop_message").html("Code #" + room_number + " Already started");
                 } else {
@@ -227,8 +260,8 @@
     }
 
     function func_is_users_room(room_number) {
-      for (i = 0 ; i < list_of_rooms.length ; i++){
-        if (room_number == list_of_rooms[i]){
+      for (i = 0; i < list_of_rooms.length; i++) {
+        if (room_number == list_of_rooms[i]) {
           console.log("Your room");
           return true;
         }
@@ -244,6 +277,7 @@
       $("#div_body_joinedRoom").append(create_room(room_number, false));
       func_populate(room_number);
       func_close_join_room_pop();
+      func_add_room_to_database(room_number);
     }
 
 
@@ -262,7 +296,13 @@
       var span_number = $("<span>").html(room_number).attr("id", "room_number_" + room_number).addClass("room_number");
 
       var div_options = $("<div>").attr("id", "room_options_" + room_number).addClass("action_options");
-      var img_options = $("<img>").attr("src", "../images/options_icon.png").attr("id", "options_icon_" + room_number).addClass("icon_button");
+      var img_options = $("<img>").attr("src", "../images/options_icon.png").attr("id", "options_icon_" + room_number).attr("onclick", "func_delete_pop(" + room_number + ")").addClass("icon_button");
+
+      var div_pop = $("<div>").attr("id", "del_pop_" + room_number).addClass("del_pop");
+      var div_pop_cont = $("<div>").attr("id", "del_pop_cont_" + room_number).addClass("del_pop_cont");
+      var p_pop_text = $("<p>").html("Delete").attr("id", "del_pop_text_" + room_number).attr("onclick", "func_delete(" + room_number + ")").addClass("del_text");
+
+      // .css("display", "none");
 
       if (status) {
         var button_options = $("<button>").html("Analytics").attr("id", "button_start_" + room_number).addClass("button_analytics").attr('value', room_number).attr("onclick", "set_storage(this)").attr("onclick",
@@ -271,11 +311,13 @@
         var button_options = $("<button>").html("Start").attr("id", "button_start_" + room_number).addClass("button_create_room_start").attr('value', room_number).attr("onclick", "set_storage(this)").attr("onclick",
           "location.href='activity.html'"); //change class name to something else
       }
+      $(div_pop_cont).append(p_pop_text);
+      var pop = $(div_pop).append(div_pop_cont);
 
       $(p_topic).append(span_topic);
       $(p_number).append(span_number);
 
-      var append_options = $(div_options).append(img_options, button_options);
+      var append_options = $(div_options).append(img_options, button_options, pop);
       var append_details = $(div_detail).append(h3_name, p_topic, p_number);
 
       return $(div_room_joined).append(append_details, append_options);
@@ -327,6 +369,61 @@
     }
 
     // Adds the Joined room to the database
+    function func_add_room_to_database(room_number) {
+      var room = db.ref("roomList").child(room_number);
+      var user_room = db.ref("userList").child(user);
+
+      room.once("value").then(function(c) {
+        var room_info = c.val();
+        var key = room_number;
+        var add_room = {
+          [key]: room_info
+        }
+        user_room.child("joined").update(add_room);
+      });
+    }
+
+    $(document).ready(function() {
+      // var del_div = $(this).attr("id");
+      // $(this).click(function(){
+      //   $(del_div).css("display", "inline");
+      // });
+      //
+      // $(this).mouseleave(function(){
+      //   $(del_div).css("display", "none");
+      // });
+    });
+
+    function func_delete_pop(room_number) {
+      console.log(room_number);
+      var del = "#del_pop_" + room_number;
+
+      $(del).toggle(
+        function(){$(del).css("display", "inline")},
+        function(){$(del).css("display", "none")}
+      );
+    }
+
+    //   $(this).toggle(
+    //   function() {
+    //     $(del).css({
+    //       "display": "inline"
+    //     });
+    //   },
+    //   function() {
+    //     $(del).css({
+    //       "display": "none"
+    //     });
+    //
+    //   });
+    // }
+
+
+    function func_delete(room_number) {
+      console.log(room_number);
+      $("#room_joined_" + room_number).remove();
+    };
+
   </script>
 
 </body>

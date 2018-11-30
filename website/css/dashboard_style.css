@@ -1,7 +1,7 @@
 /* OPTIONS BAR */
 #body_options_bar {
   display: table;
-  width: 95%;
+  width: 90%;
   height: 4em;
   margin: 0 auto;
   border: 1px solid rgb(134, 190, 131);
@@ -35,7 +35,7 @@
 
 /* ROOM BODY WRAPPER */
 .div_body {
-  width: 95%;
+  width: 90%;
   min-height: 35em;
   height: auto;
   margin: 0 auto;
@@ -152,7 +152,7 @@
   width: 3em;
   height: auto;
   top: 48em;
-  right: 3em;
+  right: 5em;
   cursor: pointer;
 }
 
@@ -250,3 +250,21 @@
 }
 
 /* --------------------------------------------- */
+.del_pop{
+  display: none;
+  background-color: rgb(103, 103, 103);
+  color: rgb(255, 255, 255);
+  width: 3.5em;
+  padding: 2px 10px 2px 10px;
+  text-align: center;
+  border-radius: 15%;
+  position: absolute;
+  right: .7em;
+  margin-top: .8em;
+}
+
+.del_text:hover{
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+}
