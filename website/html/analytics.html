@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="../css/brain_style.css">
   <link rel="stylesheet" href="../css/analytics_style.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+  <script type="text/javascript" src="../js/setup-firebase.js"></script>
+  <script src="../js/jquery-3.3.1.js"></script>
 </head>
 <body>
 <div class="pagewrap">
@@ -33,31 +36,61 @@
 <div id="div_search_input">
   <form>
     <input type="text" id="search_text" placeholder="Search any word here to produce results"></input>
-    <img src="../images/search.png" alt="search button" id="search_button"/>
+    <div id="search_button_wrap">
+      <img src="../images/search.png" alt="search button" id="search_button"/>
+    </div>
   </form>
 </div>
 <div id="div_body">
+  <div id="div_prompt_box">
+    <form id="form_select_prompt">
+      <select size="1" id="select_prompt">
+        <option value="0" selected="selected">Prompt 1</option>
+      </select>
+    </form>
+  </div>
   <div class="div_analytics_box">
     <div class="div_analytics_content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Justo nec ultrices dui sapien eget. Donec et odio pellentesque diam volutpat commodo sed egestas. Fermentum iaculis eu non diam phasellus vestibulum lorem. Purus gravida quis blandit turpis. Commodo quis imperdiet massa tincidunt nunc. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Sit amet consectetur adipiscing elit duis tristique. Ultricies leo integer malesuada nunc vel risus. Posuere lorem ipsum dolor sit amet. Arcu felis bibendum ut tristique et egestas quis ipsum. Odio tempor orci dapibus ultrices in iaculis.</p>
+      <div class="div_insight_title">
+        <h1>Most common words</h1>
+      </div>
+      <div class="div_insight_content">
+
+      </div>
     </div>
   </div>
   <div class="div_analytics_box">
     <div class="div_analytics_content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Justo nec ultrices dui sapien eget. Donec et odio pellentesque diam volutpat commodo sed egestas. Fermentum iaculis eu non diam phasellus vestibulum lorem. Purus gravida quis blandit turpis. Commodo quis imperdiet massa tincidunt nunc. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Sit amet consectetur adipiscing elit duis tristique. Ultricies leo integer malesuada nunc vel risus. Posuere lorem ipsum dolor sit amet. Arcu felis bibendum ut tristique et egestas quis ipsum. Odio tempor orci dapibus ultrices in iaculis.</p>
+      <div class="div_insight_title">
+        <h1>Most unique words</h1>
+      </div>
+      <div id="div_insight_common" class="div_insight_content">        
+      </div>
     </div>
   </div>
   <div class="div_analytics_box">
     <div class="div_analytics_content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Justo nec ultrices dui sapien eget. Donec et odio pellentesque diam volutpat commodo sed egestas. Fermentum iaculis eu non diam phasellus vestibulum lorem. Purus gravida quis blandit turpis. Commodo quis imperdiet massa tincidunt nunc. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Sit amet consectetur adipiscing elit duis tristique. Ultricies leo integer malesuada nunc vel risus. Posuere lorem ipsum dolor sit amet. Arcu felis bibendum ut tristique et egestas quis ipsum. Odio tempor orci dapibus ultrices in iaculis.</p>
-    </div>
+        <div class="div_insight_title">
+          <h1>Responses</h1>
+        </div>
+        <div class="div_insight_content">            
+        </div>
+      </div>
   </div>
 </div>
 <div class="bottom">
   <div class="bottom_bar">
-
   </div>
 </div>
 
+<script>
+  $(document).ready(function() {
+    var uid = sessionStorage.getItem('uid')
+    database.ref().child('userList').child(uid).child('rooms').once('value', snapshot => { 
+      var ownersRooms = snapshot.val();
+      console.log(ownersRooms)
+    });
+  });
+</script>
 </body>
 </html>
