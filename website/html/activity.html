@@ -147,23 +147,16 @@
               $("#div_submit_display").prepend(newItem).focus();
               $("#submit_text").val("Text goes here");
               //Send
-              var postData = {
-                name: userName,
-                prompt: prompts,
-
-              };
-
-              var prompts = {};
-              var replies = {};
-              replies[responseNum] = {
+              var reply = {};
+              reply[responseNum] = {
                 text: submission,
                 votes: 0
               };
+                
+              console.log(reply);
 
-              prompts[$('#pagename').html()] = replies;
-
-              database.ref().child('roomList/' + roomCode + '/replies/' + userName + '/').update(postData);
-                console.log(postData);
+                database.ref().child('roomList/' + roomCode + '/replies/' + $('#pagename').html() + '/' + userName).update(reply);                
+                console.log(reply);
                 responseNum++;
                 console.log(responseNum);
               }
