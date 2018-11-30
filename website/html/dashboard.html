@@ -189,9 +189,6 @@
         alert("nothing in joined");
       }
 
-
-
-
     });
 
     // Checks if the room status and calls the function to create and populate the rooms---------------------------------------------------------
@@ -383,47 +380,17 @@
       });
     }
 
-    $(document).ready(function() {
-      // var del_div = $(this).attr("id");
-      // $(this).click(function(){
-      //   $(del_div).css("display", "inline");
-      // });
-      //
-      // $(this).mouseleave(function(){
-      //   $(del_div).css("display", "none");
-      // });
-    });
-
+    // funtion needs to show and hide the delete div
     function func_delete_pop(room_number) {
       console.log(room_number);
       var del = "#del_pop_" + room_number;
-
-      $(del).toggle(
-        function(){$(del).css("display", "inline")},
-        function(){$(del).css("display", "none")}
-      );
+      $(del).toggle();
     }
-
-    //   $(this).toggle(
-    //   function() {
-    //     $(del).css({
-    //       "display": "inline"
-    //     });
-    //   },
-    //   function() {
-    //     $(del).css({
-    //       "display": "none"
-    //     });
-    //
-    //   });
-    // }
-
 
     function func_delete(room_number) {
       console.log(room_number);
       $("#room_joined_" + room_number).remove();
     };
-
   </script>
 
 </body>
