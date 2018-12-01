@@ -281,7 +281,7 @@
 /* Start Room CSS */
 
 #start_room_popup {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 1;
   padding-top: 100px;
@@ -295,10 +295,11 @@
 }
 
 #start_room_popup_content {
+  text-align: center;
   background-color: #fefefe;
   margin: auto;
   margin-top: 15em;
-  padding: 100px;
+  padding: 20px;
   padding-top: 5px;
   border: 1px solid #888;
   width: 18em;
@@ -307,15 +308,23 @@
 
 
 #start_room_popup_go {
-  display: none;
   background-color: rgb(134, 190, 131);
   color: white;
   font-size: 16px;
   cursor: pointer;
   padding: .5em;
-  margin-left: 1em;
   text-align: center;
   border: none;
   border-radius: 12px;
   box-shadow: 2px 2px rgb(136, 136, 136);
+}
+
+#start_room_close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  right: -1em;
 }

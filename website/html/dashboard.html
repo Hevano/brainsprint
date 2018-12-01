@@ -56,10 +56,11 @@
       <!-- Start Room Popup -->
       <div id="start_room_popup">
           <!-- Join Room Popup Content -->
+          
           <div id="start_room_popup_content">
-            <span class="close" onclick="func_close_start_room_pop()">&times;</span>
+            <span id="start_room_close" onclick="func_close_start_room_pop()">&times;</span>
             <h2 id="start_room_popup_title">Room Name</h2>
-            <p>Start Room?</p>
+            <p id="start_room_popup_msg">Start Room?</p>
             <p id="start_room_popup_joined">Joined: </p>
             <p id="start_room_popup_go">Start</p>
           </div>
@@ -268,18 +269,42 @@
       }
     }
 
-    function start_popup(roomId, room_number) {
+    //All functions Dealing with starting a room from the dashboard
+    function start_popup(room_number) {
       $("#start_room_popup").css("display","block");
-      $("#start_room_popup_title").html($(roomId).html());
+      $("#start_room_popup_title").html($("#room_joined_" + room_number + " h3").html());
       db.ref().child("roomList/" + room_number + "/people").on("value", snapshot => {
-        console.log(snapshot.val());
-        $("#start_room_popup_joined").html("Joined: " + snapshot.val().length);
+        $("#start_room_popup_joined").html("Joined: " + Object.keys(snapshot.val()).length);
+      });
+      $("#start_room_popup_go").click(function(event) {
+        func_start_room(room_number);
+        console.log("started");
       });
 
     }
 
+    //closes the popup
     function func_close_start_room_pop() {
-      $("#start_popup").css("display", "none");
+      $("#start_room_popup").css("display", "none");
+    }
+
+    //Start the room and allows the user to join the room they have started
+    function func_start_room(room_number) {
+      db.ref().child("roomList/" + room_number + "/start").set(true);
+      $("#start_room_popup_go").html("Join Room").unbind("click");
+      $("#start_room_popup_go").click(function(event) {
+        console.log("trying to join");
+        var myStorage = window.localStorage;
+
+        var ref = db.ref("userList/" + user + "/name");
+        ref.once("value")
+          .then(function(s) {
+            var name_thing = s.val();
+            myStorage.setItem("name", name_thing);
+          })
+        myStorage.setItem("roomCode", room_number);
+        window.location.href = "activity.html";
+      });
     }
 
     function func_is_users_room(room_number) {
