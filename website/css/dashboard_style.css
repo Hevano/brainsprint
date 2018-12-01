@@ -146,6 +146,10 @@
   cursor: pointer;
 }
 
+.icon_button:hover {
+  background-color: rgb(226, 226, 226);
+}
+
 /* CREATE ROOM IMAGE BUTTON */
 #add_button, #join_button {
   position: absolute;
@@ -214,16 +218,17 @@
   padding: 0;
 }
 
-.form_join_room{
+.form_join_room {
   float: left;
   /* margin-top: em; */
 }
+
 /* ROOM NUMBER TEXT BOX IN POP UP */
 #input_text {
   margin: 0;
   width: 15em;
   height: 2em;
-  float:left;
+  float: left;
 }
 
 /* JOIN THE ROOM BUTTON IN POP UP */
@@ -243,14 +248,14 @@
   box-shadow: 2px 2px rgb(136, 136, 136);
 }
 
-#pop_message{
+#pop_message {
   color: red;
   float: left;
   margin-top: .5em;
 }
 
 /* --------------------------------------------- */
-.del_pop{
+.del_pop {
   display: none;
   background-color: rgb(103, 103, 103);
   color: rgb(255, 255, 255);
@@ -263,7 +268,7 @@
   margin-top: .8em;
 }
 
-.del_text:hover{
+.del_text:hover {
   cursor: pointer;
   color: rgb(255, 255, 255);
   text-decoration: underline;
