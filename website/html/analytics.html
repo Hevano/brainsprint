@@ -13,6 +13,8 @@
 </head>
 <body>
 <div class="pagewrap">
+
+<!-- Top part of the page, navigation -->
     <div id="div_head">
       <div id="div_logo_bar">
 
@@ -33,6 +35,7 @@
 <div id="div_pagename">
   <h1 id="pagename">Analytics</h1>
 </div>
+<!-- Search bar for the page -->
 <div id="div_search_input">
   <form>
     <input type="text" id="search_text" placeholder="Search any word here to produce results"></input>
@@ -41,14 +44,17 @@
     </div>
   </form>
 </div>
+<!-- Middle portion of page-->
 <div id="div_body">
+<!-- Prompt selection to change what information displays-->
   <div id="div_prompt_box">
     <form id="form_select_prompt">
       <select size="1" id="select_prompt">
-        <option value="0" selected="selected">Prompt 1</option>
+        <option value="all" selected="selected">All prompts</option>
       </select>
     </form>
   </div>
+<!-- Analytics content -->
   <div class="div_analytics_box">
     <div class="div_analytics_content">
       <div class="div_insight_title">
@@ -86,9 +92,57 @@
 <script>
   $(document).ready(function() {
     var uid = sessionStorage.getItem('uid')
-    database.ref().child('/userList/' + uid +'/rooms/').once('value', snapshot => { 
-      var ownersRooms = snapshot.val();
-      console.log(ownersRooms)
+
+    var myStorage = window.localStorage;
+    var roomCode = myStorage.getItem("roomCode")
+    console.log(roomCode);
+/**---------Updates the respective trees in database to allow analytics to pull data easily.---------**/
+    var personal = {};
+    var personalPrompts = {};
+    var firstRef = database.ref().child('/roomList/' + roomCode + '/replies/');
+    firstRef.once('value', snapshot => {
+      var totalText = "";
+      snapshot.forEach(function(prompt) {
+        var promptKey = prompt.key;
+        var promptData = prompt.val();
+        personalPrompts[promptKey] = "";
+        var secondRef = firstRef.child(promptKey + '/');
+        secondRef.once('value', promptShot => {
+            /**Name Tree**/
+            promptShot.forEach(function(name){
+            var nameKey = name.key;
+            var nameData = name.val();
+            var thirdRef = secondRef.child(nameKey + '/');
+            thirdRef.once('value', nameShot => {
+              /**Response tree **/
+              nameShot.forEach(function(response) {
+                var responseKey = response.key;
+                var responseData = response.val();
+                var fourthRef = thirdRef.child(responseKey + '/');
+                fourthRef.once('value', textShot => {
+                  textShot.forEach(function(text){
+                    totalText += text.val() + " ";
+                    var textCollection = {
+                      textCollection: totalText
+                    };
+
+
+                    personal[nameKey] = personalPrompts;
+                    personalPrompts[promptKey] += text.val() + " ";
+
+                    /**Updates the total text collection.**/
+                    database.ref().child('/roomList/' + roomCode + '/analytics/').update(textCollection);
+                    
+                    /**Updates the text collection for each individual person**/
+                    database.ref().child('/roomList/' + roomCode + '/analytics/people/').update(personal);
+
+                  });
+                });
+              });
+            });
+          });
+        });        
+      });
     });
   });
 </script>

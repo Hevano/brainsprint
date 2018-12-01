@@ -73,17 +73,29 @@
       </form>
     </div>
 
-    <!-- Join Room Popup -->
+    <!-- Wait Popup -->
     <div class="wait_popup">
-      <!-- Join Room Popup Content -->
+      <!-- Wait Popup Content -->
       <div class="wait_popup_content">
         <form class="form_wait" action="dashboard.html" method="post">
-          <!-- <legend>Enter Room Number</legend> 
-          <p id="pop_name">Enter Room Code: </p>
-          <input id="input_text" name="room_number" type="text" placeholder="Enter Here">
-          <input id="input_button" type="button" name="Enter" value="submit" onclick="room_validate()">
-          <p id="pop_message">&nbsp;</p> -->
-          <p>Please wait for the activity to start!</p>
+          <h2 id="wait_title">Room Name</h2>
+          <p id="wait_code" class="wait_important"></p>
+          <p id="wait_name" class="wait_important"></p>
+          <p id="wait_msg">Please wait for the activity to start!</p>
+          <p id="wait_home">Home</p>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- New Prompt Popup -->
+    <div class="new_popup">
+      <!-- New Prompt Popup Content -->
+      <div class="new_popup_content">
+        <form class="form_wait" action="dashboard.html" method="post">
+          <h2 id="new_prompt_title">Next Prompt Coming!</h2>
+          <h2 id="new_prompt_text"></h2>
+          <h2 id="new_prompt_timer"></h2>
 
         </form>
       </div>
@@ -103,7 +115,7 @@
 
       // Closes Join Room Popup
       function func_close_wait_pop() {
-        $("div.join_room_popup").css("display", "none");
+        $("div.wait_popup").css("display", "none");
       }
 
       // Brings up Join Room Popup
@@ -111,31 +123,49 @@
         $("div.wait_popup").css("display", "block");
       }
 
+      function finish_pop() {
+        $("div.wait_popup").css("display", "block");
+        $("#wait_home").css("display", "block");
+        $("div.wait_popup_content").css("height", "18em");
+        $("#wait_name").html("Goodbye, " + window.localStorage.getItem("name"));
+        $("#wait_msg").html("The activity has now finished. Thanks for brainstorming with BrainSprint!");
 
+        $("#wait_home").click(function(event) {
+          console.log("we outta here");
+          window.location.href = "homepage.html";
+        });
+      }
+
+      function new_prompt_pop(durationCurrent, durationTotal) {
+        let duration = Math.abs(durationCurrent - durationTotal);
+        $("div.new_popup").css("display", "block");
+        $("#new_prompt_timer").html("Starting in: " + duration + "...");
+      }
 
 
         $(document).ready(function() {
           var userName = window.localStorage.getItem("name");
-          console.log(userName);
+          $("#wait_name").html("Welcome, " + userName);
           var roomCode = window.localStorage.getItem("roomCode"); //What room are we in?
+          $("#wait_code").html("#" + roomCode);
 
           var room = database.ref("roomList/" + roomCode);
 
           room.child("roomName").once('value', snapshot => {
-                  $("title").html(snapshot.val() + " - BrainSprint Activity"); //potential security flaw here, if the user creates a room name that contains shady code it will be inserted into the title
+                  $("title").html(snapshot.val() + " - BrainSprint Activity");
+                  $("#wait_title").html(snapshot.val());
                 });
-          populate_prompts(room);
+          
 
-          /** Don't touch rn pls
+          
           func_wait_pop();
           room.child("start").on('value', snapshot => {
             console.log("Change is registered");
             if(snapshot.val()) {
               console.log("change is acted on");
-              func_close_wait_pop();
-              
+              populate_prompts(room);
             }
-          }); */
+          });
           
            
 
@@ -143,7 +173,7 @@
           $("#enter_button").click(function(event){
             var submission = $("#submit_text").val()
             if(!submission == "" || !("#submit_text").val() == "Text goes here") {
-              var newItem = $("<p>" + $("#submit_text").val() + "</p>")
+              var newItem = $("<p>" + $("#submit_text").val() + "</p>").addClass("reply");
               $("#div_submit_display").prepend(newItem).focus();
               $("#submit_text").val("Text goes here");
               //Send
@@ -173,32 +203,44 @@
 
         //Returns an object that contains all prompts, with text and duration
         function populate_prompts (roomParam) {
+          func_close_wait_pop();
           roomParam.child("prompts").once('value', snapshot => {
               var promptsList = snapshot.val();
               var index = 0;
-              var duration = promptsList[index]["duration"];
+              var duration = promptsList[index]["duration"] + 5;
               var grace = false;
 
               $("#timer").html(duration);
               $("#pagename").html(promptsList[index]["text"]);
+              $("#new_prompt_text").html('"' + promptsList[index]["text"] + '"');
+
               var time = setInterval(function() {
-                if(duration <= 0 && index < promptsList.length) {
+                if(duration <= 0 && index < promptsList.length) { //If a prompt has finished
                   index++;
-                  if (index == promptsList.length){
-                    $("#timer").html(0)
-                    console.log("It's over");
+                  if (index == promptsList.length){ //If there are now more prompts
+                    $("#timer").html(0);
+                    finish_pop();
                     $("#div_input").css("display", "none");
-                    //alert("time's up!")
-                  } else {
+
+                  } else { //else start the next prompt
                     $("#pagename").html(promptsList[index]["text"]);
-                    duration = promptsList[index]["duration"];
-                    $("#timer").html(duration);
+                    $("#new_prompt_text").html('"' + promptsList[index]["text"] + '"');
+                    duration = promptsList[index]["duration"] + 5; //give a 5 second grace period
+                    $("#timer").html(0)
+                    $(".reply").toggle();
                   }
                 } else if (index == promptsList.length) {
                   console.log("It's over");
                     //alert("time's up!")
                 } else {
-                  $("#timer").html(duration);
+                  if(duration > promptsList[index]["duration"]) { //checks if we are in grace period
+                    console.log("Dont lie to me!", index);
+                    new_prompt_pop(duration, promptsList[index]["duration"]);
+                  } else {
+                    $("#timer").html(duration);
+                    $("div.new_popup").css("display", "none");
+                  }
+                  
                   duration--;
                 }
               }, 1000);
