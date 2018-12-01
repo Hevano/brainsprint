@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <title>Homepage - BrainSprint</title>
-    <link rel="icon" href="../images/brain.png">
-    <link rel="stylesheet" href="../css/brain_style.css">
-    <link rel="stylesheet" href="../css/homepage_style.css">
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <script type="text/javascript" src="../js/setup-firebase.js"></script> 
-    <script src="../js/jquery-3.3.1.js"></script>
+  <meta charset="utf-8" />
+  <title>Homepage - BrainSprint</title>
+  <link rel="icon" href="../images/brain.png">
+  <link rel="stylesheet" href="../css/brain_style.css">
+  <link rel="stylesheet" href="../css/homepage_style.css">
+  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+  <script type="text/javascript" src="../js/setup-firebase.js"></script>
+  <script src="../js/jquery-3.3.1.js"></script>
 </head>
+
 <body>
-    <div id="div_pagewrap">
-        <div id="div_head">
+  <div id="div_pagewrap">
+    <!-- ORIGINAL CODE BLOCK -->
+    <!-- <div id="div_head">
             <button id="button_gettingStarted" class="button_style">Getting Started</button>
         </div>
         <div id="div_body">
@@ -28,73 +31,227 @@
                 <button id="button_enter" onclick="join_room_pop()" class="button_style">Enter a Room</button>
                 <a href="./login.html"><button id="button_create" class="button_style">Create a Room</button></a>
             </div>
-        </div>
+        </div> -->
+
+    <div class="div_top_banner">
+      <h1 id="logo_name">BrainSprint</h1>
+      <!-- add the nav bar for the page sections -->
     </div>
 
-    <!-- Join Room Popup -->
-    <div class="join_room_popup">
-        <!-- Join Room Popup Content -->
-        <div class="join_room_popup_content">
-          <span class="close" onclick="close_pop()">&times;</span>
-          <form class="form_join_room">
-            <!-- <legend>Enter Room Number</legend> -->
-            <input id="input_name" type="text" name="name" placeholder="Enter Your Name"/>
-            <input id="input_number" type="text" name="join_number" placeholder="Enter Room Number"/>
-            <button id="join_button" onclick="send_activity();return false">Submit</button>
-          </form>
+    <!--BrainSprint Thing  -->
+    <div class="div_main_cont">
+      <div class="min_cont">
+        <h1 class="page_header">YOUR ONLINE BRAINSTORMING PLATFORM</h2>
+          <div id="div_roomButtons">
+            <button id="button_enter" onclick="join_room_pop()" class="button_style">Enter a Room</button>
+            <a href="./login.html"><button id="button_create" class="button_style">Create a Room</button></a>
+          </div>
+          <div id="div_brainsprintLogo">
+            <img src="../images/brain.png" alt="The brainsprint logo" />
+          </div>
+      </div>
+    </div>
+
+    <!-- What is BrainSprint -->
+    <div class="div_what_cont">
+      <h1 class="page_header">What is BrainSprint?</h1>
+      <div class="what_cont">
+        <img src="https://dummyimage.com/500x500/000/fff" alt="dummy" id="what_img">
+        <div class="what_text">
+          <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
       </div>
     </div>
-    
-    <script>
-        // Join Room Pop Up Functions
-        var join_room = $(".join_room_popup");
-        var span = document.getElementsByClassName("close")[0];
-    
-        // Closes Join Room Popup
-        function close_pop() {
-          join_room.css("display", "none");
-          console.log("close function");
+
+    <!-- How it Works -->
+    <div class="div_how_cont">
+      <h1 class="page_header">How it Works</h1>
+
+      <div class="how_cont">
+        <div id="how_1" class="how_num">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="what_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+
+        <div id="how_2" class="how_num">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="what_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+
+        <div id="how_3" class="how_num">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="what_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+
+        <div id="how_4" class="how_num">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="what_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW TO CREATE A ROOM -->
+    <div class="div_create_cont">
+      <h1 class="page_header">How to Create a Room</h1>
+
+      <div class="create_cont">
+        <div class="create_steps">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="create_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+
+        <div class="create_steps">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="create_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+
+        <div class="create_steps">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="create_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+
+        <div class="create_steps">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="create_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOIN ROOM -->
+
+    <div class="div_join_cont">
+      <h1 class="page_header">Join a Room</h1>
+
+      <div class="join_cont">
+        <div class="join_with_account">
+          <h2>With an Account</h2>
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="create_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+
+        <div class="join_without_account">
+          <h2>Without an Account</h2>
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="create_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- START THE ACTIVITY -->
+    <!-- <div class="div_start_cont">
+      <h1 class="page_header">How it Works</h1>
+
+      <div class="start_cont_with_account">
+        <h2>With an Account</h2>
+
+        <div class="start_steps">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="create_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="start_cont_without_account">
+        <h2>Without an Account</h2>
+
+        <div class="start_steps">
+          <img src="https://dummyimage.com/500x500/000/fff" alt="dummy">
+          <div class="create_text">
+            <p class="p_texts">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna id est laborum.</p>
+          </div>
+        </div>
+      </div>
+
+    </div> -->
+  </div>
+
+  <!-- Join Room Popup -->
+  <div class="join_room_popup">
+    <!-- Join Room Popup Content -->
+    <div class="join_room_popup_content">
+      <span class="close" onclick="close_pop()">&times;</span>
+      <form class="form_join_room">
+        <!-- <legend>Enter Room Number</legend> -->
+        <input id="input_name" type="text" name="name" placeholder="Enter Your Name" />
+        <input id="input_number" type="text" name="join_number" placeholder="Enter Room Number" />
+        <button id="join_button" onclick="send_activity();return false">Submit</button>
+      </form>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    // Join Room Pop Up Functions
+    var join_room = $(".join_room_popup");
+    var span = document.getElementsByClassName("close")[0];
+
+    // Closes Join Room Popup
+    function close_pop() {
+      join_room.css("display", "none");
+      console.log("close function");
+    }
+
+    // Brings up Join Room Popup
+    function join_room_pop() {
+      join_room.css("display", "block");
+      console.log("join room function");
+    }
+
+    // Send the user to a room with their room code and name
+    myStorage = window.localStorage;
+
+    function send_activity() {
+      const room = database.ref().child("roomList/" + $("#input_number").val());
+
+      //checks if room exists
+      room.once('value', snapshot => {
+        if (snapshot.exists()) {
+          name_validate(room);
         }
-    
-        // Brings up Join Room Popup
-        function join_room_pop() {
-          join_room.css("display", "block");
-          console.log("join room function");
+      });
+    };
+
+    //checks if the username is unique, if it is, connect them to that activity
+    function name_validate(roomParam) {
+      roomParam.child("people/" + $("#input_name").val()).once('value', snapshot => {
+        if (!snapshot.exists()) {
+          console.log("User name is unique!");
+          console.log("Going!");
+          let name = $("#input_name").val();
+          roomParam.child("people/" + name).set(true); //adds username to the database, within the room they are joining
+          myStorage.setItem("name", name);
+          myStorage.setItem("roomCode", $("#input_number").val());
+          window.location.href = "activity.html";
+        } else {
+          console.log("problem!");
         }
-
-        // Send the user to a room with their room code and name
-        myStorage = window.localStorage;
-
-        function send_activity() {
-            const room = database.ref().child("roomList/" + $("#input_number").val());
-
-            //checks if room exists
-            room.once('value', snapshot => {
-                if (snapshot.exists()){
-                    name_validate(room);
-                    }
-                });
-        };
-
-        //checks if the username is unique, if it is, connect them to that activity
-        function name_validate(roomParam) {
-            roomParam.child("people/" + $("#input_name").val()).once('value', snapshot => {
-                if (!snapshot.exists()){
-                    console.log("User name is unique!");
-                    console.log("Going!");
-                    let name = $("#input_name").val();
-                    roomParam.child("people/" + name).set(true); //adds username to the database, within the room they are joining
-                    myStorage.setItem("name", name);
-                    myStorage.setItem("roomCode", $("#input_number").val());
-                    window.location.href = "activity.html";
-                    } else {
-                        console.log("problem!");
-                    }
-                });
-        }
-    
-    </script>
+      });
+    }
+  </script>
 
 </body>
+
 </html>
