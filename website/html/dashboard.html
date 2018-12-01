@@ -288,7 +288,7 @@
       $("#start_room_popup").css("display", "none");
     }
 
-    //Start the room and allows the user to join the room they have started
+    //Starts the room and allows the user to join the room they have started
     function func_start_room(room_number) {
       db.ref().child("roomList/" + room_number + "/start").set(true);
       $("#start_room_popup_go").html("Join Room").unbind("click");

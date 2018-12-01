@@ -194,10 +194,12 @@
     <div class="join_room_popup_content">
       <span class="close" onclick="close_pop()">&times;</span>
       <form class="form_join_room">
+        <p>Enter a Room?</p>
         <!-- <legend>Enter Room Number</legend> -->
         <input id="input_name" type="text" name="name" placeholder="Enter Your Name" />
         <input id="input_number" type="text" name="join_number" placeholder="Enter Room Number" />
         <button id="join_button" onclick="send_activity();return false">Submit</button>
+        <p id="pop_message">&nbsp;</p>
       </form>
     </div>
   </div>
@@ -211,13 +213,13 @@
     // Closes Join Room Popup
     function close_pop() {
       join_room.css("display", "none");
-      console.log("close function");
+      $(".join_room_popup_content").css("height","10em");
+      $("#pop_message").html("");
     }
 
     // Brings up Join Room Popup
     function join_room_pop() {
       join_room.css("display", "block");
-      console.log("join room function");
     }
 
     // Send the user to a room with their room code and name
@@ -228,8 +230,11 @@
 
       //checks if room exists
       room.once('value', snapshot => {
-        if (snapshot.exists()) {
+        if (snapshot.exists() && $("#input_number").val() != "") {
           name_validate(room);
+        } else {
+          $(".join_room_popup_content").css("height","14em");
+          $("#pop_message").html("Sorry, we didn't find a room with that number.");
         }
       });
     };
@@ -244,9 +249,10 @@
           roomParam.child("people/" + name).set(true); //adds username to the database, within the room they are joining
           myStorage.setItem("name", name);
           myStorage.setItem("roomCode", $("#input_number").val());
-          window.location.href = "activity.html";
+          //window.location.href = "activity.html";
         } else {
-          console.log("problem!");
+          $(".join_room_popup_content").css("height","14em");
+          $("#pop_message").html("Sorry, that name is taken.");
         }
       });
     }
