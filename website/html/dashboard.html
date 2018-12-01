@@ -291,7 +291,8 @@
 
     //Starts the room and allows the user to join the room they have started
     function func_start_room(room_number) {
-      db.ref().child("roomList/" + room_number + "/start").set(true);
+      db.ref().child("roomList/" + room_number + "/start").set(true); //starts the activity in the roomList
+      db.ref().child("userList/" + user + "/rooms/" + room_number  + "/start").set(true); //starts the activity in the userList
       $("#start_room_popup_go").html("Join Room").unbind("click");
       $("#start_room_popup_go").click(function(event) {
         console.log("trying to join");
