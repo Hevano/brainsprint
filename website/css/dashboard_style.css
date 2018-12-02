@@ -1,4 +1,8 @@
 /* OPTIONS BAR */
+.pagewrap{
+  min-width: 825px;
+}
+
 #body_options_bar {
   display: table;
   width: 90%;

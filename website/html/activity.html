@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="../css/brain_style.css">
   <link rel="stylesheet" href="../css/activity_style.css">
   <link rel="icon" href="../images/brain.png">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
   <script type="text/javascript" src="../js/setup-firebase.js"></script>
   <script src="../js/jquery-3.3.1.js"></script>
@@ -136,9 +135,15 @@
         $("#wait_name").html("Goodbye, " + userName);
         $("#wait_msg").html("The activity has now finished. Thanks for brainstorming with BrainSprint!");
 
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------
         $("#wait_home").click(function(event) {
           console.log("we outta here");
-          window.location.href = "homepage.html";
+          if (sessionStorage.getItem("uid") != null) {
+            window.location.href = "dashboard.html";
+
+          } else{
+            window.location.href = "homepage.html";
+          }
         });
       }
 
@@ -165,9 +170,9 @@
                   $("title").html(snapshot.val() + " - BrainSprint Activity");
                   $("#wait_title").html(snapshot.val());
                 });
-          
 
-          
+
+
           func_wait_pop();
           room.child("start").on('value', snapshot => {
             console.log("Change is registered");
@@ -176,8 +181,8 @@
               populate_prompts(room);
             }
           });
-          
-           
+
+
 
           var responseNum = 0;
           $("#enter_button").click(function(event){
@@ -192,10 +197,10 @@
                 text: submission,
                 votes: 0
               };
-                
+
               console.log(reply);
-                
-                database.ref().child('roomList/' + roomCode + '/replies/' + $('#pagename').html() + '/' + userName).update(reply);                
+
+                database.ref().child('roomList/' + roomCode + '/replies/' + $('#pagename').html() + '/' + userName).update(reply);
                 console.log(reply);
                 responseNum++;
                 console.log(responseNum);
@@ -250,7 +255,7 @@
                     $("#timer").html(duration);
                     $("div.new_popup").css("display", "none");
                   }
-                  
+
                   duration--;
                 }
               }, 1000);
