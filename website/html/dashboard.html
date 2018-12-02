@@ -53,6 +53,19 @@
 
       </div>
 
+      <!-- Start Room Popup -->
+      <div id="start_room_popup">
+          <!-- Join Room Popup Content -->
+          
+          <div id="start_room_popup_content">
+            <span id="start_room_close" onclick="func_close_start_room_pop()">&times;</span>
+            <h2 id="start_room_popup_title">Room Name</h2>
+            <p id="start_room_popup_msg">Start Room?</p>
+            <p id="start_room_popup_joined">Joined: </p>
+            <p id="start_room_popup_go">Start</p>
+          </div>
+        </div>
+
       <!-- Joined Rooms Page-->
       <div id="div_body_joinedRoom" class="div_body">
         <!-- Join Room Button -->
@@ -176,6 +189,7 @@
       var rooms_joined = db.ref("userList/" + user + "/joined");
       if (rooms_joined != null) {
         rooms_joined.once("value").then(function(s) {
+          console.log(s.val(), "s.val()");
           var joined_array = s.val();
           var joined_length = Object.keys(joined_array).length;
 
@@ -198,10 +212,10 @@
         var started = r.val();
 
         if (started) {
-          $("#div_body_analytics").append(create_room(room_number, started));
+          $("#div_body_analytics").append(create_room(room_number, 0));
           func_populate(room_number);
         } else {
-          $("#div_body_yourRoom").append(create_room(room_number, started));
+          $("#div_body_yourRoom").append(create_room(room_number, 2));
           func_populate(room_number);
         }
       });
@@ -217,7 +231,7 @@
         if (started) {
           //delete from joined room
         } else {
-          $("#div_body_joinedRoom").append(create_room(room_number, started));
+          $("#div_body_joinedRoom").append(create_room(room_number, 1));
           func_populate(room_number);
         }
       });
@@ -256,6 +270,45 @@
       }
     }
 
+    //All functions Dealing with starting a room from the dashboard
+    function start_popup(room_number) {
+      $("#start_room_popup").css("display","block");
+      $("#start_room_popup_title").html($("#room_joined_" + room_number + " h3").html());
+      db.ref().child("roomList/" + room_number + "/people").on("value", snapshot => {
+        $("#start_room_popup_joined").html("Joined: " + Object.keys(snapshot.val()).length);
+      });
+      $("#start_room_popup_go").click(function(event) {
+        func_start_room(room_number);
+        console.log("started");
+      });
+
+    }
+
+    //closes the popup
+    function func_close_start_room_pop() {
+      $("#start_room_popup").css("display", "none");
+    }
+
+    //Starts the room and allows the user to join the room they have started
+    function func_start_room(room_number) {
+      db.ref().child("roomList/" + room_number + "/start").set(true); //starts the activity in the roomList
+      db.ref().child("userList/" + user + "/rooms/" + room_number  + "/start").set(true); //starts the activity in the userList
+      $("#start_room_popup_go").html("Join Room").unbind("click");
+      $("#start_room_popup_go").click(function(event) {
+        console.log("trying to join");
+        var myStorage = window.localStorage;
+
+        var ref = db.ref("userList/" + user + "/name");
+        ref.once("value")
+          .then(function(s) {
+            var name_thing = s.val();
+            myStorage.setItem("name", name_thing);
+          })
+        myStorage.setItem("roomCode", room_number);
+        window.location.href = "activity.html";
+      });
+    }
+
     function func_is_users_room(room_number) {
       for (i = 0; i < list_of_rooms.length; i++) {
         if (room_number == list_of_rooms[i]) {
@@ -273,7 +326,7 @@
       var list_length =   list_of_joined.length++;
       list_of_joined[list_length] = room_number;
       console.log(list_of_joined);
-      $("#div_body_joinedRoom").append(create_room(room_number, false));
+      $("#div_body_joinedRoom").append(create_room(room_number, 1));
       func_populate(room_number);
       func_close_join_room_pop();
       func_add_room_to_database(room_number);
@@ -303,12 +356,16 @@
 
       // .css("display", "none");
 
-      if (status) {
+      if (status == 0) { //If this room belongs in the anlytics section
         var button_options = $("<button>").html("Analytics").attr("id", "button_start_" + room_number).addClass("button_analytics").attr('value', room_number).attr("onclick", "set_storage(this)").attr("onclick",
           "location.href='analytics.html'"); //change class name to something else
-      } else {
-        var button_options = $("<button>").html("Start").attr("id", "button_start_" + room_number).addClass("button_create_room_start").attr('value', room_number).attr("onclick", "set_storage(this)").attr("onclick",
+      } else if (status == 1) { //If this room belongs in the joined room section
+        var button_options = $("<button>").html("Join").attr("id", "button_start_" + room_number).addClass("button_create_room_start").attr('value', room_number).attr("onclick", "set_storage(this)").attr("onclick",
           "location.href='activity.html'"); //change class name to something else
+      } else { //If this room belongs in the your roooms secotion
+        var button_options = $("<button>").html("Start").attr("id", "button_start_" + room_number).addClass("button_create_room_start").attr('value', room_number).attr("onclick", "set_storage(this)").attr("onclick",
+          "start_popup(" + room_number + ")"); //change class name to something else
+        
       }
       $(div_pop_cont).append(p_pop_text);
       var pop = $(div_pop).append(div_pop_cont);

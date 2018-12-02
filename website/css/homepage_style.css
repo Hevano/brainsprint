@@ -129,20 +129,24 @@ body {
   width: 100%;
 }
 
-#input_button {
+#join_button {
   background-color: rgb(134, 190, 131);
-  border: none;
   color: white;
+  font-size: 16px;
+  cursor: pointer;
   padding: .5em;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 2em;
-  margin-left: 3em;
-  cursor: pointer;
+  border: none;
   border-radius: 12px;
   box-shadow: 2px 2px rgb(136, 136, 136);
+  margin-top: 1em;
+  margin-left: 25%;
+}
+
+#pop_message {
+  color: red;
+  float: left;
+  margin-top: .5em;
 }
 
 /* ----------------------------------------- */
