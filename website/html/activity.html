@@ -144,7 +144,11 @@
 
 
         $(document).ready(function() {
+          if (sessionStorage.getItem("name") != null) {
+            var userName = sessionStorage.getItem("name")
+          } else {
           var userName = window.localStorage.getItem("name");
+          }
           $("#wait_name").html("Welcome, " + userName);
           var roomCode = window.localStorage.getItem("roomCode"); //What room are we in?
           $("#wait_code").html("#" + roomCode);
@@ -184,7 +188,7 @@
               };
                 
               console.log(reply);
-
+                
                 database.ref().child('roomList/' + roomCode + '/replies/' + $('#pagename').html() + '/' + userName).update(reply);                
                 console.log(reply);
                 responseNum++;

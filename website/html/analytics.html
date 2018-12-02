@@ -96,55 +96,88 @@
     var myStorage = window.localStorage;
     var roomCode = myStorage.getItem("roomCode")
     console.log(roomCode);
+    countWords();
+
 /**---------Updates the respective trees in database to allow analytics to pull data easily.---------**/
-    var personal = {};
-    var personalPrompts = {};
-    var firstRef = database.ref().child('/roomList/' + roomCode + '/replies/');
-    firstRef.once('value', snapshot => {
-      var totalText = "";
-      snapshot.forEach(function(prompt) {
-        var promptKey = prompt.key;
-        var promptData = prompt.val();
-        personalPrompts[promptKey] = "";
-        var secondRef = firstRef.child(promptKey + '/');
-        secondRef.once('value', promptShot => {
-            /**Name Tree**/
-            promptShot.forEach(function(name){
-            var nameKey = name.key;
-            var nameData = name.val();
-            var thirdRef = secondRef.child(nameKey + '/');
-            thirdRef.once('value', nameShot => {
-              /**Response tree **/
-              nameShot.forEach(function(response) {
-                var responseKey = response.key;
-                var responseData = response.val();
-                var fourthRef = thirdRef.child(responseKey + '/');
-                fourthRef.once('value', textShot => {
-                  textShot.forEach(function(text){
-                    totalText += text.val() + " ";
-                    var textCollection = {
-                      textCollection: totalText
-                    };
-
-
-                    personal[nameKey] = personalPrompts;
-                    personalPrompts[promptKey] += text.val() + " ";
-
-                    /**Updates the total text collection.**/
-                    database.ref().child('/roomList/' + roomCode + '/analytics/').update(textCollection);
-                    
-                    /**Updates the text collection for each individual person**/
-                    database.ref().child('/roomList/' + roomCode + '/analytics/people/').update(personal);
-
-                  });
-                });
-              });
-            });
-          });
-        });        
-      });
+//    var personal = {};
+//    var personalPrompts = {};
+//    var firstRef = database.ref().child('/roomList/' + roomCode + '/replies/');
+//    firstRef.once('value', snapshot => {
+//      var totalText = "";
+//      snapshot.forEach(function(prompt) {
+//        var promptKey = prompt.key;
+//        var promptData = prompt.val();
+//        personalPrompts[promptKey] = "";
+//        var secondRef = firstRef.child(promptKey + '/');
+//        secondRef.once('value', promptShot => {
+//            /**Name Tree**/
+//            promptShot.forEach(function(name){
+//            var nameKey = name.key;
+//            var nameData = name.val();
+//            var thirdRef = secondRef.child(nameKey + '/');
+//            thirdRef.once('value', nameShot => {
+//              /**Response tree **/
+//              nameShot.forEach(function(response) {
+//                var responseKey = response.key;
+//                var responseData = response.val();
+//                var fourthRef = thirdRef.child(responseKey + '/');
+//                fourthRef.once('value', textShot => {
+//                  textShot.forEach(function(text){
+//                    totalText += text.val() + " ";
+//                    var textCollection = {
+//                      textCollection: totalText
+//                    };
+//
+//
+//                    personal[nameKey] = personalPrompts;
+//                    personalPrompts[promptKey] += text.val() + " ";
+//
+//                    /**Updates the total text collection.**/
+//                    database.ref().child('/roomList/' + roomCode + '/analytics/').update(textCollection);
+//                    
+//                    /**Updates the text collection for each individual person**/
+//                    database.ref().child('/roomList/' + roomCode + '/analytics/people/').update(personal);
+//
+//                  });
+//                });
+//              });
+//            });
+//          });
+//        });        
+//      });
+//    });
+//   populate_prompts();
+//   });
+//
+//  function populate_prompts() {
+//    var myStorage = window.localStorage;
+//    var roomCode = myStorage.getItem('roomCode');
+//    var promptNames = [];
+//    var addPrompt;
+//    let i = 1;
+//    var firstRef = database.ref().child('/roomList/' + roomCode + '/prompts/');
+//    firstRef.once('value', numShot => {
+//      numShot.forEach(function(prompt) {
+//        var promptKey = prompt.key
+//        var secondRef = firstRef.child(promptKey + '/text/').once('value', promptShot => {
+//          addPrompt = $('<option>').attr('value', promptShot.val()).html(promptShot.val());
+//          $('#select_prompt').append(addPrompt);
+//        });
+//      });
     });
-  });
+//  }
+//
+  function countWords() {
+    var myStorage = window.localStorage;
+    var textArray;
+    var roomCode = myStorage.getItem('roomCode');    
+    console.log(roomCode);
+    database.ref().child('/roomList/' + roomCode + '/analytics/textCollection/').once('value', snapshot => {
+      console.log(snapshot.val());
+      console.log(textArray);
+    });
+  }
+  
 </script>
 </body>
 </html>
