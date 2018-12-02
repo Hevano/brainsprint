@@ -124,10 +124,16 @@
       }
 
       function finish_pop() {
+        // let participantName;
+        // if (sessionStorage.getItem("name") != null) {
+        //   participantName = sessionStorage.getItem("name")
+        // } else {
+        //   participantName = window.localStorage.getItem("name");
+        // }
         $("div.wait_popup").css("display", "block");
         $("#wait_home").css("display", "block");
         $("div.wait_popup_content").css("height", "18em");
-        $("#wait_name").html("Goodbye, " + window.localStorage.getItem("name"));
+        $("#wait_name").html("Goodbye, " + userName);
         $("#wait_msg").html("The activity has now finished. Thanks for brainstorming with BrainSprint!");
 
         $("#wait_home").click(function(event) {
