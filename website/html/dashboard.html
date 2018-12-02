@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="../css/brain_style.css">
   <link rel="stylesheet" href="../css/dashboard_style.css">
   <link rel="icon" href="../images/brain.png">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 
 <body>
@@ -56,7 +55,7 @@
       <!-- Start Room Popup -->
       <div id="start_room_popup">
           <!-- Join Room Popup Content -->
-          
+
           <div id="start_room_popup_content">
             <span id="start_room_close" onclick="func_close_start_room_pop()">&times;</span>
             <h2 id="start_room_popup_title">Room Name</h2>
@@ -365,7 +364,7 @@
       } else { //If this room belongs in the your roooms secotion
         var button_options = $("<button>").html("Start").attr("id", "button_start_" + room_number).addClass("button_create_room_start").attr('value', room_number).attr("onclick", "set_storage(this)").attr("onclick",
           "start_popup(" + room_number + ")"); //change class name to something else
-        
+
       }
       $(div_pop_cont).append(p_pop_text);
       var pop = $(div_pop).append(div_pop_cont);
@@ -463,12 +462,10 @@
           //remove form list_of_rooms
           list_of_rooms.splice(i, i);
           console.log(list_of_rooms);
-
-
         }
         else if (room_number == list_of_joined[i]){
           joined_room.remove();
-          
+
           //remove form list_of_joined
           list_of_joined.splice(i, i);
           console.log(list_of_joined);

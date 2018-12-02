@@ -62,7 +62,7 @@ body {
 }
 
 #div_roomButtons {
-  width: 24em;
+  width: 40em;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -160,23 +160,35 @@ body {
 /* ---------------------------------------- */
 
 .div_main_cont {
-  background-color: rgb(151, 180, 235);
+  /* background-color: rgb(151, 180, 235); */
   width: auto;
   height: 650px;
-  margin: 0
+  margin: 0;
+  border-bottom: rgb(194, 194, 194) solid 1px;
+
 }
 
 .page_header{
   text-align: center;
   margin: 0;
   padding-top: 40px;
+  font-size: 2.5em;
 }
 #button_enter, #button_create {
   width: auto;
   height: auto;
   font-size: 15pt;
-  padding: 10px 20px 10px 20px;
+  padding: 15px 35px 15px 35px;
+  margin-top: 2em;
   float: none;
+  background-color: rgb(235, 177, 95);
+
+}
+
+#button_create{
+  float: right;
+  background-color: rgb(134, 190, 131);
+
 }
 
 /* ------------------------------------------ */
@@ -184,7 +196,8 @@ body {
 .div_what_cont {
   width: auto;
   height: auto;
-  background-color: rgb(119, 231, 196);
+  /* background-color: rgb(119, 231, 196); */
+  border-bottom: rgb(194, 194, 194) solid 1px;
 }
 
 .what_cont{
@@ -206,10 +219,13 @@ body {
 
 /* HOW */
 .div_how_cont{
-  background-color: rgb(158, 101, 130);
+  /* background-color: rgb(158, 101, 130); */
+  border-bottom: rgb(194, 194, 194) solid 1px;
+
 }
 .how_num{
-  width: 305px;
+  /* width: 305px; */
+  width: auto;
   height: auto;
   margin-top: 50px;
 }
@@ -239,7 +255,8 @@ body {
 /* Create */
 
 .div_create_cont{
-  background-color: rgb(180, 129, 209);
+  /* background-color: rgb(180, 129, 209); */
+  border-bottom: rgb(194, 194, 194) solid 1px;
 }
 
 .create_cont{
@@ -252,7 +269,7 @@ body {
   display: grid;
   grid-template-columns: 50% 50%;
   padding: 50px 150px 50px 150px;
-  border-bottom: 1px solid rgb(116, 116, 116);
+  border-bottom: rgb(194, 194, 194) solid 1px;
 
 }
 
@@ -263,7 +280,8 @@ body {
 
 /* JOIN A ROOM */
 .div_join_cont{
-  background-color: rgb(108, 199, 218);
+  /* background-color: rgb(108, 199, 218); */
+  border-bottom: rgb(194, 194, 194) solid 1px;
 }
 .join_cont{
   display: grid;

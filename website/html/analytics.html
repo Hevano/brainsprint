@@ -6,7 +6,6 @@
   <title>Analytics - Brain Sprint</title>
   <link rel="stylesheet" href="../css/brain_style.css">
   <link rel="stylesheet" href="../css/analytics_style.css">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
   <script type="text/javascript" src="../js/setup-firebase.js"></script>
   <script src="../js/jquery-3.3.1.js"></script>
@@ -70,7 +69,7 @@
       <div class="div_insight_title">
         <h1>Most unique words</h1>
       </div>
-      <div id="div_insight_common" class="div_insight_content">        
+      <div id="div_insight_common" class="div_insight_content">
       </div>
     </div>
   </div>
@@ -79,7 +78,7 @@
         <div class="div_insight_title">
           <h1>Responses</h1>
         </div>
-        <div class="div_insight_content">            
+        <div class="div_insight_content">
         </div>
       </div>
   </div>
@@ -132,7 +131,7 @@
 
                     /**Updates the total text collection.**/
                     database.ref().child('/roomList/' + roomCode + '/analytics/').update(textCollection);
-                    
+
                     /**Updates the text collection for each individual person**/
                     database.ref().child('/roomList/' + roomCode + '/analytics/people/').update(personal);
 
@@ -141,7 +140,7 @@
               });
             });
           });
-        });        
+        });
       });
     });
   });

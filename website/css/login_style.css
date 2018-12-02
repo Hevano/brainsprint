@@ -3,21 +3,22 @@
 .pagewrap{
   width: 100%;
   height: 52em;
-  /* background-color: rgb(157, 130, 159); */
+  background-color: rgb(134, 190, 131);
   min-width: 990px;
+  back
 }
 /* div_left_wrap */
 .div_left_wrap {
   float: left;
   width: 60%;
   height: 50em;;
-  /* background-color: rgb(150, 165, 214); */
+  background-color: rgb(255, 255, 255);
   border: 1em solid rgb(134, 190, 131);
+  border-radius: 30px;
 }
 
 /* left wrapper container */
 #div_left_containers {
-  /* background-color: rgb(198, 136, 52); */
   display: block;
   width: 90%;
   height: 50em;
