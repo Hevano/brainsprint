@@ -249,7 +249,7 @@
           roomParam.child("people/" + name).set(true); //adds username to the database, within the room they are joining
           myStorage.setItem("name", name);
           myStorage.setItem("roomCode", $("#input_number").val());
-          //window.location.href = "activity.html";
+          window.location.href = "activity.html";
         } else {
           $(".join_room_popup_content").css("height","14em");
           $("#pop_message").html("Sorry, that name is taken.");
