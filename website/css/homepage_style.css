@@ -237,12 +237,13 @@ body {
 }
 
 .how_num img{
-  clip-path: circle(100px at center);
+  clip-path: circle(150px at center);
   display: block;
-  width: 200px;
+  width: 100%;
   height: auto;
   margin-left: auto;
   margin-right: auto;
+  background-color: rgb(218, 218, 218);
 }
 
 .how_num p{
@@ -267,15 +268,19 @@ body {
 
 .create_steps{
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 60% 40%;
   padding: 50px 150px 50px 150px;
   border-bottom: rgb(194, 194, 194) solid 1px;
-
 }
 
 .create_steps img{
-  width: 350px;
+  width: 80%;
   height: auto;
+  background-color: rgb(218, 218, 218);
+}
+
+.create_steps p{
+  margin-top: 40%;
 }
 
 /* JOIN A ROOM */
@@ -295,6 +300,7 @@ body {
   height: auto;
   margin-left: auto;
   margin-right: auto;
+  background-color: rgb(218, 218, 218);
 }
 .join_cont h2{
   text-align: center;
