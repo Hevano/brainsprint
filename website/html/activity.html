@@ -109,7 +109,11 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>
-
+      if (sessionStorage.getItem("name") != null) {
+        var userName = sessionStorage.getItem("name")
+      } else {
+        var userName = window.localStorage.getItem("name");
+      }
       var duration;
 
       // Closes Join Room Popup
@@ -141,7 +145,7 @@
           if (sessionStorage.getItem("uid") != null) {
             window.location.href = "dashboard.html";
 
-          } else{
+          } else {
             window.location.href = "homepage.html";
           }
         });
@@ -155,11 +159,7 @@
 
 
         $(document).ready(function() {
-          if (sessionStorage.getItem("name") != null) {
-            var userName = sessionStorage.getItem("name")
-          } else {
-          var userName = window.localStorage.getItem("name");
-          }
+
           $("#wait_name").html("Welcome, " + userName);
           var roomCode = window.localStorage.getItem("roomCode"); //What room are we in?
           $("#wait_code").html("#" + roomCode);
