@@ -63,9 +63,8 @@ body {
 
 #div_roomButtons {
   width: 40em;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  height: 6em;
+  margin: 0 auto;
 }
 
 /* #button_enter, #button_create {
@@ -74,7 +73,6 @@ body {
   font-size: 20pt;
   float: none;
 } */
-
 /* Join Room Popup */
 .join_room_popup {
   display: none;
@@ -158,22 +156,21 @@ body {
 }
 
 /* ---------------------------------------- */
-
 .div_main_cont {
   /* background-color: rgb(151, 180, 235); */
   width: auto;
   height: 650px;
   margin: 0;
   border-bottom: rgb(194, 194, 194) solid 1px;
-
 }
 
-.page_header{
+.page_header {
   text-align: center;
   margin: 0;
   padding-top: 40px;
   font-size: 2.5em;
 }
+
 #button_enter, #button_create {
   width: auto;
   height: auto;
@@ -182,17 +179,19 @@ body {
   margin-top: 2em;
   float: none;
   background-color: rgb(235, 177, 95);
-
 }
 
-#button_create{
+#button_enter:hover, #button_create:hover {
+  margin-top: 1.9em;
+  box-shadow: 5px 6px 15px 2px rgb(186, 186, 186);
+}
+
+#button_create {
   float: right;
   background-color: rgb(134, 190, 131);
-
 }
 
 /* ------------------------------------------ */
-
 .div_what_cont {
   width: auto;
   height: auto;
@@ -200,43 +199,42 @@ body {
   border-bottom: rgb(194, 194, 194) solid 1px;
 }
 
-.what_cont{
+.what_cont {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 50px;
   padding: 50px;
 }
 
-.p_texts{
+.p_texts {
   font-size: 1.25em;
-
 }
 
-#what_img{
+#what_img {
   width: 350px;
   height: auto;
 }
 
 /* HOW */
-.div_how_cont{
+.div_how_cont {
   /* background-color: rgb(158, 101, 130); */
   border-bottom: rgb(194, 194, 194) solid 1px;
-
 }
-.how_num{
+
+.how_num {
   /* width: 305px; */
   width: auto;
   height: auto;
   margin-top: 50px;
 }
 
-.how_cont{
+.how_cont {
   width: auto;
   display: grid;
   grid-template-columns: auto auto auto auto;
 }
 
-.how_num img{
+.how_num img {
   clip-path: circle(150px at center);
   display: block;
   width: 100%;
@@ -246,68 +244,70 @@ body {
   background-color: rgb(218, 218, 218);
 }
 
-.how_num p{
+.how_num p {
   text-align: center;
-  padding:40px;
+  padding: 40px;
   padding-top: 20px;
   margin-top: 0;
 }
 
 /* Create */
-
-.div_create_cont{
+.div_create_cont {
   /* background-color: rgb(180, 129, 209); */
   border-bottom: rgb(194, 194, 194) solid 1px;
 }
 
-.create_cont{
+.create_cont {
   display: grid;
   grid-template-rows: auto auto auto auto;
   /* grid-row-gap: 50px; */
 }
 
-.create_steps{
+.create_steps {
   display: grid;
   grid-template-columns: 60% 40%;
   padding: 50px 150px 50px 150px;
   border-bottom: rgb(194, 194, 194) solid 1px;
 }
 
-.create_steps img{
+.create_steps img {
   width: 80%;
   height: auto;
   background-color: rgb(218, 218, 218);
 }
 
-.create_steps p{
+.create_steps p {
   margin-top: 40%;
 }
 
 /* JOIN A ROOM */
-.div_join_cont{
+.div_join_cont {
   /* background-color: rgb(108, 199, 218); */
   border-bottom: rgb(194, 194, 194) solid 1px;
 }
-.join_cont{
+
+.join_cont {
   display: grid;
   grid-template-columns: auto auto;
   padding: 50px;
 }
 
-.join_cont img{
+.join_cont img {
   display: block;
-  width: 350px;
+  width: 90%;
   height: auto;
   margin-left: auto;
   margin-right: auto;
   background-color: rgb(218, 218, 218);
 }
-.join_cont h2{
+
+.join_cont h2 {
   text-align: center;
 }
-.join_cont p{
+
+.join_cont p {
   text-align: center;
-  padding:50px;
+  padding: 50px;
   padding-top: 0;
 }
 
