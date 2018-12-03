@@ -6,7 +6,6 @@
         <link rel="stylesheet" href="../css/brain_style.css">
         <link rel="stylesheet" href="../css/create_style.css">
         <link rel="icon" href="../images/brain.png">
-        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
         <script type="text/javascript" src="../js/setup-firebase.js"></script>
         <script src="../js/jquery-3.3.1.js"></script>
@@ -114,7 +113,7 @@
           /*<![CDATA[*/
 
           /**Prints the current user's id and name to console.**/
-          $(document).ready(function(){ 
+          $(document).ready(function(){
             console.log("Page loaded with user: " + sessionStorage.getItem("uid"));
             console.log("Name: " + sessionStorage.getItem("name"));
           })
@@ -123,7 +122,7 @@
           function resetFields() {
             var form = document.getElementById("create_room_form").reset();
           }
-          
+
           /**Adds a new input area for adding a new prompt.**/
           function createPrompt() {
             var newTopic = document.getElementById("topic_fieldset");
@@ -137,7 +136,7 @@
             document.getElementById("create_prompt_button").before(clone);
 
           }
-          
+
           /**Deletes the topic which this button was clicked from. **/
           function deletePrompt(event) {
             var trigger = event.target;
@@ -189,20 +188,20 @@
 
               console.log(numUpdate);
               database.ref().update(numUpdate);
-              
+
               var roomInfo = {};
               roomInfo[roomCode] = postData;
-              
-             
+
+
               var dbUpdate = database.ref().child('roomList').update(roomInfo);
-  
+
               var updates = {};
               updates['/userList/' + uid + '/rooms/' + roomCode] = postData;
               database.ref().update(updates);
-  
-              
+
+
               console.log("updated database!");
-              window.location = 'dashboard.html'            
+              window.location = 'dashboard.html'
 
             });
           });

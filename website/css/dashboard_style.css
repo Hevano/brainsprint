@@ -1,4 +1,8 @@
 /* OPTIONS BAR */
+.pagewrap{
+  min-width: 825px;
+}
+
 #body_options_bar {
   display: table;
   width: 90%;
@@ -156,7 +160,7 @@
   width: 3em;
   height: auto;
   top: 48em;
-  right: 5em;
+  right: 7%;
   cursor: pointer;
 }
 
