@@ -95,84 +95,129 @@
     var myStorage = window.localStorage;
     var roomCode = myStorage.getItem("roomCode")
     console.log(roomCode);
-    countWords();
+    /**Populates each individual participant's responses in the database**/
+    var rootRef = database.ref().child('/roomList/' + roomCode + '/replies/');
+    rootRef.once('value', snapshot => {
+      var rootValue = snapshot.val();
+      var prompts = Object.keys(rootValue);
+      var users = [];
+      for (let i = 0; i < prompts.length; i++) {
+        users[i] = Object.keys(rootValue[prompts[i]]);
+      }
+      var replies = [];
+      for (let i = 0; i < users.length; i++) {
+        replies[i] = [];
+        for (let j = 0; j < users[i].length; j++) {
+          replies[i][j] = Object.keys(rootValue[prompts[i]][users[i][j]]);
+        }
+      }
 
-/**---------Updates the respective trees in database to allow analytics to pull data easily.---------**/
-//    var personal = {};
-//    var personalPrompts = {};
-//    var firstRef = database.ref().child('/roomList/' + roomCode + '/replies/');
-//    firstRef.once('value', snapshot => {
-//      var totalText = "";
-//      snapshot.forEach(function(prompt) {
-//        var promptKey = prompt.key;
-//        var promptData = prompt.val();
-//        personalPrompts[promptKey] = "";
-//        var secondRef = firstRef.child(promptKey + '/');
-//        secondRef.once('value', promptShot => {
-//            /**Name Tree**/
-//            promptShot.forEach(function(name){
-//            var nameKey = name.key;
-//            var nameData = name.val();
-//            var thirdRef = secondRef.child(nameKey + '/');
-//            thirdRef.once('value', nameShot => {
-//              /**Response tree **/
-//              nameShot.forEach(function(response) {
-//                var responseKey = response.key;
-//                var responseData = response.val();
-//                var fourthRef = thirdRef.child(responseKey + '/');
-//                fourthRef.once('value', textShot => {
-//                  textShot.forEach(function(text){
-//                    totalText += text.val() + " ";
-//                    var textCollection = {
-//                      textCollection: totalText
-//                    };
-//
-//
-//                    personal[nameKey] = personalPrompts;
-//                    personalPrompts[promptKey] += text.val() + " ";
-//
-//                    /**Updates the total text collection.**/
-//                    database.ref().child('/roomList/' + roomCode + '/analytics/').update(textCollection);
-//
-//                    /**Updates the text collection for each individual person**/
-//                    database.ref().child('/roomList/' + roomCode + '/analytics/people/').update(personal);
-//
-//                  });
-//                });
-//              });
-//            });
-//          });
-//        });
-//      });
-//    });
-//   populate_prompts();
-//   });
-//
-//  function populate_prompts() {
-//    var myStorage = window.localStorage;
-//    var roomCode = myStorage.getItem('roomCode');
-//    var promptNames = [];
-//    var addPrompt;
-//    let i = 1;
-//    var firstRef = database.ref().child('/roomList/' + roomCode + '/prompts/');
-//    firstRef.once('value', numShot => {
-//      numShot.forEach(function(prompt) {
-//        var promptKey = prompt.key
-//        var secondRef = firstRef.child(promptKey + '/text/').once('value', promptShot => {
-//          addPrompt = $('<option>').attr('value', promptShot.val()).html(promptShot.val());
-//          $('#select_prompt').append(addPrompt);
-//        });
-//      });
+      console.log(rootValue[prompts[0]][users[0][0]][replies[0][0][0]]['text']);
+      var people = [];
+      var participantNames = [];
+      for (let i = 0; i < users[0].length; i++) {
+        participantNames[i] = users[0][i];
+      }
+      console.log(participantNames);
+        for (let i = 0; i < participantNames.length; i++) {
+          people[participantNames[i]] = [];
+        }
+
+        for (let i = 0; i < users.length; i++) {
+          for (let j = 0; j < participantNames.length; j++) {
+            for (let k = 0; k < replies[i][j].length; k++) {
+              people[participantNames[j]][prompts[i]] = "";
+            }
+          }
+        }
+
+        for (let i = 0; i < users.length; i++) {
+          for (let j = 0; j < participantNames.length; j++) {
+            for (let k = 0; k < replies[i][j].length; k++) {
+            people[participantNames[j]][prompts[i]] += rootValue[prompts[i]][users[0][j]][replies[i][j][k]]['text'] + " ";
+            }
+          }
+      }
+      database.ref().child('roomList/' + roomCode + '/analytics/people/').set(people);
+
+});
+
+/**---------Updates the total textCollection in database to allow analytics to pull data easily.---------**/
+    var personal = {};
+    var personalPrompts = {};
+    var firstRef = database.ref().child('/roomList/' + roomCode + '/replies/');
+    firstRef.once('value', snapshot => {
+      var totalText = "";
+      snapshot.forEach(function(prompt) {
+        var promptKey = prompt.key;
+        var promptData = prompt.val();
+        personalPrompts[promptKey] = "";
+        var secondRef = firstRef.child(promptKey + '/');
+        secondRef.once('value', promptShot => {
+            /**Name Tree**/
+            promptShot.forEach(function(name){
+            var nameKey = name.key;
+            var nameData = name.val();
+//            console.log(nameData);
+            var thirdRef = secondRef.child(nameKey + '/');
+            thirdRef.once('value', nameShot => {
+              /**Response tree **/
+              nameShot.forEach(function(response) {
+                var responseKey = response.key;
+                var responseData = response.val();
+
+                var fourthRef = thirdRef.child(responseKey + '/');
+                fourthRef.once('value', textShot => {
+                    totalText += textShot.child('text').val() + " ";
+
+                    var textCollection = {
+                      textCollection: totalText
+                    };
+
+
+                    /**Updates the total text collection.**/
+                    database.ref().child('/roomList/' + roomCode + '/analytics/').update(textCollection);
+
+
+                  });
+              });
+            });
+          });
+        });
+      });
     });
-//  }
-//
+   populate_prompts();
+   countWords();
+   });
+
+  /**populates the drop-down menu for prompts**/
+  function populate_prompts() {
+    var myStorage = window.localStorage;
+    var roomCode = myStorage.getItem('roomCode');
+    var promptNames = [];
+    var addPrompt;
+    let i = 1;
+    var firstRef = database.ref().child('/roomList/' + roomCode + '/prompts/');
+    firstRef.once('value', numShot => {
+      numShot.forEach(function(prompt) {
+        var promptKey = prompt.key
+        var secondRef = firstRef.child(promptKey + '/text/').once('value', promptShot => {
+          addPrompt = $('<option>').attr('value', promptShot.val()).html(promptShot.val());
+          $('#select_prompt').append(addPrompt);
+        });
+      });
+    });
+  }
+  
+  /**Separates the textCollection into an array and counts words.**/
   function countWords() {
     var myStorage = window.localStorage;
     var textArray;
     var roomCode = myStorage.getItem('roomCode');
     console.log(roomCode);
-    database.ref().child('/roomList/' + roomCode + '/analytics/textCollection/').once('value', snapshot => {
-      console.log(snapshot.val());
+    database.ref().child('/roomList/' + roomCode + '/analytics/').once('value', snapshot => {
+      var string = snapshot.val().textCollection;
+      textArray = string.split(" ");
       console.log(textArray);
     });
   }

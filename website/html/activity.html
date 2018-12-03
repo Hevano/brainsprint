@@ -159,6 +159,7 @@
 
 
         $(document).ready(function() {
+          console.log (window.localStorage.getItem("roomCode"));
 
           $("#wait_name").html("Welcome, " + userName);
           var roomCode = window.localStorage.getItem("roomCode"); //What room are we in?
