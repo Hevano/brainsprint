@@ -139,6 +139,11 @@
   border-radius: 12px;
   box-shadow: 2px 2px rgb(136, 136, 136);
 }
+.button_create_room_start:hover {
+  margin-top: .9em;
+  box-shadow: 5px 6px 15px 2px rgb(186, 186, 186);
+}
+
 
 /* ICON IMAGE BUTTON TEMPLATE (+) */
 .icon_button {
@@ -156,12 +161,29 @@
 
 /* CREATE ROOM IMAGE BUTTON */
 #add_button, #join_button {
-  position: absolute;
   width: 3em;
   height: auto;
+}
+
+/* #add_button:hover, #join_button:hover{
+  top:47.5em;
+  box-shadow: 5px 6px 15px 2px rgb(186, 186, 186);
+} */
+
+.plus_button{
+  position: absolute;
+  width: 2.8em;
+  height: 2.8em;
   top: 48em;
   right: 7%;
   cursor: pointer;
+  border-radius: 50%;
+  /* background-color: rgb(209, 166, 186); */
+}
+
+.plus_button:hover{
+  top:47.7em;
+  box-shadow: 5px 6px 15px 2px rgb(186, 186, 186);
 }
 
 /* BUTTON SEE ANALYTICS */
@@ -183,6 +205,11 @@
   cursor: pointer;
   border-radius: 12px;
   box-shadow: 2px 2px rgb(136, 136, 136);
+}
+
+.button_analytics:hover{
+  margin-top: .9em;
+  box-shadow: 5px 6px 15px 2px rgb(186, 186, 186);
 }
 
 /* Join Room Popup */

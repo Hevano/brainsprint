@@ -44,7 +44,9 @@
 
       <!-- Dashboard Body -->
       <div id="div_body_yourRoom" class="div_body">
-        <a href="create.html"><img src="../images/add.png" alt="add_button" id="add_button"></a>
+        <div class="plus_button">
+          <a href="create.html"><img src="../images/add.png" alt="add_button" id="add_button"></a>
+        </div>
       </div>
 
       <!-- Analytics Page -->
@@ -54,22 +56,23 @@
 
       <!-- Start Room Popup -->
       <div id="start_room_popup">
-          <!-- Join Room Popup Content -->
+        <!-- Join Room Popup Content -->
 
-          <div id="start_room_popup_content">
-            <span id="start_room_close" onclick="func_close_start_room_pop()">&times;</span>
-            <h2 id="start_room_popup_title">Room Name</h2>
-            <p id="start_room_popup_msg">Start Room?</p>
-            <p id="start_room_popup_joined">Joined: </p>
-            <p id="start_room_popup_go">Start</p>
-          </div>
+        <div id="start_room_popup_content">
+          <span id="start_room_close" onclick="func_close_start_room_pop()">&times;</span>
+          <h2 id="start_room_popup_title">Room Name</h2>
+          <p id="start_room_popup_msg">Start Room?</p>
+          <p id="start_room_popup_joined">Joined: </p>
+          <p id="start_room_popup_go">Start</p>
         </div>
+      </div>
 
       <!-- Joined Rooms Page-->
       <div id="div_body_joinedRoom" class="div_body">
         <!-- Join Room Button -->
-        <a onclick="func_join_room_pop()"><img src="../images/add.png" alt="add_button" id="join_button"></a>
-
+        <div class="plus_button">
+          <a onclick="func_join_room_pop()"><img src="../images/add.png" alt="add_button" id="join_button"></a>
+        </div>
         <!-- Join Room Popup -->
         <div class="join_room_popup">
           <!-- Join Room Popup Content -->
@@ -271,7 +274,7 @@
 
     //All functions Dealing with starting a room from the dashboard
     function start_popup(room_number) {
-      $("#start_room_popup").css("display","block");
+      $("#start_room_popup").css("display", "block");
       $("#start_room_popup_title").html($("#room_joined_" + room_number + " h3").html());
       db.ref().child("roomList/" + room_number + "/people").on("value", snapshot => {
         $("#start_room_popup_joined").html("Joined: " + Object.keys(snapshot.val()).length);
@@ -291,7 +294,7 @@
     //Starts the room and allows the user to join the room they have started
     function func_start_room(room_number) {
       db.ref().child("roomList/" + room_number + "/start").set(true); //starts the activity in the roomList
-      db.ref().child("userList/" + user + "/rooms/" + room_number  + "/start").set(true); //starts the activity in the userList
+      db.ref().child("userList/" + user + "/rooms/" + room_number + "/start").set(true); //starts the activity in the userList
       $("#start_room_popup_go").html("Join Room").unbind("click");
       $("#start_room_popup_go").click(function(event) {
         console.log("trying to join");
@@ -322,7 +325,7 @@
     // function that creates the divs for joined room------------------------------------------------------------------------------------------------
     function func_join_room() {
       var room_number = document.getElementById('input_text').value;
-      var list_length =   list_of_joined.length++;
+      var list_length = list_of_joined.length++;
       list_of_joined[list_length] = room_number;
       console.log(list_of_joined);
       $("#div_body_joinedRoom").append(create_room(room_number, 1));
@@ -447,23 +450,22 @@
     }
 
     function func_delete(room_number) {
-      var room_list = db.ref("roomList/"+room_number)
-      var your_room = db.ref("userList/"+user+"/rooms").child(room_number);
-      var joined_room = db.ref("userList/"+user+"/joined").child(room_number);
+      var room_list = db.ref("roomList/" + room_number)
+      var your_room = db.ref("userList/" + user + "/rooms").child(room_number);
+      var joined_room = db.ref("userList/" + user + "/joined").child(room_number);
       console.log(room_number);
       $("#room_joined_" + room_number).remove();
 
 
-      for (i = 0; i < list_of_rooms.length ; i++){
-        if (room_number == list_of_rooms[i]){
+      for (i = 0; i < list_of_rooms.length; i++) {
+        if (room_number == list_of_rooms[i]) {
           your_room.remove();
           room_list.remove()
 
           //remove form list_of_rooms
           list_of_rooms.splice(i, i);
           console.log(list_of_rooms);
-        }
-        else if (room_number == list_of_joined[i]){
+        } else if (room_number == list_of_joined[i]) {
           joined_room.remove();
 
           //remove form list_of_joined
