@@ -118,11 +118,13 @@
 
       // Closes Join Room Popup
       function func_close_wait_pop() {
+        console.log("tricky x2");
         $("div.wait_popup").css("display", "none");
       }
 
       // Brings up Join Room Popup
       function func_wait_pop() {
+        console.log("tricky");
         $("div.wait_popup").css("display", "block");
       }
 
@@ -293,7 +295,6 @@
                     //alert("time's up!")
                 } else {
                   if(duration > promptsList[index]["duration"]) { //checks if we are in grace period
-                    console.log("Dont lie to me!", index);
                     new_prompt_pop(duration, promptsList[index]["duration"]);
                   } else {
                     $("#timer").html(duration);
