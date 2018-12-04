@@ -186,6 +186,8 @@
 
 
           var responseNum = 0;
+          var totalText = {};
+          var analyticsUpdate = {};
           $("#enter_button").click(function(event){
             var submission = $("#submit_text").val()
             if(!submission == "" || !("#submit_text").val() == "Text goes here") {
@@ -199,12 +201,53 @@
                 votes: 0
               };
 
-              console.log(reply);
+//              console.log(reply);
 
                 database.ref().child('roomList/' + roomCode + '/replies/' + $('#pagename').html() + '/' + userName).update(reply);
-                console.log(reply);
+//                console.log(reply);
                 responseNum++;
                 console.log(responseNum);
+                
+                 
+                if (totalText[$('#pagename').html()] == null) {
+                  totalText[$('#pagename').html()] = "";
+                }
+                totalText[$('#pagename').html()] += submission + " ";
+
+          //      console.log(totalText);
+          //      console.log(totalText[$('#pagename').html()]);
+
+                var name = {};
+                name[userName] = {
+                  text: totalText[$('#pagename').html()]
+                }
+                
+                analyticsUpdate = name;
+          //      console.log(analyticsUpdate);
+          //      console.log(analyticsUpdate[$('#pagename').html()]);
+          var promise = database.ref().child('roomList/' + roomCode + '/analytics/prompts/' + $('#pagename').html()).update(analyticsUpdate);
+          console.log(userName);
+          console.log(analyticsUpdate);
+          promise.then(function() {
+            database.ref().child('roomList/' + roomCode + '/analytics/prompts/' + $('#pagename').html() + '/textCollection').once('value', snapshot => {
+                  console.log(snapshot.key);
+                  console.log(snapshot.val());
+
+                  if (snapshot.val() == null) {
+                    var textCollectionUpdate = {
+                    textCollection: submission + " "
+                    };
+                    console.log(textCollectionUpdate);
+                  database.ref().child('roomList/' + roomCode + '/analytics/prompts/' + $('#pagename').html()).update(textCollectionUpdate);
+                  } else {
+                  var textCollectionUpdate = {
+                    textCollection: snapshot.val() + submission  + " "
+                  };
+                   database.ref().child('roomList/' + roomCode + '/analytics/prompts/' + $('#pagename').html()).update(textCollectionUpdate);
+                  }
+                });
+
+          });
               }
             else {
               console.log("nope");

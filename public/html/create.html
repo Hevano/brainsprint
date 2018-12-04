@@ -42,7 +42,7 @@
           <div id='div_form'>
             <form class="create_form" id="create_room_form">
               <fieldset class="title_form">
-                <input type="text" id="room_name" name="name" placeholder="Room Name" required="required">
+                <input type="text" id="room_name" name="name" placeholder="Room Name" required="required" pattern="[A-Za-z]">
                 <!-- <span class="tooltip"><abbr title="The name of the room that you will create">?</abbr></span> -->
                 <div class="tooltip">?
                   <span class="tooltiptext">The name of the room that you will create</span>
@@ -143,6 +143,13 @@
             console.log(trigger.parentNode);
             trigger.parentNode.remove();
           }
+
+          /**Prevents the user from using any odd characters in the title of the room**/
+          $('#room_name').on('change keyup keydown',function(){
+                  var txt = $(this).val();
+                  $(this).val(/[A-Za-z]/.test(txt) ? txt : txt.substring(0,txt.length-1) );
+              });
+
 
           /**Processes the information in the form and saves it in database.**/
 
