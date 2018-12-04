@@ -330,5 +330,8 @@ body {
 }
 
 #credit{
+  background-color: rgb(134, 190, 131);
+  color: white;
+  font-size: 1.5em;
   text-align: center;
 }
