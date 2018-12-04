@@ -217,7 +217,7 @@
       for (let i = 0; i < promptNames.length; i++) {
         var response_div = $('<div>').attr('class', 'response_div');
         var name_button_div = $('<div>').attr('class', 'name_button_div');
-        var prompt_button = $('<button>').attr('class', 'prompt_button').html(promptNames[i]);        
+        var prompt_button = $('<div>').attr('class', 'prompt_button').html(promptNames[i]);        
         $('#div_response_content').append(response_div);
         $(response_div).append(prompt_button);
         $(response_div).after(name_button_div);

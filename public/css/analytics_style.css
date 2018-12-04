@@ -133,8 +133,8 @@
 
 /* medium */
 .response_div {
-  width: 33%;
-  margin: 0 auto;  
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* small */
@@ -150,26 +150,26 @@
 }
 
 .name_button {
-  width: 6em;
+  width: auto;
   height: 2em;
+  padding: 1em 1em 2em 1em;
   font-size: 14pt;
   border: none;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   text-align: center;
-  padding-bottom: 0.2em;
   display: inline-block;
 }
 
 .prompt_button {
-  width: 10em;
-  height: 2em;
+  width: auto;
+  height: auto;
   font-size: 14pt;
+  padding: 1em 1em 1em 1em;
   border: none;
   background-color: rgb(235, 177, 95);
   color: white;
   text-align: center;
-  padding-bottom: 0.2em;
-  margin-bottom: 1em;
+  margin: 0 auto;
   display: inline-block;
 }
