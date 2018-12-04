@@ -33,42 +33,16 @@
 <div id="div_pagename">
   <h1 id="pagename">Analytics</h1>
 </div>
-<!-- Search bar for the page -->
-<div id="div_search_input">
-  <form>
-    <input type="text" id="search_text" placeholder="Search any word here to produce results"></input>
-    <div id="search_button_wrap">
-      <img src="../images/search.png" alt="search button" id="search_button"/>
-    </div>
-  </form>
-</div>
 <!-- Middle portion of page-->
 <div id="div_body">
-<!-- Prompt selection to change what information displays-->
-  <div id="div_prompt_box">
-    <form id="form_select_prompt">
-      <select size="1" id="select_prompt">
-        <option value="all" selected="selected">All prompts</option>
-      </select>
-    </form>
-  </div>
 <!-- Analytics content -->
   <div class="div_analytics_box">
     <div class="div_analytics_content">
       <div class="div_insight_title">
         <h1>Most common words</h1>
       </div>
-      <div class="div_insight_content">
+      <div id="div_common_content" class="div_insight_content">
 
-      </div>
-    </div>
-  </div>
-  <div class="div_analytics_box">
-    <div class="div_analytics_content">
-      <div class="div_insight_title">
-        <h1>Most unique words</h1>
-      </div>
-      <div id="div_insight_common" class="div_insight_content">
       </div>
     </div>
   </div>
@@ -77,7 +51,9 @@
         <div class="div_insight_title">
           <h1>Responses</h1>
         </div>
-        <div class="div_insight_content">
+
+        <div id="div_response_content" class="div_insight_content">
+
         </div>
       </div>
   </div>
@@ -93,6 +69,7 @@
 
     var myStorage = window.localStorage;
     var roomCode = myStorage.getItem("roomCode")
+<<<<<<< HEAD
     console.log(roomCode);  /**Populates each individual participant's responses in the database**/
 //    var rootRef = database.ref().child('/roomList/' + roomCode + '/replies/');
 //     rootRef.once('value', snapshot => {
@@ -142,6 +119,9 @@
 //       database.ref().child('roomList/' + roomCode + '/analytics/people/').set(people);
 
 // });
+=======
+    console.log(roomCode);  
+>>>>>>> 0eec415df7afb0fffae130cfa70ee2271b95d237
 
   /**---------Updates the total textCollection in database to allow analytics to pull data easily.---------**/
     var personal = {};
@@ -190,7 +170,6 @@
     });
     populate_prompts();
     countWords();
-
    });
 
 //  function organizeInformation() {
@@ -226,6 +205,7 @@
       var string = snapshot.val().textCollection;
       textArray = string.split(" ");
       console.log(textArray);
+<<<<<<< HEAD
       // textArray = ["hi", "hi", "hi", "what"];
       // newTextArray[textArray[0]] = {
         // word: textArray[0],
@@ -250,10 +230,89 @@
             newTextArray.push(wordInformation)
           }
 
+=======
+      for (let i = 0; i < textArray.length; i++) {
+          if (newTextArray[textArray[i]] == null) {
+            newTextArray[textArray[i]] = 1;
+          } else {
+            newTextArray[textArray[i]]++;
+          }
+      } 
+
+      console.log(newTextArray);
+      var toSort = [];
+      for (var word in newTextArray) {
+        toSort.push([word, newTextArray[word]])
+      }
+      toSort.sort(function(a, b) {
+        return b[1] - a[1];
+      });
+        
+      console.log(toSort);
+      var sortedArray = {};
+      for (let i = 0; i < toSort.length; i++) {
+        sortedArray[toSort[i][0]] = toSort[i][1];          
+      }
+      console.log(sortedArray);
+      populate_most_common_words(toSort);
+      populate_responses();
+      });
+    }
+  function populate_most_common_words(array) {
+    console.log(array);
+    for (let i = 0; i < 10; i++) {
+      let word_div = $('<div>').attr('class', 'word_div');
+      let word_button = $('<button>').attr('class', 'word_button').html('<span class=\'button_text\'>' + array[i][0] + '</span>');
+      let word_count = $('<button>').attr('class', 'word_count').html('<span class=\'button_text\'>' + array[i][1] + '</span>');
+      $(word_div).append(word_button, word_count);
+      $('#div_common_content').append(word_div);
+    }
+  }
+/** Populates each user responses on the right side. **/
+  function populate_responses() {
+
+    var myStorage = window.localStorage;
+    var roomCode = myStorage.getItem('roomCode');
+    database.ref().child('roomList/' + roomCode + '/analytics/prompts/').once('value', snapshot => {
+      var promptObj = snapshot.val();
+      var promptNames = Object.keys(promptObj);
+      console.log(promptObj);
+      var userNames = {};
+      for (let i = 0; i < promptNames.length; i++) {
+        userNames[i] = Object.keys(promptObj[promptNames[i]]);
+      }
+      console.log(userNames);
+      var userSubmission = {};
+      for (let i = 0; i < promptNames.length; i++) {
+        userSubmission[promptNames[i]] = {};
+        for (let j = 0; j < userNames[i].length - 1; j++) {
+          userSubmission[promptNames[i]][userNames[i][j]] = promptObj[promptNames[i]][userNames[i][j]]['text'];
+>>>>>>> 0eec415df7afb0fffae130cfa70ee2271b95d237
         }
       }
+      console.log(userSubmission);
+      
+      for (let i = 0; i < promptNames.length; i++) {
+        var response_div = $('<div>').attr('class', 'response_div');
+        var name_button_div = $('<div>').attr('class', 'name_button_div');
+        var prompt_button = $('<button>').attr('class', 'prompt_button').html(promptNames[i]);        
+        $('#div_response_content').append(response_div);
+        $(response_div).append(prompt_button);
+        $(response_div).after(name_button_div);
+        for (let j = 0; j < userNames[i].length - 1; j++) {
+          var name_button = $('<button>').attr('class', 'name_button').html(userNames[i][j]);
+          $(name_button_div).append(name_button);
+          var userSubmittedResponse = $('<p>').attr('class', 'user_response').html(promptObj[promptNames[i]][userNames[i][j]]['text']);
+          $(name_button_div).append(userSubmittedResponse);
+        }
+      }
+      
+      
     });
+    
   }
+    
+  
 
 </script>
 </body>
