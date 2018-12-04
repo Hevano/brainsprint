@@ -334,11 +334,6 @@
       func_add_room_to_database(room_number);
     }
 
-    function func_join_room_as_user() {
-      set_storage(this);
-      location.href='activity.html';
-    }
-
 
     // Function that createds the div elements---------------------------------------------------------------------------------------------------------
     function create_room(room_number, status) {
@@ -368,7 +363,7 @@
           "set_storage(this); location.href='analytics.html'"); //change class name to something else
       } else if (status == 1) { //If this room belongs in the joined room section
         var button_options = $("<button>").html("Join").attr("id", "button_start_" + room_number).addClass("button_create_room_start").attr('value', room_number).attr("onclick", 
-          "func_join_room_as_user()"); //change class name to something else
+          "set_storage(this);location.href='activity.html';"); //change class name to something else
       } else { //If this room belongs in the your roooms secotion
         var button_options = $("<button>").html("Start").attr("id", "button_start_" + room_number).addClass("button_create_room_start").attr('value', room_number).attr("onclick", "set_storage(this)").attr("onclick",
           "start_popup(" + room_number + ")"); //change class name to something else
