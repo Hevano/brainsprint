@@ -201,7 +201,15 @@
       //checks if room exists
       room.once('value', snapshot => {
         if (snapshot.exists() && $("#input_number").val() != "") {
-          name_validate(room);
+          room.child("start").once('value', snapshot => {
+            if(!snapshot.val()) {
+              name_validate(room);
+            }
+            else {
+              $(".join_room_popup_content").css("height","14em");
+              $("#pop_message").html("Sorry, that room has already be started.");
+            }
+          });
         } else {
           $(".join_room_popup_content").css("height","14em");
           $("#pop_message").html("Sorry, we didn't find a room with that number.");
