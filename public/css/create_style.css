@@ -90,12 +90,9 @@
   font-size: .5em;
   background-color: rgb(135, 135, 135);
   color: #fff;
-  /* text-align: justify; */
-  /* border-radius: 6px; */
   padding: 5px 0;
   padding-left: 1em;
   top: -.5em;
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
 

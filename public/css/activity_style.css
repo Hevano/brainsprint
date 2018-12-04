@@ -1,5 +1,4 @@
 #div_time {
-  /* float: left; */
   clear: none;
   position: absolute;
   top: 9em;
@@ -160,7 +159,6 @@
 #new_prompt_title {
   font-size: 24pt;
   text-align: center;
-  /*display: inline-block;*/
   border-bottom: 3px solid rgb(134, 190, 131);
   margin-bottom: 0px;
   padding-bottom: 0.5em;
@@ -169,4 +167,3 @@
 #new_prompt_timer, #new_prompt_text {
   text-align: center;
 }
-

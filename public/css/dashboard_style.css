@@ -44,7 +44,6 @@
   height: auto;
   margin: 0 auto;
   border: 1px solid rgb(134, 190, 131);
-  /* border: 1px solid rgb(190, 125, 133); */
 }
 
 /* YOUR ROOM */
@@ -165,11 +164,6 @@
   height: auto;
 }
 
-/* #add_button:hover, #join_button:hover{
-  top:47.5em;
-  box-shadow: 5px 6px 15px 2px rgb(186, 186, 186);
-} */
-
 .plus_button{
   position: absolute;
   width: 2.8em;
@@ -178,7 +172,6 @@
   right: 7%;
   cursor: pointer;
   border-radius: 50%;
-  /* background-color: rgb(209, 166, 186); */
 }
 
 .plus_button:hover{
@@ -251,7 +244,6 @@
 
 .form_join_room {
   float: left;
-  /* margin-top: em; */
 }
 
 /* ROOM NUMBER TEXT BOX IN POP UP */

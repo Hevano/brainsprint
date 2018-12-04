@@ -27,7 +27,6 @@
       <nav id="div_nav_bar">
         <a id="nav_dashboard" class="nav_options" href="dashboard.html">Dashboard</a>
         <a id="nav_logout" class="nav_options" href="homepage.html">Log Out</a>
-        <a id="nav_help" class="nav_options"  href="help.html">Help </a>
       </nav>
     </div>
 </div>
@@ -123,7 +122,7 @@
 //         for (let i = 0; i < participantNames.length; i++) {
 //           people[participantNames[i]] = [];
 //         }
-      
+
 //         for (let i = 0; i < users.length; i++) {
 //           for (let j = 0; j < participantNames.length; j++) {
 //               people[participantNames[j]][prompts[i]] = "";
@@ -189,13 +188,13 @@
         });
       });
     });
-    populate_prompts();  
+    populate_prompts();
     countWords();
 
    });
-  
+
 //  function organizeInformation() {
-    
+
 //  }
   /**populates the drop-down menu for prompts**/
   function populate_prompts() {
@@ -215,7 +214,7 @@
       });
     });
   }
-  
+
   /**Separates the textCollection into an array and counts words.**/
   function countWords() {
     var myStorage = window.localStorage;
@@ -241,7 +240,7 @@
             newTextArray[j].count++;
             same = true;
             break;
-          } 
+          }
 
           if (!textArray[i].equals(newTextArray[j].word) && i == (j - 1)) {
             wordInformation = {
@@ -250,7 +249,7 @@
             };
             newTextArray.push(wordInformation)
           }
-          
+
         }
       }
     });
