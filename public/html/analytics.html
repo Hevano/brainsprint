@@ -27,7 +27,6 @@
       <nav id="div_nav_bar">
         <a id="nav_dashboard" class="nav_options" href="dashboard.html">Dashboard</a>
         <a id="nav_logout" class="nav_options" href="homepage.html">Log Out</a>
-        <a id="nav_help" class="nav_options"  href="help.html">Help </a>
       </nav>
     </div>
 </div>
@@ -70,7 +69,59 @@
 
     var myStorage = window.localStorage;
     var roomCode = myStorage.getItem("roomCode")
+<<<<<<< HEAD
+    console.log(roomCode);  /**Populates each individual participant's responses in the database**/
+//    var rootRef = database.ref().child('/roomList/' + roomCode + '/replies/');
+//     rootRef.once('value', snapshot => {
+//       var rootValue = snapshot.val();
+//       var prompts = Object.keys(rootValue);
+//       var users = [];
+//       for (let i = 0; i < prompts.length; i++) {
+//         users[i] = Object.keys(rootValue[prompts[i]]);
+//       }
+//       var replies = [];
+//       for (let i = 0; i < users.length; i++) {
+//         replies[i] = [];
+//         for (let j = 0; j < users[i].length; j++) {
+//           replies[i][j] = Object.keys(rootValue[prompts[i]][users[i][j]]);
+//           console.log(replies[i][j]);
+//         }
+//       }
+//       console.log(replies);
+
+// //      console.log(rootValue[prompts[0]][users[0][0]][replies[0][0][0]]['text']);
+//       var people = [];
+//       var participantNames = [];
+//       for (let i = 0; i < users[0].length; i++) {
+//         participantNames[i] = users[0][i];
+//       }
+// //      console.log(participantNames);
+//         for (let i = 0; i < participantNames.length; i++) {
+//           people[participantNames[i]] = [];
+//         }
+
+//         for (let i = 0; i < users.length; i++) {
+//           for (let j = 0; j < participantNames.length; j++) {
+//               people[participantNames[j]][prompts[i]] = "";
+//           }
+//         }
+
+//         for (let i = 0; i < users.length; i++) {
+//           for (let j = 0; j < participantNames.length; j++) {
+//             for (let k = 0; k < replies[i][j].length; k++) {
+//   //            console.log(people);
+//             var replyString = replies[i][j][k] + "";
+//             console.log(replies[i][j].length);
+//             people[participantNames[j]][prompts[i]] += rootValue[prompts[i]][users[0][j]][replyString]['text'] + " ";
+//             }
+//           }
+//       }
+//       database.ref().child('roomList/' + roomCode + '/analytics/people/').set(people);
+
+// });
+=======
     console.log(roomCode);  
+>>>>>>> 0eec415df7afb0fffae130cfa70ee2271b95d237
 
   /**---------Updates the total textCollection in database to allow analytics to pull data easily.---------**/
     var personal = {};
@@ -117,12 +168,12 @@
         });
       });
     });
-    populate_prompts();  
+    populate_prompts();
     countWords();
    });
-  
+
 //  function organizeInformation() {
-    
+
 //  }
   /**populates the drop-down menu for prompts**/
   function populate_prompts() {
@@ -142,7 +193,7 @@
       });
     });
   }
-  
+
   /**Separates the textCollection into an array and counts words.**/
   function countWords() {
     var myStorage = window.localStorage;
@@ -154,6 +205,32 @@
       var string = snapshot.val().textCollection;
       textArray = string.split(" ");
       console.log(textArray);
+<<<<<<< HEAD
+      // textArray = ["hi", "hi", "hi", "what"];
+      // newTextArray[textArray[0]] = {
+        // word: textArray[0],
+        // count: 1
+      // }
+      var same = false;
+      var wordInformation;
+      for (let i = 1; i < textArray.length; i++) {
+        for (let j = 0; j < newTextArray.length; j++) {
+          if (textArray[i].equals(newTextArray[j].word)) {
+            textArray[i].splice(i, 1);
+            newTextArray[j].count++;
+            same = true;
+            break;
+          }
+
+          if (!textArray[i].equals(newTextArray[j].word) && i == (j - 1)) {
+            wordInformation = {
+              word: textArray[i],
+              count: 1
+            };
+            newTextArray.push(wordInformation)
+          }
+
+=======
       for (let i = 0; i < textArray.length; i++) {
           if (newTextArray[textArray[i]] == null) {
             newTextArray[textArray[i]] = 1;
@@ -210,6 +287,7 @@
         userSubmission[promptNames[i]] = {};
         for (let j = 0; j < userNames[i].length - 1; j++) {
           userSubmission[promptNames[i]][userNames[i][j]] = promptObj[promptNames[i]][userNames[i][j]]['text'];
+>>>>>>> 0eec415df7afb0fffae130cfa70ee2271b95d237
         }
       }
       console.log(userSubmission);
